@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
-class PaymentDetail extends Model
+class MeasurePatientDetail extends Model
 {
     use HasFactory, HasRoles;
 
-    protected $table = 'payment_details';
+    protected $table = 'measure_patient_details';
     protected $primaryKey = 'id';
 }
