@@ -5,11 +5,10 @@
                 <i class="fad fa-times-circle"></i>
             </button>
         </div>
-
-        <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider font-semibold">Dashboard</p>
+        <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider font-semibold">Dasbor</p>
         <a href="{{url('dashboard-admin')}}" class="mb-3 @if (Request::segment(1) == 'dashboard-admin') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-chart-pie text-xs mr-2"></i>                
-            Dashboard
+            Dasbor
         </a>
 
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider font-semibold">Master Data</p>
@@ -36,6 +35,10 @@
         <a href="{{url('admin/master-data/clinic')}}" class="mb-3 @if (Request::segment(3) == 'clinic') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
             &nbsp;Data Ka Klinik
+        </a>
+        <a href="{{url('admin/master-data/poly')}}" class="mb-3 @if (Request::segment(3) == 'poly') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
+            <i class="fad fa-clipboard text-xs mr-2"></i>
+            &nbsp;Data Poli Klinik
         </a>
         
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider font-semibold">Pembayaran</p>

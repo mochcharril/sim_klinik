@@ -84,22 +84,37 @@
                     @enderror
                 </div>
                 <div class="mt-3">
-                    <label class="text-gray-700 ml-1">Jenis Asuransi : </label>
-                    <input type="text" name="insurance_type" class="form-input w-full block rounded mt-1 p-3 border-2 @error('insurance_type') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Jenis Asuransi" value="{{old('insurance_type')}}">
-                    @error('insurance_type')
+                    <label class="text-gray-700 ml-1">Pilih Asuransi : </label>
+                    <select onchange="openInsurance(this);" name="insurance" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                        <option value="umum">Tidak Ada Asuransi (Umum)</option>
+                        <option value="open_bpjs">BPJS</option>
+                        <option value="open_other">Lainnya</option>
+                    </select>
+                    @error('insurance')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
                     </span>
                     @enderror
                 </div>
-                <div class="mt-3">
-                    <label class="text-gray-700 ml-1">Nomor Asuransi : </label>
-                    <input type="text" name="insurance_number" class="form-input w-full block rounded mt-1 p-3 border-2 @error('insurance_number') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nomor Asuransi" value="{{old('insurance_number')}}">
-                    @error('insurance_number')
-                    <span class="pl-1 text-xs text-red-600 text-bold">
-                        {{$message}}
-                    </span>
-                    @enderror
+                <div id="form_open" style="display:none;">
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Jenis Asuransi : </label>
+                        <input type="text" id="insurance_type" name="insurance_type" class="form-input w-full block rounded mt-1 p-3 border-2 @error('insurance_type') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Jenis Asuransi" value="{{old('insurance_type')}}">
+                        @error('insurance_type')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Nomor Asuransi : </label>
+                        <input type="text" id="insurance_number" name="insurance_number" class="form-input w-full block rounded mt-1 p-3 border-2 @error('insurance_number') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nomor Asuransi" value="{{old('insurance_number')}}">
+                        @error('insurance_number')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="mt-5">
                     <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Simpan</button>
@@ -108,4 +123,27 @@
         </div>
     </div>
 </div>
+@endsection
+@section('extraJS')
+    <script>
+        function openInsurance(that) {
+            if (that.value == "open_bpjs") {
+                document.getElementById("form_open").style.display = "block";
+                document.getElementById("insurance_type").value = "BPJS";
+                document.getElementById("insurance_type").readOnly = true;
+                document.getElementById("insurance_type").required = true;
+                document.getElementById("insurance_number").required = true;
+            } else if (that.value == "open_other"){
+                document.getElementById("form_open").style.display = "block";
+                document.getElementById("insurance_type").value = "";
+                document.getElementById("insurance_type").readOnly = false;
+                document.getElementById("insurance_type").required = true;
+                document.getElementById("insurance_number").required = true;
+            } else {
+                document.getElementById("form_open").style.display = "none";
+                document.getElementById("insurance_type").required = false;
+                document.getElementById("insurance_number").required = false;
+            }
+        }
+    </script>
 @endsection

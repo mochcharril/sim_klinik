@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\payment;
 use App\Models\User;
+use App\Models\Poly;
 
 class DashboardController extends Controller
 {
@@ -32,6 +33,7 @@ class DashboardController extends Controller
             $this->param['countAdmition'] = $countAdmition;
             $this->param['countClinic'] = $countClinic;
             $this->param['countPayment'] = Payment::count();
+            $this->param['countPoly'] = Poly::count();
             
             return view('admin.pages.dashboard.dashboard', $this->param);
         } catch (\Exception $e) {

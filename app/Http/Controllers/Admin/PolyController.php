@@ -4,14 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Poly;
 
-use Illuminate\Auth\Events\Registered;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Traits\HasRoles;
-
-class AdmitionController extends Controller
+class PolyController extends Controller
 {
     private $param;
     public function __construct(){
@@ -20,9 +15,9 @@ class AdmitionController extends Controller
 
     public function index(){
         try {
-            $this->param['getAdmition'] = User::whereHas('roles', function($thisRole){$thisRole->where('name', 'admisi');})->get();;
+            $this->param['getPoly'] = Poly::all();
             
-            return view('admin.pages.admition.list', $this->param);
+            return view('admin.pages.poly.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -32,7 +27,9 @@ class AdmitionController extends Controller
 
     public function add(){
         try {
-            return view('admin.pages.admition.add');
+            $this->param['getCodePL'] = Poly::generateCodePL();
+
+            return view('admin.pages.poly.add', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -43,36 +40,24 @@ class AdmitionController extends Controller
     public function store(Request $request){
         $this->validate($request,
             [
+                'code_pl' => 'required',
                 'name' => 'required',
-                'email' => 'required|email',
-                'password' => 'required|required_with:password_confirm|same:password_confirm',
-                'password_confirm' => 'required',
             ],
             [
                 'required' => ':attribute harus diisi.',
-                'email' => 'Format surel tidak benar.',
-                'same' => 'Kata Sandi dan Konfirmasi Kata Sandi harus sama.'
             ],
             [
-                'name' => 'Nama Admisi',
-                'email' => 'Surel Admisi',
-                'password' => 'Kata Sandi',
-                'password_confirm' => 'Konfirmasi Kata Sandi',
+                'code_pl' => 'Kode PL',
+                'name' => 'Nama Poli Klinik',
             ],
         );
         try {
-            $admition = new User();
-            $admition->name = $request->name;
-            $admition->email = $request->email;
-            $admition->email_verified_at = now();
-            $admition->password = bcrypt($request->password);
-            $admition->remember_token = \Str::random(60);
-            $admition->save();
+            $poly = new Poly();
+            $poly->code_pl = $request->code_pl;
+            $poly->name = $request->name;
+            $poly->save();
 
-            event(new Registered($admition));
-            $admition->assignRole('admisi');
-
-            return redirect('/admin/master-data/admition')->withStatus('Berhasil menambah data akun admisi.');
+            return redirect('/admin/master-data/poly')->withStatus('Berhasil menambah data poli klinik.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -80,10 +65,10 @@ class AdmitionController extends Controller
         }
     }
 
-    public function edit(User $user){
+    public function edit(Poly $poly){
         try {
-            $this->param['getDetailAdmition'] = User::find($user->id);
-            return view('admin.pages.admition.edit', $this->param);
+            $this->param['getDetailPoly'] = Poly::find($poly->id);
+            return view('admin.pages.poly.edit', $this->param);
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
@@ -91,28 +76,28 @@ class AdmitionController extends Controller
         }
     }
 
-    public function update(Request $request, User $user){
+    public function update(Request $request, Poly $poly){
         $this->validate($request,
             [
+                'code_pl' => 'required',
                 'name' => 'required',
-                'email' => 'required|email',
             ],
             [
                 'required' => ':attribute harus diisi.',
-                'email' => 'Format surel tidak benar.',
             ],
             [
-                'name' => 'Nama Admisi',
-                'email' => 'Surel Admisi',
+                'code_pl' => 'Kode PL',
+                'name' => 'Nama Poli Klinik',
             ],
         );
-        try {
-            $admition = User::find($user->id);
-            $admition->name = $request->name;
-            $admition->email = $request->email;
-            $admition->save();
 
-            return redirect('/admin/master-data/admition')->withStatus('Berhasil memperbarui data akun admisi.');
+        try {
+            $poly = Poly::find($poly->id);
+            $poly->code_pl = $request->code_pl;
+            $poly->name = $request->name;
+            $poly->save();
+
+            return redirect('/admin/master-data/poly')->withStatus('Berhasil memperbarui data poli klinik.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -120,10 +105,10 @@ class AdmitionController extends Controller
         }
     }
 
-    public function drop(User $user){
+    public function drop(Poly $poly){
         try {
-            User::find($user->id)->delete();
-            return redirect('/admin/master-data/admition')->withStatus('Berhasil menghapus data akun admisi.');
+            Poly::find($poly->id)->delete();
+            return redirect('/admin/master-data/poly')->withStatus('Berhasil menghapus data poli klinik.');
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){

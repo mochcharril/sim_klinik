@@ -198,6 +198,20 @@
             </div>
             <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
         </div>
+        <div class="report-card">
+            <div class="card">
+                <div class="card-body flex flex-col">
+                    <div class="flex flex-row justify-between items-center">
+                        <div class="h6 text-indigo-700 fad fa-tags"></div>
+                    </div>
+                    <div class="mt-8">
+                        <h1 class="h5">{{$countPoly}} Poli Klinik</h1>
+                        <p>Total Data Poli Klinik</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+        </div>
     </div>
 </div>
 @endsection

@@ -61,16 +61,16 @@ class PharmacistController extends Controller
             ],
         );
         try {
-            $doctor = new User();
-            $doctor->name = $request->name;
-            $doctor->email = $request->email;
-            $doctor->email_verified_at = now();
-            $doctor->password = bcrypt($request->password);
-            $doctor->remember_token = \Str::random(60);
-            $doctor->save();
+            $pharmacist = new User();
+            $pharmacist->name = $request->name;
+            $pharmacist->email = $request->email;
+            $pharmacist->email_verified_at = now();
+            $pharmacist->password = bcrypt($request->password);
+            $pharmacist->remember_token = \Str::random(60);
+            $pharmacist->save();
 
-            event(new Registered($doctor));
-            $doctor->assignRole('apoteker');
+            event(new Registered($pharmacist));
+            $pharmacist->assignRole('apoteker');
 
             return redirect('/admin/master-data/pharmacist')->withStatus('Berhasil menambah data akun apoteker.');
         } catch (\Exception $e) {
@@ -107,10 +107,10 @@ class PharmacistController extends Controller
             ],
         );
         try {
-            $doctor = User::find($user->id);
-            $doctor->name = $request->name;
-            $doctor->email = $request->email;
-            $doctor->save();
+            $pharmacist = User::find($user->id);
+            $pharmacist->name = $request->name;
+            $pharmacist->email = $request->email;
+            $pharmacist->save();
 
             return redirect('/admin/master-data/pharmacist')->withStatus('Berhasil memperbarui data akun apoteker.');
         } catch (\Exception $e) {

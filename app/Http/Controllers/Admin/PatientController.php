@@ -45,7 +45,7 @@ class PatientController extends Controller
             [
                 'code_rm' => 'required',
                 'name' => 'required',
-                'nik' => 'required',
+                'nik' => 'required|min:16|max:16',
                 'gender' => 'required',
                 'place_of_birth' => 'required',
                 'date_of_birth' => 'required',
@@ -54,6 +54,8 @@ class PatientController extends Controller
             ],
             [
                 'required' => ':attribute harus diisi.',
+                'nik.min' => ':attribute harus 16 digit',
+                'nik.max' => ':attribute harus 16 digit',
             ],
             [
                 'code_rm' => 'Kode RM',
@@ -116,7 +118,7 @@ class PatientController extends Controller
             [
                 'code_rm' => 'required',
                 'name' => 'required',
-                'nik' => 'required',
+                'nik' => 'required|min:16|max:16',
                 'gender' => 'required',
                 'place_of_birth' => 'required',
                 'date_of_birth' => 'required',
@@ -125,6 +127,8 @@ class PatientController extends Controller
             ],
             [
                 'required' => ':attribute harus diisi.',
+                'nik.min' => ':attribute harus 16 digit',
+                'nik.max' => ':attribute harus 16 digit',
             ],
             [
                 'code_rm' => 'Kode RM',
