@@ -193,7 +193,7 @@ class PatientController extends Controller
             $this->param['getDetailPatient'] = Patient::find($patient->id);
             $pdf = PDF::loadview('admin.pages.patient.print', $this->param);
             // return $pdf->download('cetak-pdf-pasien');
-            return $pdf->stream('cetak-pdf-pasien', array("Attachment" => false));
+            return $pdf->stream('KIB-Pasien', array("Attachment" => false));
 
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());

@@ -143,9 +143,9 @@ class PaymentController extends Controller
                                                 ->get();
             $this->param['getDetailPayment'] = Payment::where('checkup_id', $checkup->id)->first();
 
-            $pdf = PDF::loadview('admin.pages.payment.print', $this->param);
+            $pdf = PDF::loadview('cetak-pdf-detail-nota-pembayaran', $this->param);
             // return $pdf->download('cetak-pdf-pasien');
-            return $pdf->stream('cetak-pdf-rekam-medis', array("Attachment" => false));
+            return $pdf->stream('Detail-Nota-Pemeriksaan', array("Attachment" => false));
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -174,7 +174,7 @@ class PaymentController extends Controller
 
             $pdf = PDF::loadview('admin.pages.payment.print-nota', $this->param);
             // return $pdf->download('cetak-pdf-pasien');
-            return $pdf->stream('cetak-pdf-rekam-medis', array("Attachment" => false));
+            return $pdf->stream('cetak-pdf-nota-pembayaran', array("Attachment" => false));
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

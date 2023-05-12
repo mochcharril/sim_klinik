@@ -34,7 +34,9 @@ Route::post('/doctor/medical-reports/{patient}/detail', [App\Http\Controllers\Do
 Route::post('/doctor/medical-reports/{patient}/print', [App\Http\Controllers\Doctor\MedicalReportController::class, 'print']);
 
 Route::get('/doctor/medical-resume', [App\Http\Controllers\Doctor\MedicalResumeController::class, 'index']);
-Route::post('/doctor/medical-resume/{checkup}/detail', [App\Http\Controllers\Doctor\MedicalResumeController::class, 'detail']);
+Route::get('/doctor/medical-resume/{checkup}/print', [App\Http\Controllers\Doctor\MedicalResumeController::class, 'printResume']);
+Route::get('/doctor/medical-resume/{checkup}/detail', [App\Http\Controllers\Doctor\MedicalResumeController::class, 'detail']);
+Route::post('/doctor/medical-resume/{checkup}/detail/send', [App\Http\Controllers\Doctor\MedicalResumeController::class, 'store']);
 
 Route::get('/doctor/report-checkup', [App\Http\Controllers\Doctor\ReportController::class, 'listCheckup']);
 Route::get('/doctor/report-checkup/print', [App\Http\Controllers\Doctor\ReportController::class, 'printCheckup']);

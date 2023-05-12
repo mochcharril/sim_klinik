@@ -404,4 +404,35 @@ class ReportController extends Controller
             return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
         }
     }
+
+    public function listTopSick(){
+        try {
+            $this->param['getTopSick'] = \DB::table('checkups')
+                                            ->select('code_diagnosis', 'description_diagnosis', \DB::raw('count(*) as total'))
+                                            ->groupBy('code_diagnosis', 'description_diagnosis')
+                                            ->orderByDesc('total')
+                                            ->get();
+            
+            return view('admin.pages.report.top-sick-list', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+    public function printTopSick(){
+        try {
+            $this->param['getTopSick'] = \DB::table('checkups')
+                                            ->select('code_diagnosis', 'description_diagnosis', \DB::raw('count(*) as total'))
+                                            ->groupBy('code_diagnosis', 'description_diagnosis')
+                                            ->orderByDesc('total')
+                                            ->get();
+            $pdf = PDF::loadview('admin.pages.report.top-sick-print', $this->param)->setPaper('legal', 'landscape');
+            return $pdf->stream('cetak-laporan-pdf-top-penyakit', array("Attachment" => false));
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
 }

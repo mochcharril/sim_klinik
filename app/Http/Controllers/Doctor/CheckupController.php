@@ -140,6 +140,7 @@ class CheckupController extends Controller
             $checkup->checkup_date = $request->get('checkup_date');
             $checkup->status_rm = '0';
             $checkup->status_checkup_doctor = '1';
+            $checkup->status_resume = '0';
             $checkup->save();
 
             $lengthMeasure = count($request->get('measure'));
@@ -236,6 +237,7 @@ class CheckupController extends Controller
             $updateCheckup->checkup_date = $request->get('checkup_date');
             $updateCheckup->status_rm = '0';
             $updateCheckup->status_checkup_doctor = '1';
+            $updateCheckup->status_resume = '0';
             $updateCheckup->save();
 
             $lengthMeasure = count($request->get('measure'));

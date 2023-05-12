@@ -9,8 +9,8 @@
             <form method="POST" action="{{url('/pharmacist/master-data/medicine_rule/store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="mt-3">
-                    <label class="text-gray-700 ml-1">Nama Obat: </label>
-                    <input type="text" name="name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('name') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Obat" value="{{old('name')}}">
+                    <label class="text-gray-700 ml-1">Nama Aturan Pakai Obat: </label>
+                    <input type="text" name="name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('name') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Aturan Pakai Obat" value="{{old('name')}}">
                     @error('name')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}

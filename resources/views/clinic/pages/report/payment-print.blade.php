@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
     <table style="width: 100%; margin-top:-30px;margin-bottom:-5px">

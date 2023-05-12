@@ -19,7 +19,7 @@ class PatientController extends Controller
         try {
             $this->param['getPatient'] = Patient::where('is_retention', 'no')->get();
             $this->param['getPatientRetention'] = Patient::where('is_retention', 'yes')->get();
-            
+
             return view('admition.pages.patient.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
@@ -192,7 +192,7 @@ class PatientController extends Controller
             $this->param['getDetailPatient'] = Patient::find($patient->id);
             $pdf = PDF::loadview('admition.pages.patient.print', $this->param);
             // return $pdf->download('cetak-pdf-pasien');
-            return $pdf->stream('cetak-pdf-pasien', array("Attachment" => false));
+            return $pdf->stream('KIB-Pasien', array("Attachment" => false));
 
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());

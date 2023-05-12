@@ -101,12 +101,20 @@
                     </td>
                     <td class="text-left">{{$item->other_notes}}</td>
                     <td class="text-left t-mx-3 flex">
-                        <form action="{{url('/doctor/medical-resume')}}/{{$item->id}}/detail" method="POST" class="m-auto">
-                            @csrf
+                        @if ($item->status_resume == '0')
+                        <form action="{{url('/doctor/medical-resume')}}/{{$item->id}}/detail" method="GET" class="m-auto">
                             <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
                                 <i class="fa fa-eye"></i>
                             </button>
                         </form>
+                        @else
+                        <form method="POST" class="m-auto">
+                            @csrf
+                            <a type="button" href="{{url('/doctor/medical-resume')}}/{{$item->id}}/print" class="bg-green-500 w-6 p-5 ml-2 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
+                                <i class="fa fa-print"></i>
+                            </a>
+                        </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

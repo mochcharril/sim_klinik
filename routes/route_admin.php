@@ -84,3 +84,51 @@ Route::get('/admin/report-payment', [App\Http\Controllers\Admin\ReportController
 Route::get('/admin/report-payment/print', [App\Http\Controllers\Admin\ReportController::class, 'printPayment']);
 Route::post('/admin/report-payment/code/print', [App\Http\Controllers\Admin\ReportController::class, 'printCodePayment']);
 Route::post('/admin/report-payment/date/print', [App\Http\Controllers\Admin\ReportController::class, 'printDatePayment']);
+Route::get('/admin/report-top-sick', [App\Http\Controllers\Admin\ReportController::class, 'listTopSick']);
+Route::get('/admin/report-top-sick/print', [App\Http\Controllers\Admin\ReportController::class, 'printTopSick']);
+
+Route::get('/admin/master-data/medicine', [App\Http\Controllers\Admin\MedicineController::class, 'index']);
+Route::get('/admin/master-data/medicine/add', [App\Http\Controllers\Admin\MedicineController::class, 'add']);
+Route::post('/admin/master-data/medicine/store', [App\Http\Controllers\Admin\MedicineController::class, 'store']);
+Route::post('/admin/master-data/medicine/{medicine}/edit', [App\Http\Controllers\Admin\MedicineController::class, 'edit']);
+Route::put('/admin/master-data/medicine/update/{medicine}', [App\Http\Controllers\Admin\MedicineController::class, 'update']);
+Route::delete('/admin/master-data/medicine/{medicine}/drop', [App\Http\Controllers\Admin\MedicineController::class, 'drop']);
+
+Route::get('/admin/warehouse/incoming_medicine', [App\Http\Controllers\Admin\IncomingMedicineController::class, 'index']);
+Route::get('/admin/warehouse/incoming_medicine/add', [App\Http\Controllers\Admin\IncomingMedicineController::class, 'add']);
+Route::post('/admin/warehouse/incoming_medicine/store', [App\Http\Controllers\Admin\IncomingMedicineController::class, 'store']);
+Route::post('/admin/warehouse/incoming_medicine/{incoming_medicine}/detail', [App\Http\Controllers\Admin\IncomingMedicineController::class, 'detail']);
+
+Route::get('/admin/master-data/medicine_rule', [App\Http\Controllers\Admin\MedicineRuleController::class, 'index']);
+Route::get('/admin/master-data/medicine_rule/add', [App\Http\Controllers\Admin\MedicineRuleController::class, 'add']);
+Route::post('/admin/master-data/medicine_rule/store', [App\Http\Controllers\Admin\MedicineRuleController::class, 'store']);
+Route::post('/admin/master-data/medicine_rule/{medicine_rule}/edit', [App\Http\Controllers\Admin\MedicineRuleController::class, 'edit']);
+Route::put('/admin/master-data/medicine_rule/update/{medicine_rule}', [App\Http\Controllers\Admin\MedicineRuleController::class, 'update']);
+Route::delete('/admin/master-data/medicine_rule/{medicine_rule}/drop', [App\Http\Controllers\Admin\MedicineRuleController::class, 'drop']);
+
+Route::get('/admin/master-data/measure', [App\Http\Controllers\Admin\MeasureController::class, 'index']);
+Route::get('/admin/master-data/measure/add', [App\Http\Controllers\Admin\MeasureController::class, 'add']);
+Route::post('/admin/master-data/measure/store', [App\Http\Controllers\Admin\MeasureController::class, 'store']);
+Route::post('/admin/master-data/measure/{measure}/edit', [App\Http\Controllers\Admin\MeasureController::class, 'edit']);
+Route::put('/admin/master-data/measure/update/{measure}', [App\Http\Controllers\Admin\MeasureController::class, 'update']);
+Route::delete('/admin/master-data/measure/{measure}/drop', [App\Http\Controllers\Admin\MeasureController::class, 'drop']);
+
+Route::get('/admin/action/checkup', [App\Http\Controllers\Admin\CheckupController::class, 'index']);
+Route::post('/admin/action/checkup/{patient}/add', [App\Http\Controllers\Admin\CheckupController::class, 'add']);
+Route::post('/admin/action/checkup-nurse/{checkup}/add', [App\Http\Controllers\Admin\CheckupController::class, 'addNurse']);
+Route::post('/admin/action/checkup/store/{patient}', [App\Http\Controllers\Admin\CheckupController::class, 'store']);
+Route::post('/admin/action/checkup/store-nurse/{checkup}', [App\Http\Controllers\Admin\CheckupController::class, 'storeNurse']);
+
+Route::get('/admin/action/recipe', [App\Http\Controllers\Admin\RecipeController::class, 'index']);
+Route::post('/admin/action/recipe/{checkup}/add', [App\Http\Controllers\Admin\RecipeController::class, 'add']);
+Route::post('/admin/action/recipe/store/{checkup}', [App\Http\Controllers\Admin\RecipeController::class, 'store']);
+Route::post('/admin/action/recipe/{checkup}/detail', [App\Http\Controllers\Admin\RecipeController::class, 'detail']);
+
+Route::get('/admin/medical-reports', [App\Http\Controllers\Admin\MedicalReportController::class, 'index']);
+Route::post('/admin/medical-reports/{patient}/detail', [App\Http\Controllers\Admin\MedicalReportController::class, 'detail']);
+Route::post('/admin/medical-reports/{patient}/print', [App\Http\Controllers\Admin\MedicalReportController::class, 'print']);
+
+Route::get('/admin/medical-resume', [App\Http\Controllers\Admin\MedicalResumeReportController::class, 'index']);
+Route::get('/admin/medical-resume/{checkup}/print', [App\Http\Controllers\Admin\MedicalResumeReportController::class, 'printResume']);
+Route::get('/admin/medical-resume/{checkup}/detail', [App\Http\Controllers\Admin\MedicalResumeReportController::class, 'detail']);
+Route::post('/admin/medical-resume/{checkup}/detail/send', [App\Http\Controllers\Admin\MedicalResumeReportController::class, 'store']);
