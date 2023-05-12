@@ -76,7 +76,8 @@
                     <th data-priority="6">Tempat, Tanggal Lahir</th>
                     <th data-priority="7">Alamat</th>
                     <th data-priority="8">No Telepon</th>
-                    <th data-priority="11">Aksi</th>
+                    <th data-priority="9">Dapat Diretensi Pada Tanggal</th>
+                    <th data-priority="10">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,6 +91,16 @@
                     <td class="text-left">{{$item->place_of_birth}}, {{$item->date_of_birth}}</td>
                     <td class="text-left">{{$item->address}}</td>
                     <td class="text-left">{{$item->phone_number}}</td>
+                    <td class="text-center">
+                        @php
+                            $filterRetention = date('Y-m-d', strtotime($item->updated_at . ' + 25 years')); 
+                        @endphp
+                        @if ( now() >= $filterRetention)
+                            <span class="text-red-500">{{date('d-m-Y', strtotime($item->updated_at . ' + 25 years'))}}</span>
+                        @else
+                            <span>{{date('d-m-Y', strtotime($item->updated_at . ' + 25 years'))}}</span>
+                        @endif
+                    </td>
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/admition/master-data/patient')}}/{{$item->id}}/edit" method="POST" class="m-auto">
                             @csrf

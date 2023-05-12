@@ -21,7 +21,7 @@
             &nbsp;Data Tindakan
         </a>
 
-        <a href="{{url('doctor/action/checkup')}}" class="mb-3 @if (Request::segment(3) == 'checkup') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
+        <a href="{{url('doctor/action/checkup')}}" class="mb-3 @if (Request::segment(3) == 'checkup' || Request::segment(3) == 'checkup-nurse') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
             &nbsp;Pemeriksaan
         </a>
@@ -33,6 +33,10 @@
         <a href="{{url('doctor/medical-reports')}}" class="mb-3 @if (Request::segment(2) == 'medical-reports') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
             &nbsp;Rekam Medis
+        </a>
+        <a href="{{url('doctor/medical-resume')}}" class="mb-3 @if (Request::segment(2) == 'medical-resume') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
+            <i class="fad fa-clipboard text-xs mr-2"></i>
+            &nbsp;Resume Medis
         </a>
 
         <a href="{{url('doctor/report-checkup')}}" class="mb-3 @if (Request::segment(2) == 'report-checkup') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">

@@ -11,16 +11,29 @@
         $subTotal = 0;
         $number = 1;
     @endphp
-    <div>
-        <center><p>
-            <h1>UPT SIM-KLINIK</h1>
-            <b>Politeknik Negeri Jember</b>
-            <br>
-            Jl. Mastrip, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121
-        </p></center>
-        <br><br>
-    </div>
-    <hr>
+    <table style="width: 100%; margin-top:-50px;margin-bottom:-28px">
+        <tr>
+            <th>
+                <img src="{{public_path('assets/logos/logo_jember.png')}}" style="width: 2.7cm; height:2.9cm" alt="">
+            </th>
+            <th>
+                <div style="font-weight:normal">
+                    <center><p>
+                        <h1 style="margin-top:-3px;margin-bottom:-3px;font-weight:normal">UPT SIM-KLINIK</h1>
+                        <b style="text-transform:uppercase;letter-spacing: 2px;">Politeknik Negeri Jember</b>
+                        <br>
+                        Jl. Mastrip, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121
+                    </p></center>
+                    <br><br>
+                </div>
+            </th>
+            <th>
+                <img src="{{public_path('assets/logos/logo_polije.png')}}" style="width: 2.9cm; height:3.1cm;" alt="">
+            </th>
+        </tr>
+    </table>
+    <hr style="background-color:black; border:none; height:2px;">
+
     <div>
         <center>
             <h2>Data Pembayaran Pemeriksaan Pasien</h2>
@@ -88,8 +101,12 @@
                 <td style="width: 70%;">{{$getDetailCheckup->allergy}}</td>
             </tr>
             <tr>
-                <td style="width: 30%;"><b>Diagnosa</b></td>
-                <td style="width: 70%;">{{$getDetailCheckup->diagnosis}}</td>
+                <td style="width: 30%;"><b>Kode Diagnosa</b></td>
+                <td style="width: 70%;">{{$getDetailCheckup->code_diagnosis}}</td>
+            </tr>
+            <tr>
+                <td style="width: 30%;"><b>Deskripsi Diagnosa</b></td>
+                <td style="width: 70%;">{{$getDetailCheckup->description_diagnosis}}</td>
             </tr>
             <tr>
                 <td style="width: 30%;"><b>Kode Pembayaran</b></td>

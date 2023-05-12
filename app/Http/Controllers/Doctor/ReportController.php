@@ -21,7 +21,7 @@ class ReportController extends Controller
     public function listCheckup(){
         try {
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.diagnosis', 'checkups.other_notes')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->get();
 
@@ -42,7 +42,7 @@ class ReportController extends Controller
     public function printCheckup(){
         try {
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.diagnosis', 'checkups.other_notes')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->get();
 
@@ -51,6 +51,13 @@ class ReportController extends Controller
                                             ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
                                             ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
                                             ->get();
+
+            $this->param['start_date'] = "semua";
+            $this->param['end_date'] = "semua";
+            $this->param['countData'] = \DB::table('checkups')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
+                                            ->join('patients', 'checkups.patient_id', 'patients.id')
+                                            ->count();
 
             $pdf = PDF::loadview('doctor.pages.report.checkups-print', $this->param)->setPaper('legal', 'landscape');
             return $pdf->stream('cetak-laporan-pdf-obat-masuk', array("Attachment" => false));
@@ -63,7 +70,7 @@ class ReportController extends Controller
     public function printCodeCheckup(Request $request){
         try {
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.diagnosis', 'checkups.other_notes')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->where('checkups.patient_id', $request->patient)
                                             ->get();
@@ -73,6 +80,14 @@ class ReportController extends Controller
                                             ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
                                             ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
                                             ->get();
+
+            $this->param['start_date'] = "semua";
+            $this->param['end_date'] = "semua";
+            $this->param['countData'] = \DB::table('checkups')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
+                                            ->join('patients', 'checkups.patient_id', 'patients.id')
+                                            ->where('checkups.patient_id', $request->patient)
+                                            ->count();
 
             $pdf = PDF::loadview('doctor.pages.report.checkups-print', $this->param)->setPaper('legal', 'landscape');
             return $pdf->stream('cetak-laporan-pdf-obat-masuk', array("Attachment" => false));
@@ -85,7 +100,7 @@ class ReportController extends Controller
     public function printDateCheckup(Request $request){
         try {
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.diagnosis')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->whereBetween('checkups.checkup_date', [$request->date_start, $request->date_end])
                                             ->get();
@@ -95,6 +110,14 @@ class ReportController extends Controller
                                             ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
                                             ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
                                             ->get();
+
+            $this->param['start_date'] = $request->date_start;
+            $this->param['end_date'] = $request->date_end;
+            $this->param['countData'] = \DB::table('checkups')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
+                                            ->join('patients', 'checkups.patient_id', 'patients.id')
+                                            ->whereBetween('checkups.checkup_date', [$request->date_start, $request->date_end])
+                                            ->count();
 
             $pdf = PDF::loadview('doctor.pages.report.checkups-print', $this->param)->setPaper('legal', 'landscape');
             return $pdf->stream('cetak-laporan-pdf-obat-masuk', array("Attachment" => false));

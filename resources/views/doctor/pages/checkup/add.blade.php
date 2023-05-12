@@ -7,14 +7,14 @@
 <style>
     .dataTables_wrapper select,
     .dataTables_wrapper .dataTables_filter input {
-        color: #4a5568;	
-        padding-left: 1rem; 		
-        padding-right: 1rem; 		
-        padding-top: .5rem; 		
+        color: #4a5568;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: .5rem;
         padding-bottom: .5rem;
         line-height: 1.25;
         border-width: 2px;
-        border-radius: .25rem; 		
+        border-radius: .25rem;
         border-color: #edf2f7;
         background-color: #edf2f7;
     }
@@ -22,13 +22,13 @@
     table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
         background-color: #ebf4ff;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button		{
         font-weight: 700;
         border-radius: .25rem;
         border: 1px solid transparent;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button.current	{
         color: #fff !important;
         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
@@ -46,13 +46,13 @@
         background: #4299e1 !important;
         border: 1px solid transparent;
     }
-    
+
     table.dataTable.no-footer {
         border-bottom: 1px solid #e2e8f0;
         margin-top: 0.75em;
         margin-bottom: 0.75em;
     }
-    
+
     /*Change colour of responsive icon*/
     table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
         background-color: #4299e1 !important;
@@ -202,6 +202,17 @@
                         @enderror
                     </div>
                     <div>
+                        <label class="text-gray-700 ml-1">Suhu: </label>
+                        <input required type="text" name="temperature" class="form-input w-full block rounded mt-1 p-3 border-2 @error('temperature') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Suhu" value="{{old('temperature')}}">
+                        @error('temperature')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
+                    <div>
                         <label class="text-gray-700 ml-1">Alergi: </label>
                         <input required type="text" name="allergy" class="form-input w-full block rounded mt-1 p-3 border-2 @error('allergy') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alergi" value="{{old('allergy')}}">
                         @error('allergy')
@@ -210,15 +221,57 @@
                         </span>
                         @enderror
                     </div>
+                </div>
+                <div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1">
                     <div>
-                        <label class="text-gray-700 ml-1">Diagnosa: </label>
-                        <input required type="text" name="diagnosis" class="form-input w-full block rounded mt-1 p-4 border-2 @error('diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa" value="{{old('diagnosis')}}">
-                        @error('diagnosis')
+                        <label class="text-gray-700 ml-1">Kode Diagnosa: </label>
+                        <input required type="text" id="code_diagnosis" onkeyup="getDiagnosis()" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa" value="{{old('code_diagnosis')}}">
+                        @error('code_diagnosis')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
                         </span>
                         @enderror
                     </div>
+                    <div>
+                        <label class="text-gray-700 ml-1">Deskripsi Diagnosa: </label>
+                        <div class="flex">
+                            <input required type="text" id="description_diagnosis" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa" value="{{old('description_diagnosis')}}">
+                            @error('description_diagnosis')
+                            <span class="pl-1 text-xs text-red-600 text-bold">
+                                {{$message}}
+                            </span>
+                            @enderror
+                            &nbsp;
+                            <button type="button" class="btn-shadow bg-blue-500 text-white rounded px-10 hover:bg-blue-600" onclick="panel_fields()">Tambah</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="panel_fields"></div>
+                {{-- <div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1">
+                    <div>
+                        <label class="text-gray-700 ml-1">Kode Diagnosa Lainnya: </label>
+                        <input required type="text" id="code_diagnosis_other-'+room+'" onkeyup="getDiagnosisOther(this, '+room+')" name="code_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa Lainnya" value="{{old('code_diagnosis_other[]')}}">
+                        @error('code_diagnosis_other[]')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div>
+                        <label class="text-gray-700 ml-1">Deskripsi Diagnosa Lainnya: </label>
+                        <div class="flex">
+                            <input required type="text" id="description_diagnosis_other-'+room+'" name="description_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa Lainnya" value="{{old('description_diagnosis_other[]')}}">
+                            @error('description_diagnosis_other[]')
+                            <span class="pl-1 text-xs text-red-600 text-bold">
+                                {{$message}}
+                            </span>
+                            @enderror
+                            &nbsp;
+                            <button type="button" class="btn-shadow bg-red-500 text-white rounded px-10 py-2 hover:bg-red-600" onclick="remove_panel_fields('+room+')">Hapus</button>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Pilih Poli : </label>
                         <select id="poly" placeholder="Pilih Poli..." name="poly" class="form-input mt-1 p-2 border-2 @error('poly') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
@@ -228,6 +281,17 @@
                             @endforeach
                         </select>
                         @error('poly')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 mt-5 gap-5 xl:grid-cols-1">
+                    <div>
+                        <label class="text-gray-700 ml-1">Catatan Lain : </label>
+                        <textarea required type="text" name="other_notes" class="form-input w-full block rounded mt-1 p-4 border-2 @error('other_notes') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Catatan Lain" value="{{old('other_notes')}}"></textarea>
+                        @error('other_notes')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
                         </span>
@@ -265,19 +329,22 @@
                     <th data-priority="1">No</th>
                     <th data-priority="2">Tanggal Pemeriksaan</th>
                     <th data-priority="3">Kode Pemeriksaan</th>
-                    <th data-priority="4">Diagnosa</th>
-                    <th data-priority="5">Keluhan</th>
-                    <th data-priority="6">Tindakan</th>
-                    <th data-priority="7">Poli</th>
+                    <th data-priority="4">Kode Diagnosa</th>
+                    <th data-priority="5">Deskripsi Diagnosa</th>
+                    <th data-priority="6">Keluhan</th>
+                    <th data-priority="7">Tindakan</th>
+                    <th data-priority="8">Poli</th>
+                    <th data-priority="9">Catatan Lain</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($getCheckupHistory as $item)  
+                @foreach ($getCheckupHistory as $item)
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{{$item->checkup_date}}</td>
                     <td class="text-left">{{$item->code_cu}}</td>
-                    <td class="text-left">{{$item->diagnosis}}</td>
+                    <td class="text-left">{{$item->code_diagnosis}}</td>
+                    <td class="text-left">{{$item->description_diagnosis}}</td>
                     <td class="text-left">{{$item->complaint}}</td>
                     <td class="text-left">
                         @foreach ($getMeasureDetail as $itemDetail)
@@ -287,6 +354,7 @@
                         @endforeach
                     </td>
                     <td class="text-left">{{$item->poly_name}}</td>
+                    <td class="text-left">{{$item->other_notes}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -317,5 +385,51 @@
             .columns.adjust()
             .responsive.recalc();
     } );
+
+    function getDiagnosis(){
+        var getCode = document.getElementById('code_diagnosis').value;
+        var getDesc = document.getElementById('description_diagnosis');
+        $.ajax({
+            url: 'http://icd10api.com/?code='+getCode+'&desc=short&r=json',
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
+                getDesc.value = data.Description;
+            }
+        });
+    }
+
+    function getDiagnosisOther(that, number){
+        var getCode = document.getElementById('code_diagnosis_other-'+number).value;
+        var getDesc = document.getElementById('description_diagnosis_other-'+number);
+        $.ajax({
+            url: 'http://icd10api.com/?code='+getCode+'&desc=short&r=json',
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
+                getDesc.value = data.Description;
+            }
+        });
+    }
+</script>
+<script>
+    var room = 1;
+    function panel_fields(){
+        room++;
+        var objTo = document.getElementById('panel_fields');
+        var divtest = document.createElement("div");
+        divtest.setAttribute("class", "form-group removeclass"+room);
+        var rdiv = 'removeclass'+room;
+        divtest.innerHTML = '<div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1"> <div> <label class="text-gray-700 ml-1">Kode Diagnosa Lainnya: </label> <input required type="text" id="code_diagnosis_other-'+room+'" onkeyup="getDiagnosisOther(this, '+room+')" name="code_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa Lainnya" value="{{old('code_diagnosis_other[]')}}"> @error('code_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror </div> <div> <label class="text-gray-700 ml-1">Deskripsi Diagnosa Lainnya: </label> <div class="flex"> <input required type="text" id="description_diagnosis_other-'+room+'" name="description_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa Lainnya" value="{{old('description_diagnosis_other[]')}}"> @error('description_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror &nbsp; <button type="button" class="btn-shadow bg-red-500 text-white rounded px-10 py-2 hover:bg-red-600" onclick="remove_panel_fields('+room+')">Hapus</button> </div> </div> </div>';
+        
+        objTo.appendChild(divtest)
+        
+        selectOption();
+    }
+    function remove_panel_fields(rid) {
+	   $('.removeclass'+rid).remove();
+   }
 </script>
 @endsection

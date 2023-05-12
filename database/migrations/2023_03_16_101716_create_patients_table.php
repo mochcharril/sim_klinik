@@ -17,7 +17,7 @@ class CreatePatientsTable extends Migration
             $table->increments('id');
             $table->string('code_rm');
             $table->string('name');
-            $table->string('nik');
+            $table->string('nik')->unique();
             $table->enum('gender', ['laki-laki', 'Perempuan']);
             $table->date('date_of_birth');
             $table->string('place_of_birth');

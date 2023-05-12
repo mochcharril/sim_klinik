@@ -32,13 +32,13 @@
             <i class="fad fa-clipboard text-xs mr-2"></i>
             Laporan Resep
         </a>
-        <a href="{{url('clinic/report-top')}}" class="mb-3 @if (Request::segment(2) == 'report-top') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
-            <i class="fad fa-clipboard text-xs mr-2"></i>
-            Laporan Top Penyakit
-        </a>
         <a href="{{url('clinic/report-payment')}}" class="mb-3 @if (Request::segment(2) == 'report-payment') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
             Laporan Pembayaran
+        </a>
+        <a href="{{url('clinic/report-top-sick')}}" class="mb-3 @if (Request::segment(2) == 'report-top-sick') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
+            <i class="fad fa-clipboard text-xs mr-2"></i>
+            Laporan 10 Penyakit Teratas
         </a>
     </div>
 </div>

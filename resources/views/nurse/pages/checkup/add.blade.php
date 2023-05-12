@@ -166,15 +166,6 @@
                         @enderror
                     </div>
                     <div>
-                        <label class="text-gray-700 ml-1">Keluhan: </label>
-                        <input required type="text" name="complaint" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Keluhan" value="{{old('complaint')}}">
-                        @error('complaint')
-                        <span class="pl-1 text-xs text-red-600 text-bold">
-                            {{$message}}
-                        </span>
-                        @enderror
-                    </div>
-                    <div>
                         <label class="text-gray-700 ml-1">Tinggi Badan: </label>
                         <input required type="text" name="height" class="form-input w-full block rounded mt-1 p-3 border-2 @error('height') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tinggi Badan" value="{{old('height')}}">
                         @error('height')
@@ -202,18 +193,9 @@
                         @enderror
                     </div>
                     <div>
-                        <label class="text-gray-700 ml-1">Alergi: </label>
-                        <input required type="text" name="allergy" class="form-input w-full block rounded mt-1 p-3 border-2 @error('allergy') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alergi" value="{{old('allergy')}}">
-                        @error('allergy')
-                        <span class="pl-1 text-xs text-red-600 text-bold">
-                            {{$message}}
-                        </span>
-                        @enderror
-                    </div>
-                    <div>
-                        <label class="text-gray-700 ml-1">Diagnosa: </label>
-                        <input required type="text" name="diagnosis" class="form-input w-full block rounded mt-1 p-4 border-2 @error('diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa" value="{{old('diagnosis')}}">
-                        @error('diagnosis')
+                        <label class="text-gray-700 ml-1">Suhu: </label>
+                        <input required type="text" name="temperature" class="form-input w-full block rounded mt-1 p-3 border-2 @error('temperature') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Suhu" value="{{old('temperature')}}">
+                        @error('temperature')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
                         </span>
@@ -234,19 +216,6 @@
                         @enderror
                     </div>
                 </div>
-                <div class="grid grid-cols-1 mt-5 gap-5 xl:grid-cols-1">
-                    <hr>
-                    <div>
-                        <label class="text-gray-700 ml-1">Tindakan : </label>
-                        <div class="grid grid-cols-6 mt-2 ml-1 gap-5 xl:grid-cols-1">
-                            @foreach ($getMeasure as $itemMeasure)
-                            <div>
-                                <input type="checkbox" name="measure[]" value="{{$itemMeasure->id}}"> <span>{{$itemMeasure->name}}</span><br>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
                 <div class="mt-5">
                     <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Simpan</button>
                 </div>
@@ -265,10 +234,12 @@
                     <th data-priority="1">No</th>
                     <th data-priority="2">Tanggal Pemeriksaan</th>
                     <th data-priority="3">Kode Pemeriksaan</th>
-                    <th data-priority="4">Diagnosa</th>
-                    <th data-priority="5">Keluhan</th>
-                    <th data-priority="6">Tindakan</th>
-                    <th data-priority="7">Poli</th>
+                    <th data-priority="4">Kode Diagnosa</th>
+                    <th data-priority="5">Deskripsi Diagnosa</th>
+                    <th data-priority="6">Keluhan</th>
+                    <th data-priority="7">Tindakan</th>
+                    <th data-priority="8">Poli</th>
+                    <th data-priority="9">Catatan Lain</th>
                 </tr>
             </thead>
             <tbody>
@@ -277,7 +248,8 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{{$item->checkup_date}}</td>
                     <td class="text-left">{{$item->code_cu}}</td>
-                    <td class="text-left">{{$item->diagnosis}}</td>
+                    <td class="text-left">{{$item->code_diagnosis}}</td>
+                    <td class="text-left">{{$item->description_diagnosis}}</td>
                     <td class="text-left">{{$item->complaint}}</td>
                     <td class="text-left">
                         @foreach ($getMeasureDetail as $itemDetail)
@@ -287,6 +259,7 @@
                         @endforeach
                     </td>
                     <td class="text-left">{{$item->poly_name}}</td>
+                    <td class="text-left">{{$item->other_notes}}</td>
                 </tr>
                 @endforeach
             </tbody>

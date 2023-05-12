@@ -73,7 +73,8 @@
                     <th data-priority="3">Nama Obat</th>
                     <th data-priority="4">Stok</th>
                     <th data-priority="5">Harga</th>
-                    <th data-priority="6">Aksi</th>
+                    <th data-priority="6">Tanggal Kadaluarsa</th>
+                    <th data-priority="7">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,6 +85,7 @@
                     <td class="text-left">{{$item->name}}</td>
                     <td class="text-left">{{$item->stock}}</td>
                     <td class="text-left">@currency($item->price)</td>
+                    <td class="text-left">{{$item->expired_date}}</td>
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/pharmacist/master-data/medicine')}}/{{$item->id}}/edit" method="POST" class="m-auto">
                             @csrf

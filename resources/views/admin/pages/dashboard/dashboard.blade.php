@@ -122,7 +122,7 @@
                         <div class="h6 text-indigo-700 fad fa-clipboard"></div>
                     </div>
                     <div class="mt-8">
-                        <h1 class="h5">0 Laporan Pemeriksaan</h1>
+                        <h1 class="h5">✅ Laporan Pemeriksaan</h1>
                         <p>Total Data Laporan Pemeriksaan</p>
                     </div>            
                 </div>
@@ -135,7 +135,7 @@
                         <div class="h6 text-red-700 fad fa-clipboard"></div>
                     </div>
                     <div class="mt-8">
-                        <h1 class="h5">0 Laporan Pasien</h1>
+                        <h1 class="h5">✅ Laporan Pasien</h1>
                         <p>Total Data Laporan Pasien</p>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                         <div class="h6 text-yellow-600 fad fa-clipboard"></div>
                     </div>
                     <div class="mt-8">
-                        <h1 class="h5">0 Laporan Obat Masuk</h1>
+                        <h1 class="h5">✅ Laporan Obat Masuk</h1>
                         <p>Total Data Laporan Obat Masuk</p>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                         <div class="h6 text-green-700 fad fa-clipboard"></div>
                     </div>
                     <div class="mt-8">
-                        <h1 class="h5">0 Laporan Resep</h1>
+                        <h1 class="h5">✅ Laporan Resep</h1>
                         <p>Total Data Laporan Resep</p>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                         <div class="h6 text-pink-700 fad fa-clipboard"></div>
                     </div>
                     <div class="mt-8">
-                        <h1 class="h5">0 Laporan Obat</h1>
+                        <h1 class="h5">✅ Laporan Obat</h1>
                         <p>Total Data Laporan Obat</p>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                         <div class="h6 text-green-700 fad fa-clipboard"></div>
                     </div>
                     <div class="mt-8">
-                        <h1 class="h5">0 Laporan Pembayaran</h1>
+                        <h1 class="h5">✅ Laporan Pembayaran</h1>
                         <p>Total Data Laporan Pembayaran</p>
                     </div>
                 </div>
@@ -211,6 +211,20 @@
                 </div>
             </div>
             <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+        </div>
+        <div class="report-card">
+            <div class="card {{$countRetention > 0 ? 'bg-orange-200' : 'bg-white'}}">
+                <div class="card-body flex flex-col">
+                    <div class="flex flex-row justify-between items-center">
+                        <div class="h6 text-indigo-700 fad fa-users"></div>
+                    </div>
+                    <div class="mt-8">
+                        <h1 class="h5">{{$countRetention}} Retensi</h1>
+                        <p>Total Data Pasien Yang Dapat Diretensi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer {{$countRetention > 0 ? 'bg-orange-300' : 'bg-white'}} p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('extraCSS')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 
@@ -60,10 +61,79 @@
 @endsection
 @section('content')
 <div>
-    <a href="{{url('/admin/report-incoming-medicine/print')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Cetak PDF</a>
+    <div class="mb-8">
+        <a href="{{url('/admin/report-incoming-medicine/print')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Cetak PDF (SEMUA)</a>
+        <a href="{{url('/admin/report-incoming-medicine')}}" class="bg-orange-500 text-white rounded px-4 py-3 mt-2 hover:bg-orange-600">Reset Filter</a>
+    </div>
+    <div class="card mb-8">
+        <div class="card-header flex flex-row justify-between">
+            <h1 class="h6">Filter Berdasarkan</h1>
+        </div>
+        <div class="card-body">
+            <div>
+                <label class="text-gray-700 ml-1">Pilih Filter : </label>
+                <select onchange="openFilter(this);" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                    <option value="">Pilih Filter</option>
+                    <option value="open_date">Per Tanggal</option>
+                    <option value="open_code">Kode Obat Masuk (IM)</option>
+                </select>
+            </div>
+            <div id="form_date" style="display: none;">
+                <form method="POST" action="{{url('/admin/report-incoming-medicine/date/print')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Tanggal Awal: </label>
+                        <input type="date" id="date_start" name="date_start" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_start') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Awal" required>
+                        @error('date_start')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Tanggal Akhir: </label>
+                        <input type="date" id="date_end" name="date_end" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_end') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Akhir" required>
+                        @error('date_end')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-5 flex gap-2">
+                        <button type="button" onclick="getFilterDateIncomingMedicine()" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Tampilkan</button>
+                        <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Cetak PDF</button>
+                    </div>
+                </form>
+            </div>
+            <div id="form_code" style="display: none;">
+                <form method="POST" action="{{url('/admin/report-incoming-medicine/code/print')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Pilih Kode Obat Masuk: </label>
+                        <select name="incoming_medicine" id="incoming_medicine" placholder="Pilih Kode Obat Masuk..." class="form-input mt-1 p-3 border-2 @error('incoming_medicine') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            <option value="">Pilih Kode Obat Masuk</option>
+                            @foreach ($getListMedicineIncoming as $itemListMedicineIncoming)
+                                <option value="{{$itemListMedicineIncoming->id}}">{{$itemListMedicineIncoming->code_im}}</option>
+                            @endforeach
+                        </select>
+                        @error('incoming_medicine')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-5 flex gap-2">
+                        <button type="button" onclick="getFilterCodeIncomingMedicine()" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Tampilkan</button>
+                        <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Cetak PDF</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
-            <b class="text-bold text-black">DATA OBAT</b>
+            <b class="text-bold text-black">DATA OBAT MASUK</b>
         </div>
         <table id="thisTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
@@ -95,11 +165,20 @@
 </div>
 @endsection
 @section('extraJS')
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 <script>
+    function selectOption(){
+        $('#incoming_medicine').selectize({
+            sortField: 'text'
+        });
+    }
+
     $(document).ready(function() {
+        selectOption();
         var table = $('#thisTable').DataTable( {
                 responsive: true
             } )
@@ -112,5 +191,74 @@
             .columns.adjust()
             .responsive.recalc();
     } );
+
+    function openFilter(that) {
+        if (that.value == "open_date") {
+            document.getElementById("form_date").style.display = "block";
+            document.getElementById("form_code").style.display = "none";
+        } else if (that.value == "open_code"){
+            document.getElementById("form_code").style.display = "block";
+            document.getElementById("form_date").style.display = "none";
+        } else {
+            document.getElementById("form_date").style.display = "none";
+            document.getElementById("form_code").style.display = "none";
+        }
+    }
+
+    function getFilterCodeIncomingMedicine() {
+        $('#thisTable').DataTable().clear().draw();
+        
+        $.ajax({
+            url: '/getReportMedicineIncome/'+document.getElementById('incoming_medicine').value,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
+                var tableBody = $('#thisTable tbody');
+                var number = 1;
+                tableBody.empty();
+                $.each(data.getMedicineIncoming, function(index, item){
+                    var row = '<tr>' +
+                        '<td class="text-center">' + (number++) + '</td>' +
+                        '<td class="text-left">' + item.code_im + '</td>' +
+                        '<td class="text-left">' + item.pharmacist + '</td>' +
+                        '<td class="text-left">' + item.date_income_medicine + '</td>' +
+                        '<td class="text-left">' + item.name + '</td>' +
+                        '<td class="text-left">' + item.stock_in + '</td>' +
+                        '<td class="text-left">' + item.total + '</td>' +
+                    '</tr>';
+                    tableBody.append(row);
+                });
+            }
+        });
+    }
+
+    function getFilterDateIncomingMedicine() {
+        $('#thisTable').DataTable().clear().draw();
+        
+        $.ajax({
+            url: '/getReportMedicineIncomeDate/'+document.getElementById('date_start').value+'/'+document.getElementById('date_end').value,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
+                var tableBody = $('#thisTable tbody');
+                var number = 1;
+                tableBody.empty();
+                $.each(data.getMedicineIncoming, function(index, item){
+                    var row = '<tr>' +
+                        '<td class="text-center">' + (number++) + '</td>' +
+                        '<td class="text-left">' + item.code_im + '</td>' +
+                        '<td class="text-left">' + item.pharmacist + '</td>' +
+                        '<td class="text-left">' + item.date_income_medicine + '</td>' +
+                        '<td class="text-left">' + item.name + '</td>' +
+                        '<td class="text-left">' + item.stock_in + '</td>' +
+                        '<td class="text-left">' + item.total + '</td>' +
+                    '</tr>';
+                    tableBody.append(row);
+                });
+            }
+        });
+    }
 </script>
 @endsection

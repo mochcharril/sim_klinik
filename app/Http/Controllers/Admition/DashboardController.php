@@ -45,6 +45,10 @@ class DashboardController extends Controller
             $this->param['getOctober'] = Patient::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', '10')->count();
             $this->param['getNovember'] = Patient::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', '11')->count();
             $this->param['getDecember'] = Patient::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', '12')->count();
+
+            $this->param['countRetention'] = Patient::where('updated_at', '<', date('Y-m-d', strtotime('-25 years')))
+                                                    ->where('is_retention', 'no')
+                                                    ->count();
             
             return view('admition.pages.dashboard.dashboard', $this->param);
         } catch (\Exception $e) {

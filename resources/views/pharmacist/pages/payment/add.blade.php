@@ -6,14 +6,14 @@
 <style>
     .dataTables_wrapper select,
     .dataTables_wrapper .dataTables_filter input {
-        color: #4a5568;	
-        padding-left: 1rem; 		
-        padding-right: 1rem; 		
-        padding-top: .5rem; 		
+        color: #4a5568;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: .5rem;
         padding-bottom: .5rem;
         line-height: 1.25;
         border-width: 2px;
-        border-radius: .25rem; 		
+        border-radius: .25rem;
         border-color: #edf2f7;
         background-color: #edf2f7;
     }
@@ -21,13 +21,13 @@
     table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
         background-color: #ebf4ff;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button		{
         font-weight: 700;
         border-radius: .25rem;
         border: 1px solid transparent;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button.current	{
         color: #fff !important;
         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
@@ -45,13 +45,13 @@
         background: #4299e1 !important;
         border: 1px solid transparent;
     }
-    
+
     table.dataTable.no-footer {
         border-bottom: 1px solid #e2e8f0;
         margin-top: 0.75em;
         margin-bottom: 0.75em;
     }
-    
+
     /*Change colour of responsive icon*/
     table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
         background-color: #4299e1 !important;
@@ -139,16 +139,29 @@
                         @enderror
                     </div>
                     <div>
-                        <label class="text-gray-700 ml-1">Diagnosa: </label>
-                        <input required type="text" name="diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa" value="{{$getDetailCheckup->diagnosis}}" readonly>
-                        @error('diagnosis')
+                        <label class="text-gray-700 ml-1">Kode Diagnosa: </label>
+                        <input required type="text" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa" value="{{$getDetailCheckup->code_diagnosis}}" readonly>
+                        @error('code_diagnosis')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
                         </span>
                         @enderror
                     </div>
-                    <hr><hr>
-                    @if ($getDetailPayment != null)
+                </div>
+                <div class="grid grid-cols-1 gap-5 xl:grid-cols-1 mt-5">
+                    <div>
+                        <label class="text-gray-700 ml-1">Deskripsi Diagnosa: </label>
+                        <input required type="text" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa" value="{{$getDetailCheckup->description_diagnosis}}" readonly>
+                        @error('description_diagnosis')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <hr>
+                </div>
+                @if ($getDetailPayment != null)
+                <div class="grid grid-cols-2 gap-5 xl:grid-cols-1 mt-3">
                     <div>
                         <label class="text-gray-700 ml-1">Kode Pembayaran: </label>
                         <input required type="text" name="code_py" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_py') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Resep" value="{{$getDetailPayment->code_py}}" readonly>
@@ -167,7 +180,16 @@
                         </span>
                         @enderror
                     </div>
-                    @else
+                </div>
+                <div class="grid grid-cols-1 gap-5 xl:grid-cols-1 mt-5">
+                    <label class="text-gray-700 ml-1">Status Pembayaran : </label>
+                    <select name="status_payment" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0" disabled>
+                        <option value="Belum Dibayar" {{$getDetailPayment->status_payments == 'Belum Dibayar' ? 'selected' : ''}}>Belum Dibayar</option>
+                        <option value="Sudah Dibayar" {{$getDetailPayment->status_payments == 'Sudah Dibayar' ? 'selected' : ''}}>Sudah Dibayar</option>
+                    </select>
+                </div>
+                @else
+                <div class="grid grid-cols-2 gap-5 xl:grid-cols-1 mt-3">
                     <div>
                         <label class="text-gray-700 ml-1">Kode Pembayaran: </label>
                         <input required type="text" name="code_py" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_py') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Resep" value="{{$generateCodePY}}" readonly>
@@ -186,16 +208,37 @@
                         </span>
                         @enderror
                     </div>
-                    @endif
                 </div>
-                <div class="mt-5">
+                {{-- <div class="grid grid-cols-1 gap-5 xl:grid-cols-1 mt-5">
+                    <label class="text-gray-700 ml-1">Status Pembayaran : </label>
+                    <select name="status_payment" class="form-input p-3 border-2 focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                        <option value="Belum Dibayar">Belum Dibayar</option>
+                        <option value="Sudah Dibayar">Sudah Dibayar</option>
+                    </select>
+                </div> --}}
+                @endif
+                <div class="flex">
+                    <div class="mt-5">
+                        @if ($getDetailPayment != null)
+                        <form action="{{url('/pharmacist/payment')}}/{{$getDetailCheckup->id}}/print" method="POST" class="m-auto">
+                            @csrf
+                            <div class="flex">
+                                <button type="submit" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Cetak</button>
+                            </div>
+                        </form>
+                        @else
+                        <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Simpan & Bayar</button>
+                        @endif
+                    </div>
                     @if ($getDetailPayment != null)
-                    <form action="{{url('/pharmacist/payment')}}/{{$getDetailCheckup->id}}/print" method="POST" class="m-auto">
-                        @csrf
-                        <button type="submit" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Cetak</button>
-                    </form>
-                    @else
-                    <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Simpan</button>
+                    <div class="mt-5">
+                        <form action="{{url('/pharmacist/payment')}}/{{$getDetailCheckup->id}}/print_nota" method="POST" class="m-auto">
+                            @csrf
+                            <div class="flex">
+                                <button type="submit" class="flex-inline ml-2 btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Cetak Nota Resep</button>
+                            </div>
+                        </form>
+                    </div>
                     @endif
                 </div>
             </div>

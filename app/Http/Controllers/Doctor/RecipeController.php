@@ -21,7 +21,7 @@ class RecipeController extends Controller
     public function index(){
         try {
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.id', 'checkups.code_cu', 'patients.name as patient_name', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.diagnosis', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date', 'checkups.status_rm')
+                                            ->select('checkups.id', 'checkups.code_cu', 'patients.name as patient_name', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date', 'checkups.status_rm')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')
@@ -81,7 +81,7 @@ class RecipeController extends Controller
             $recipe->checkup_id = $checkup->id;
             $recipe->doctor_id = auth()->user()->id;
             $tempTotal = 0;
-            for ($x=0; $x < $lengthRecipe; $x++) { 
+            for ($x=0; $x < $lengthRecipe; $x++) {
                 $tempSubTotal = (int)$request->get('price')[$x] * (int)$request->get('stock_out')[$x];
                 $tempTotal+=$tempSubTotal;
             }
@@ -89,7 +89,7 @@ class RecipeController extends Controller
             $recipe->date_recipe = $request->get('date_recipe');
             $recipe->save();
 
-            for ($y=0; $y < $lengthRecipe; $y++) { 
+            for ($y=0; $y < $lengthRecipe; $y++) {
                 $recipeDetail = new RecipeDetail();
                 $recipeDetail->recipe_id = $recipe->id;
                 $recipeDetail->medicine_id = $request->get('medicine')[$y];

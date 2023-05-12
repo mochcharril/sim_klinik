@@ -6,14 +6,14 @@
 <style>
     .dataTables_wrapper select,
     .dataTables_wrapper .dataTables_filter input {
-        color: #4a5568;	
-        padding-left: 1rem; 		
-        padding-right: 1rem; 		
-        padding-top: .5rem; 		
+        color: #4a5568;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: .5rem;
         padding-bottom: .5rem;
         line-height: 1.25;
         border-width: 2px;
-        border-radius: .25rem; 		
+        border-radius: .25rem;
         border-color: #edf2f7;
         background-color: #edf2f7;
     }
@@ -21,13 +21,13 @@
     table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
         background-color: #ebf4ff;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button		{
         font-weight: 700;
         border-radius: .25rem;
         border: 1px solid transparent;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button.current	{
         color: #fff !important;
         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
@@ -45,13 +45,13 @@
         background: #4299e1 !important;
         border: 1px solid transparent;
     }
-    
+
     table.dataTable.no-footer {
         border-bottom: 1px solid #e2e8f0;
         margin-top: 0.75em;
         margin-bottom: 0.75em;
     }
-    
+
     /*Change colour of responsive icon*/
     table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
         background-color: #4299e1 !important;
@@ -230,9 +230,18 @@
                     @enderror
                 </div>
                 <div>
-                    <label class="text-gray-700 ml-1">Diagnosa : </label>
-                    <input type="text" name="diagnosis_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('diagnosis_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa " value="{{$itemCheckup->diagnosis}}" readonly>
-                    @error('diagnosis_checkup')
+                    <label class="text-gray-700 ml-1">Kode Diagnosa : </label>
+                    <input type="text" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa " value="{{$itemCheckup->description_diagnosis}}" readonly>
+                    @error('description_diagnosis')
+                    <span class="pl-1 text-xs text-red-600 text-bold">
+                        {{$message}}
+                    </span>
+                    @enderror
+                </div>
+                <div>
+                    <label class="text-gray-700 ml-1">Kode Diagnosa : </label>
+                    <input type="text" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa " value="{{$itemCheckup->code_diagnosis}}" readonly>
+                    @error('code_diagnosis')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
                     </span>
@@ -247,12 +256,21 @@
                     </span>
                     @enderror
                 </div>
-            </div>
-            <div class="grid grid-cols-1 mt-5 gap-5 xl:grid-cols-1">
                 <div>
                     <label class="text-gray-700 ml-1">Poli : </label>
                     <input type="text" name="poly_name_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('poly_name_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Poli " value="{{$itemCheckup->poly_name}}" readonly>
                     @error('poly_name_checkup')
+                    <span class="pl-1 text-xs text-red-600 text-bold">
+                        {{$message}}
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="grid grid-cols-1 mt-5 gap-5 xl:grid-cols-1">
+                <div>
+                    <label class="text-gray-700 ml-1">Catatan Lain : </label>
+                    <input type="text" name="other_notes" class="form-input w-full block rounded mt-1 p-3 border-2 @error('other_notes') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Catatan" value="{{$itemCheckup->other_notes}}" readonly>
+                    @error('other_notes')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
                     </span>
@@ -307,52 +325,6 @@
     </div>
 </div>
 @endforeach
-
-
-{{-- <div>
-    <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
-        <div class="text-bold pb-5">
-            <b class="text-bold text-black">RESEP OBAT YANG DIBERIKAN</b>
-        </div>
-        <table id="thisTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-            <thead>
-                <tr>
-                    <th data-priority="1">No</th>
-                    <th data-priority="2">Kode Resep</th>
-                    <th data-priority="3">Tanggal Resep</th>
-                    <th data-priority="4">Dokter</th>
-                    <th data-priority="5">Nama Obat</th>
-                    <th data-priority="6">Jumlah Obat</th>
-                    <th data-priority="7">Aturan Pemakaian</th>
-                    <th data-priority="8">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($getDetailRecipe as $item)
-                @php
-                    $subTotal+=(int)$item->total;
-                @endphp
-                <tr>
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-left">{{$item->code_rp}}</td>
-                    <td class="text-left">{{$item->date_recipe}}</td>
-                    <td class="text-left">{{$item->doctor_name}}</td>
-                    <td class="text-left">{{$item->medicine_name}}</td>
-                    <td class="text-left">{{$item->qty}}</td>
-                    <td class="text-left">{{$item->medication_rules}}</td>
-                    <td class="text-left">@currency($item->total)</td>
-                </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td class="text-center text-bold" colspan="7"><b>Sub Total</b></td>
-                    <td class="text-left text-bold" colspan="1"><b>@currency($subTotal)</b></td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</div> --}}
 @endsection
 @section('extraJS')
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -367,7 +339,7 @@
                 } )
                 .columns.adjust()
                 .responsive.recalc();
-            } 
+            }
         }
     );
 </script>

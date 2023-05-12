@@ -72,8 +72,9 @@
                     <th data-priority="3">Kode Pemeriksaan</th>
                     <th data-priority="4">Nama Pasien</th>
                     <th data-priority="5">Keluhan</th>
-                    <th data-priority="6">Diagnosa</th>
-                    <th data-priority="7">Aksi</th>
+                    <th data-priority="6">Kode Diagnosa</th>
+                    <th data-priority="7">Deskripsi Diagnosa</th>
+                    <th data-priority="8">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,7 +85,8 @@
                     <td class="text-left">{{$item->code_cu}}</td>
                     <td class="text-left">{{$item->patient_name}}</td>
                     <td class="text-left">{{$item->complaint}}</td>
-                    <td class="text-left">{{$item->diagnosis}}</td>
+                    <td class="text-left">{{$item->code_diagnosis}}</td>
+                    <td class="text-left">{{$item->description_diagnosis}}</td>
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/admin/payment')}}/{{$item->id}}/add" method="POST" class="m-auto">
                             @csrf

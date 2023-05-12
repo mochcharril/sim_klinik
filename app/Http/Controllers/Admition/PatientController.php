@@ -17,7 +17,7 @@ class PatientController extends Controller
 
     public function index(){
         try {
-            $this->param['getPatient'] = Patient::all();
+            $this->param['getPatient'] = Patient::where('is_retention', 'no')->get();
             $this->param['getPatientRetention'] = Patient::where('is_retention', 'yes')->get();
             
             return view('admition.pages.patient.list', $this->param);
@@ -45,7 +45,7 @@ class PatientController extends Controller
             [
                 'code_rm' => 'required',
                 'name' => 'required',
-                'nik' => 'required|min:16|max:16',
+                'nik' => 'required|min:16|max:16|unique:patients',
                 'gender' => 'required',
                 'place_of_birth' => 'required',
                 'date_of_birth' => 'required',
@@ -53,6 +53,7 @@ class PatientController extends Controller
                 'phone_number' => 'required',
             ],
             [
+                'unique' => 'NIK sudah terdaftar mohon dicari di kolom pencarian data pasien',
                 'required' => ':attribute harus diisi.',
                 'nik.min' => ':attribute harus 16 digit',
                 'nik.max' => ':attribute harus 16 digit',

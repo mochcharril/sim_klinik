@@ -94,6 +94,7 @@ class IncomingMedicineController extends Controller
 
                 $updateMedicine = Medicine::find($request->get('medicine')[$y]);
                 $updateMedicine->stock = $request->get('stock')[$y] + $request->get('stock_in')[$y];
+                $updateMedicine->expired_date = $request->get('expired_date')[$y];
                 $updateMedicine->save();
             }
 

@@ -62,6 +62,48 @@
 <div>
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
+            <b class="text-bold text-black">DATA PEMERIKSAAN DARI PERAWAT</b>
+        </div>
+        <table id="thisTables" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+            <thead>
+                <tr>
+                    <th data-priority="1">No</th>
+                    <th data-priority="2">Kode RM</th>
+                    <th data-priority="3">Kode Pemeriksaan</th>
+                    <th data-priority="4">Nama Pasien</th>
+                    <th data-priority="5">Nomor Telepon</th>
+                    <th data-priority="6">Jenis Asuransi</th>
+                    <th data-priority="7">Umur</th>
+                    <th data-priority="8">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($getCheckup as $items)  
+                <tr>
+                    <td class="text-center">{{$loop->iteration}}</td>
+                    <td class="text-left">{{$items->code_rm}}</td>
+                    <td class="text-left">{{$items->code_cu}}</td>
+                    <td class="text-left">{{$items->name}}</td>
+                    <td class="text-left">{{$items->phone_number}}</td>
+                    <td class="text-left">{{$items->insurance_type == '-' ? 'Tidak Ada Asuransi (Umum)' : $items->insurance_type}}</td>
+                    <td class="text-left">{{ date_diff(date_create($items->date_of_birth), date_create('now'))->y }} Tahun, {{ date_diff(date_create($items->date_of_birth), date_create('now'))->m }} Bulan</td>
+                    <td class="text-left t-mx-3 flex">
+                        <form action="{{url('/doctor/action/checkup-nurse')}}/{{$items->id}}/add" method="POST" class="m-auto">
+                            @csrf
+                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
+        <div class="text-bold pb-5">
             <b class="text-bold text-black">TAMBAH DATA PEMERIKSAAN</b>
         </div>
         <table id="thisTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
@@ -111,6 +153,11 @@
             } )
             .columns.adjust()
             .responsive.recalc();
+        var tables = $('#thisTables').DataTable( {
+            responsive: true
+        } )
+        .columns.adjust()
+        .responsive.recalc();
     } );
 </script>
 @endsection

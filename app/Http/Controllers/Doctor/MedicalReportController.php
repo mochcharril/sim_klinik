@@ -38,7 +38,7 @@ class MedicalReportController extends Controller
         try {
             $this->param['getPatient'] = Patient::find($patient->id);
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.id', 'checkups.code_cu', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.diagnosis', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date')
+                                            ->select('checkups.id', 'checkups.code_cu', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date')
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')
                                             ->where('checkups.patient_id', $patient->id)
@@ -67,7 +67,7 @@ class MedicalReportController extends Controller
         try {
             $this->param['getDetailPatient'] = Patient::find($patient->id);
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.id', 'checkups.code_cu', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.diagnosis', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date')
+                                            ->select('checkups.id', 'checkups.code_cu', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date')
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')
                                             ->where('checkups.patient_id', $patient->id)
@@ -83,7 +83,7 @@ class MedicalReportController extends Controller
                                             ->join('medicines', 'recipe_details.medicine_id', 'medicines.id')
                                             ->join('users', 'recipes.doctor_id', 'users.id')
                                             ->get();
-                                            
+
             $pdf = PDF::loadview('doctor.pages.medical_reports.print', $this->param);
             // return $pdf->download('cetak-pdf-pasien');
             return $pdf->stream('cetak-pdf-rekam-medis', array("Attachment" => false));

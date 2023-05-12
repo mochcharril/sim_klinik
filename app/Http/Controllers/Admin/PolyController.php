@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Poly;
+use App\Models\Checkup;
+use App\Models\Patient;
 
 class PolyController extends Controller
 {
@@ -16,6 +18,9 @@ class PolyController extends Controller
     public function index(){
         try {
             $this->param['getPoly'] = Poly::all();
+            $this->param['countUmum'] = Checkup::where('poly_id', 1)->count();
+            $this->param['countGigi'] = Checkup::where('poly_id', 2)->count();
+            $this->param['countKIA'] = Checkup::where('poly_id', 3)->count();
             
             return view('admin.pages.poly.list', $this->param);
         } catch (\Exception $e) {
@@ -113,6 +118,75 @@ class PolyController extends Controller
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
             return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function detailGeneral(){
+        try {
+            $this->param['getCheckup'] = \DB::table('checkups')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
+                                            ->join('patients', 'checkups.patient_id', 'patients.id')
+                                            ->where('checkups.poly_id', 1)
+                                            ->get();
+
+            $this->param['getMeasureDetail'] = \DB::table('measure_patient_details')
+                                            ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
+                                            ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
+                                            ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                            ->get();
+            $this->param['getPatient'] = Patient::all();
+
+            return view('admin.pages.poly.detail-general', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
+    public function detailTeeth(){
+        try {
+            $this->param['getCheckup'] = \DB::table('checkups')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
+                                            ->join('patients', 'checkups.patient_id', 'patients.id')
+                                            ->where('checkups.poly_id', 2)
+                                            ->get();
+
+            $this->param['getMeasureDetail'] = \DB::table('measure_patient_details')
+                                            ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
+                                            ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
+                                            ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                            ->get();
+            $this->param['getPatient'] = Patient::all();
+
+            return view('admin.pages.poly.detail-teeth', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
+    public function detailKia(){
+        try {
+            $this->param['getCheckup'] = \DB::table('checkups')
+                                            ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
+                                            ->join('patients', 'checkups.patient_id', 'patients.id')
+                                            ->where('checkups.poly_id', 3)
+                                            ->get();
+
+            $this->param['getMeasureDetail'] = \DB::table('measure_patient_details')
+                                            ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
+                                            ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
+                                            ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                            ->get();
+            $this->param['getPatient'] = Patient::all();
+
+            return view('admin.pages.poly.detail-kia', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
         }
     }
 }

@@ -34,6 +34,9 @@ class DashboardController extends Controller
             $this->param['countClinic'] = $countClinic;
             $this->param['countPayment'] = Payment::count();
             $this->param['countPoly'] = Poly::count();
+            $this->param['countRetention'] = Patient::where('updated_at', '<', date('Y-m-d', strtotime('-25 years')))
+                                                    ->where('is_retention', 'no')
+                                                    ->count();
             
             return view('admin.pages.dashboard.dashboard', $this->param);
         } catch (\Exception $e) {

@@ -6,14 +6,14 @@
 <style>
     .dataTables_wrapper select,
     .dataTables_wrapper .dataTables_filter input {
-        color: #4a5568;	
-        padding-left: 1rem; 		
-        padding-right: 1rem; 		
-        padding-top: .5rem; 		
+        color: #4a5568;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: .5rem;
         padding-bottom: .5rem;
         line-height: 1.25;
         border-width: 2px;
-        border-radius: .25rem; 		
+        border-radius: .25rem;
         border-color: #edf2f7;
         background-color: #edf2f7;
     }
@@ -21,13 +21,13 @@
     table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
         background-color: #ebf4ff;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button		{
         font-weight: 700;
         border-radius: .25rem;
         border: 1px solid transparent;
     }
-    
+
     .dataTables_wrapper .dataTables_paginate .paginate_button.current	{
         color: #fff !important;
         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
@@ -45,13 +45,13 @@
         background: #4299e1 !important;
         border: 1px solid transparent;
     }
-    
+
     table.dataTable.no-footer {
         border-bottom: 1px solid #e2e8f0;
         margin-top: 0.75em;
         margin-bottom: 0.75em;
     }
-    
+
     /*Change colour of responsive icon*/
     table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
         background-color: #4299e1 !important;
@@ -72,20 +72,24 @@
                     <th data-priority="3">Kode Pemeriksaan</th>
                     <th data-priority="4">Nama Pasien</th>
                     <th data-priority="5">Keluhan</th>
-                    <th data-priority="6">Diagnosa</th>
-                    <th data-priority="7">Tindakan</th>
-                    <th data-priority="8">Aksi</th>
+                    <th data-priority="6">Kode Diagnosa</th>
+                    <th data-priority="7">Deskripsi Diagnosa</th>
+                    <th data-priority="8">Tindakan</th>
+                    <th data-priority="9">Catatan Lain</th>
+                    <th data-priority="10">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($getCheckup as $item)  
+                @foreach ($getCheckup as $item)
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{{$item->checkup_date}}</td>
                     <td class="text-left">{{$item->code_cu}}</td>
                     <td class="text-left">{{$item->patient_name}}</td>
                     <td class="text-left">{{$item->complaint}}</td>
-                    <td class="text-left">{{$item->diagnosis}}</td>
+                    <td class="text-left">{{$item->code_diagnosis}}</td>
+                    <td class="text-left">{{$item->description_diagnosis}}</td>
+                    <td class="text-left">{{$item->other_notes}}</td>
                     <td class="text-left">
                         @foreach ($getMeasureDetail as $itemDetail)
                             @if ($item->id == $itemDetail->checkup_id)

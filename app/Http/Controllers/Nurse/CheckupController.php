@@ -61,12 +61,10 @@ class CheckupController extends Controller
             [
                 'code_cu' => 'required',
                 'checkup_date' => 'required',
-                'complaint' => 'required',
                 'height' => 'required',
                 'weight' => 'required',
                 'blood_preasure' => 'required',
-                'allergy' => 'required',
-                'diagnosis' => 'required',
+                'temperature' => 'required',
                 'poly' => 'required',
             ],
             [
@@ -75,12 +73,10 @@ class CheckupController extends Controller
             [
                 'code_cu' => 'Kode Pemeriksaan',
                 'checkup_date' => 'Tanggal Pemeriksaan',
-                'complaint' => 'Keluhan',
                 'height' => 'Tinggi Badan',
                 'weight' => 'Berat Badan',
                 'blood_preasure' => 'Tekanan Darah',
-                'allergy' => 'Alergi',
-                'diagnosis' => 'Diagnosa',
+                'temperature' => 'Suhu',
                 'poly' => 'Poli',
             ],
         );
@@ -89,40 +85,21 @@ class CheckupController extends Controller
             $checkup->code_cu = $request->get('code_cu');
             $checkup->patient_id = $patient->id;
             $checkup->doctor_nurse_id = auth()->user()->id;
-            $checkup->complaint = $request->get('complaint');
+            $checkup->complaint = '-';
             $checkup->height = $request->get('height');
             $checkup->weight = $request->get('weight');
             $checkup->blood_preasure = $request->get('blood_preasure');
-            $checkup->allergy = $request->get('allergy');
-            $checkup->diagnosis = $request->get('diagnosis');
+            $checkup->temperature = $request->get('temperature');
+            $checkup->allergy = '-';
+            $checkup->code_diagnosis = '-';
+            $checkup->description_diagnosis = '-';
+            $checkup->other_notes = '-';
             $checkup->measures = '-';
             $checkup->poly_id = $request->get('poly');
             $checkup->checkup_date = $request->get('checkup_date');
             $checkup->status_rm = '0';
+            $checkup->status_checkup_doctor = '0';
             $checkup->save();
-
-            $lengthMeasure = count($request->get('measure'));
-            $tempTotal = 0;
-            for ($h=0; $h < $lengthMeasure; $h++) { 
-                $measure = Measure::find($request->get('measure')[$h]);
-                $tempTotal+=(int)$measure->price;
-            }
-
-
-            $measurePatient = new MeasurePatient();
-            $measurePatient->code_msp = MeasurePatient::generateCodeMSP();
-            $measurePatient->checkup_id = $checkup->id;
-            $measurePatient->doctor_id = auth()->user()->id;
-            $measurePatient->total = $tempTotal;
-            $measurePatient->date_measure_patient = $request->get('checkup_date');
-            $measurePatient->save();
-
-            for ($i=0; $i < $lengthMeasure ; $i++) { 
-                $measurePatientDetail = new MeasurePatientDetail();
-                $measurePatientDetail->measure_patient_id = $measurePatient->id;
-                $measurePatientDetail->measure_id = $request->get('measure')[$i];
-                $measurePatientDetail->save();
-            }
 
             return redirect('/nurse/action/checkup')->withStatus('Berhasil menambah data pemeriksaan.');
         } catch (\Exception $e) {

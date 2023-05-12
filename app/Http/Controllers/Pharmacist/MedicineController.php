@@ -44,6 +44,7 @@ class MedicineController extends Controller
                 'name' => 'required',
                 'price' => 'required',
                 'stock' => 'required',
+                'expired_date' => 'required',
             ],
             [
                 'required' => ':attribute harus diisi.',
@@ -52,7 +53,7 @@ class MedicineController extends Controller
                 'code_md' => 'Kode MD',
                 'name' => 'Nama Obat',
                 'price' => 'Harga Obat',
-                'stock' => 'Stok Awal Obat',
+                'expired_date' => 'Tanggal Kadaluarsa',
             ],
         );
         try {
@@ -61,6 +62,7 @@ class MedicineController extends Controller
             $medicine->name = $request->name;
             $medicine->price = $request->price;
             $medicine->stock = $request->stock;
+            $medicine->expired_date = $request->expired_date;
             $medicine->save();
 
             return redirect('/pharmacist/master-data/medicine')->withStatus('Berhasil menambah data obat.');
@@ -88,6 +90,7 @@ class MedicineController extends Controller
                 'code_md' => 'required',
                 'name' => 'required',
                 'price' => 'required',
+                'expired_date' => 'required',
             ],
             [
                 'required' => ':attribute harus diisi.',
@@ -96,12 +99,14 @@ class MedicineController extends Controller
                 'code_md' => 'Kode MD',
                 'name' => 'Nama Obat',
                 'price' => 'Harga Obat',
+                'expired_date' => 'Tanggal Kadaluarsa',
             ],
         );
         try {
             $medicine = Medicine::find($medicine->id);
             $medicine->name = $request->name;
             $medicine->price = $request->price;
+            $medicine->expired_date = $request->expired_date;
             $medicine->save();
 
             return redirect('/pharmacist/master-data/medicine')->withStatus('Berhasil memperbarui data obat.');
