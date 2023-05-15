@@ -40,6 +40,13 @@ Route::post('/admin/master-data/admition/{user}/edit', [App\Http\Controllers\Adm
 Route::put('/admin/master-data/admition/update/{user}', [App\Http\Controllers\Admin\AdmitionController::class, 'update']);
 Route::delete('/admin/master-data/admition/{user}/drop', [App\Http\Controllers\Admin\AdmitionController::class, 'drop']);
 
+Route::get('/admin/master-data/admin', [App\Http\Controllers\Admin\AdminController::class, 'index']);
+Route::get('/admin/master-data/admin/add', [App\Http\Controllers\Admin\AdminController::class, 'add']);
+Route::post('/admin/master-data/admin/store', [App\Http\Controllers\Admin\AdminController::class, 'store']);
+Route::post('/admin/master-data/admin/{user}/edit', [App\Http\Controllers\Admin\AdminController::class, 'edit']);
+Route::put('/admin/master-data/admin/update/{user}', [App\Http\Controllers\Admin\AdminController::class, 'update']);
+Route::delete('/admin/master-data/admin/{user}/drop', [App\Http\Controllers\Admin\AdminController::class, 'drop']);
+
 Route::get('/admin/master-data/clinic', [App\Http\Controllers\Admin\ClinicController::class, 'index']);
 Route::get('/admin/master-data/clinic/add', [App\Http\Controllers\Admin\ClinicController::class, 'add']);
 Route::post('/admin/master-data/clinic/store', [App\Http\Controllers\Admin\ClinicController::class, 'store']);
@@ -132,3 +139,9 @@ Route::get('/admin/medical-resume', [App\Http\Controllers\Admin\MedicalResumeRep
 Route::get('/admin/medical-resume/{checkup}/print', [App\Http\Controllers\Admin\MedicalResumeReportController::class, 'printResume']);
 Route::get('/admin/medical-resume/{checkup}/detail', [App\Http\Controllers\Admin\MedicalResumeReportController::class, 'detail']);
 Route::post('/admin/medical-resume/{checkup}/detail/send', [App\Http\Controllers\Admin\MedicalResumeReportController::class, 'store']);
+
+Route::get('/admin/informed-consent', [App\Http\Controllers\Admin\InformedConsentController::class, 'index']);
+Route::get('/admin/informed-consent/agreement-form/{checkup}', [App\Http\Controllers\Admin\InformedConsentController::class, 'agreementForm']);
+Route::get('/admin/informed-consent/rejection-form/{checkup}', [App\Http\Controllers\Admin\InformedConsentController::class, 'rejectionForm']);
+
+Route::get('/admin/medical', [App\Http\Controllers\Admin\MedicalController::class, 'index']);

@@ -85,7 +85,7 @@ class CheckupController extends Controller
             $checkup->code_cu = $request->get('code_cu');
             $checkup->patient_id = $patient->id;
             $checkup->doctor_nurse_id = auth()->user()->id;
-            $checkup->complaint = '-';
+            $checkup->complaint = $request->get('complaint');
             $checkup->height = $request->get('height');
             $checkup->weight = $request->get('weight');
             $checkup->blood_preasure = $request->get('blood_preasure');
@@ -99,6 +99,8 @@ class CheckupController extends Controller
             $checkup->checkup_date = $request->get('checkup_date');
             $checkup->status_rm = '0';
             $checkup->status_checkup_doctor = '0';
+            $checkup->status_resume = '0';
+            $checkup->status_informed_consent = 'Menunggu';
             $checkup->save();
 
             return redirect('/nurse/action/checkup')->withStatus('Berhasil menambah data pemeriksaan.');

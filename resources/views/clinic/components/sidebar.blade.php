@@ -7,7 +7,7 @@
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider font-semibold">Dasbor</p>
         <a href="{{url('dashboard-clinic')}}" class="mb-3 @if (Request::segment(1) == 'dashboard-clinic') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
-            <i class="fad fa-chart-pie text-xs mr-2"></i>                
+            <i class="fad fa-chart-pie text-xs mr-2"></i>
             Dasbor
         </a>
 
@@ -26,7 +26,7 @@
         </a>
         <a href="{{url('clinic/report-incoming-medicine')}}" class="mb-3 @if (Request::segment(2) == 'report-incoming-medicine') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            Laporan Obat Masuk
+            Laporan Stok Obat
         </a>
         <a href="{{url('clinic/report-recipe')}}" class="mb-3 @if (Request::segment(2) == 'report-recipe') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
@@ -38,7 +38,7 @@
         </a>
         <a href="{{url('clinic/report-top-sick')}}" class="mb-3 @if (Request::segment(2) == 'report-top-sick') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            Laporan 10 Penyakit Teratas
+            Laporan 10 Besar Penyakit
         </a>
     </div>
 </div>

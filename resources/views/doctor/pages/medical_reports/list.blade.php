@@ -62,7 +62,7 @@
 <div>
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
-            <b class="text-bold text-black">TAMBAH DATA PEMERIKSAAN</b>
+            <b class="text-bold text-black">DATA RIWAYAT PEMERIKSAAN</b>
         </div>
         <table id="thisTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>

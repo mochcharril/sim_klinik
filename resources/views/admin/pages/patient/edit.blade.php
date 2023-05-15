@@ -37,6 +37,82 @@
                     @enderror
                 </div>
                 <div class="mt-3">
+                    <label class="text-gray-700 ml-1">Daftar Sebagai : </label>
+                    <select onchange="openStatus(this);" name="register_as" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0" disabled>
+                        <option {{ $getDetailPatient->register_as == 'Umum' ? 'selected' : '' }} value="as_umum">Umum</option>
+                        <option {{ $getDetailPatient->register_as == 'Mahasiswa' ? 'selected' : '' }} value="as_mhs">Mahasiswa</option>
+                        <option {{ $getDetailPatient->register_as == 'Karyawan' ? 'selected' : '' }} value="as_kry">Karyawan</option>
+                        <option {{ $getDetailPatient->register_as == 'Keluarga Karyawan' ? 'selected' : '' }} value="as_klg">Keluarga Karyawan</option>
+                    </select>
+                    @error('register_as')
+                    <span class="pl-1 text-xs text-red-600 text-bold">
+                        {{$message}}
+                    </span>
+                    @enderror
+                </div>
+                @if ($getDetailPatient->register_as == 'Mahasiswa')
+                <div id="form_open_mhs">
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">NIM Mahasiswa : </label>
+                        <input type="text" name="nim_nip" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nim_nip') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="NIM Mahasiswa" value="{{old('nim_nip', $getDetailPatient->nim_nip)}}" readonly>
+                        @error('nim_nip')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                @elseif ($getDetailPatient->register_as == 'Karyawan')
+                <div id="form_open_kry">
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">NIP Karyawan : </label>
+                        <input type="text" name="nim_nip" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nim_nip') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="NIP Karyawan" value="{{old('nim_nip', $getDetailPatient->nim_nip)}}" readonly>
+                        @error('nim_nip')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                @elseif ($getDetailPatient->register_as == 'Keluarga Karyawan')
+                <div id="form_open_klg">
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Nama Karyawan : </label>
+                        <input type="text" name="family_from" class="form-input w-full block rounded mt-1 p-3 border-2 @error('family_from') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Karyawan" value="{{old('family_from', $getDetailPatient->family_from)}}" readonly>
+                        @error('family_from')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">NIP Karyawan : </label>
+                        <input type="text" name="nim_nip" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nim_nip') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="NIP Karyawan" value="{{old('nim_nip', $getDetailPatient->nim_nip)}}" readonly>
+                        @error('nim_nip')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Hubungan Keluarga : </label>
+                        <select name="family_as" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0" disabled>
+                            <option {{$getDetailPatient->family_as == 'Suami' ? 'selected' : ''}} value="Suami">Suami</option>
+                            <option {{$getDetailPatient->family_as == 'Istri' ? 'selected' : ''}} value="Istri">Istri</option>
+                            <option {{$getDetailPatient->family_as == 'Kakek' ? 'selected' : ''}} value="Kakek">Kakek</option>
+                            <option {{$getDetailPatient->family_as == 'Nenek' ? 'selected' : ''}} value="Nenek">Nenek</option>
+                            <option {{$getDetailPatient->family_as == 'Anak' ? 'selected' : ''}} value="Anak">Anak</option>
+                            <option {{$getDetailPatient->family_as == 'Saudara' ? 'selected' : ''}} value="Saudara">Saudara</option>
+                        </select>
+                        @error('family_as')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                @endif
+                <div class="mt-3">
                     <label class="text-gray-700 ml-1">Jenis Kelamin : </label>
                     <select name="gender" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                         <option value="laki-laki" {{$getDetailPatient->gender == 'laki-laki' ? 'selected' : ''}}>Laki-laki</option>

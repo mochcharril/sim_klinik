@@ -21,7 +21,7 @@ class RecipeController extends Controller
     public function index(){
         try {
             $this->param['getCheckup'] = \DB::table('checkups')
-                                            ->select('checkups.id', 'checkups.code_cu', 'patients.name as patient_name', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date', 'checkups.status_rm')
+                                            ->select('checkups.id', 'checkups.code_cu', 'patients.code_rm', 'patients.name as patient_name', 'users.name as doctor_nurse_name', 'checkups.complaint', 'checkups.height', 'checkups.weight', 'checkups.blood_preasure', 'checkups.allergy', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes', 'checkups.measures', 'polies.name as poly_name', 'checkups.checkup_date', 'checkups.status_rm')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')

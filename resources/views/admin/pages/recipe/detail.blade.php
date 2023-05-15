@@ -135,7 +135,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Diagnosa: </label>
-                    <input required type="text" name="diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa" value="{{$getDetailCheckup->diagnosis}}" readonly>
+                    <input required type="text" name="diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa" value="{{$getDetailCheckup->code_diagnosis}} || {{$getDetailCheckup->description_diagnosis}}" readonly>
                     @error('diagnosis')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}

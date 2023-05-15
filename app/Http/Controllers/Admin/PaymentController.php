@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Checkup;
 use App\Models\Payment;
 use App\Models\Patient;
+use App\Models\User;
 
 use PDF;
 
@@ -128,6 +129,7 @@ class PaymentController extends Controller
         try {
             $this->param['getDetailPatient'] = Patient::find($checkup->patient_id);
             $this->param['getDetailCheckup'] = Checkup::find($checkup->id);
+            $this->param['getDoctor'] = User::find($checkup->doctor_nurse_id);
 
             $this->param['getDetailMeasure'] = \DB::table('measure_patient_details')
                                                 ->select('measures.name', 'measures.price')
@@ -143,7 +145,7 @@ class PaymentController extends Controller
                                                 ->get();
             $this->param['getDetailPayment'] = Payment::where('checkup_id', $checkup->id)->first();
 
-            $pdf = PDF::loadview('cetak-pdf-detail-nota-pembayaran', $this->param);
+            $pdf = PDF::loadview('admin.pages.payment.print', $this->param);
             // return $pdf->download('cetak-pdf-pasien');
             return $pdf->stream('Detail-Nota-Pemeriksaan', array("Attachment" => false));
         } catch (\Exception $e) {
@@ -157,6 +159,7 @@ class PaymentController extends Controller
         try {
             $this->param['getDetailPatient'] = Patient::find($checkup->patient_id);
             $this->param['getDetailCheckup'] = Checkup::find($checkup->id);
+            $this->param['getDoctor'] = User::find($checkup->doctor_nurse_id);
 
             $this->param['getDetailMeasure'] = \DB::table('measure_patient_details')
                                                 ->select('measures.name', 'measures.price')

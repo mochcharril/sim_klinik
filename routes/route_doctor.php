@@ -46,3 +46,9 @@ Route::get('/doctor/report-recipe', [App\Http\Controllers\Doctor\ReportControlle
 Route::get('/doctor/report-recipe/print', [App\Http\Controllers\Doctor\ReportController::class, 'printRecipe']);
 Route::post('/doctor/report-recipe/code/print', [App\Http\Controllers\Doctor\ReportController::class, 'printCodeRecipe']);
 Route::post('/doctor/report-recipe/date/print', [App\Http\Controllers\Doctor\ReportController::class, 'printDateRecipe']);
+
+Route::get('/doctor/informed-consent', [App\Http\Controllers\Doctor\InformedConsentController::class, 'index']);
+Route::get('/doctor/informed-consent/agreement-form/{checkup}', [App\Http\Controllers\Doctor\InformedConsentController::class, 'agreementForm']);
+Route::get('/doctor/informed-consent/rejection-form/{checkup}', [App\Http\Controllers\Doctor\InformedConsentController::class, 'rejectionForm']);
+
+Route::get('/doctor/medical', [App\Http\Controllers\Doctor\MedicalController::class, 'index']);

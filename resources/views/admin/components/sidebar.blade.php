@@ -7,11 +7,15 @@
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider font-semibold">Dasbor</p>
         <a href="{{url('dashboard-admin')}}" class="mb-3 @if (Request::segment(1) == 'dashboard-admin') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
-            <i class="fad fa-chart-pie text-xs mr-2"></i>                
+            <i class="fad fa-chart-pie text-xs mr-2"></i>
             Dasbor
         </a>
 
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider font-semibold">Master Data</p>
+        <a href="{{url('admin/master-data/admin')}}" class="mb-3 @if (Request::segment(3) == 'admin') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
+            <i class="fad fa-clipboard text-xs mr-2"></i>
+            &nbsp;Data Admin
+        </a>
         <a href="{{url('admin/master-data/patient')}}" class="mb-3 @if (Request::segment(3) == 'patient') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
             &nbsp;Data Pasien
@@ -47,7 +51,7 @@
         </a>
         <a href="{{url('admin/warehouse/incoming_medicine')}}" class="mb-3 @if (Request::segment(3) == 'incoming_medicine') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            &nbsp;Data Obat Masuk
+            &nbsp;Data Stok Obat
         </a>
         <a href="{{url('admin/master-data/medicine_rule')}}" class="mb-3 @if (Request::segment(3) == 'medicine_rule') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
@@ -63,19 +67,27 @@
             <i class="fad fa-clipboard text-xs mr-2"></i>
             &nbsp;Pemeriksaan
         </a>
+        <a href="{{url('admin/informed-consent')}}" class="mb-3 @if (Request::segment(2) == 'informed-consent') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
+            <i class="fad fa-clipboard text-xs mr-2"></i>
+            &nbsp;Persetujuan Tindakan
+        </a>
         <a href="{{url('admin/action/recipe')}}" class="mb-3 @if (Request::segment(3) == 'recipe') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
             &nbsp;Resep Obat
         </a>
         <a href="{{url('admin/medical-reports')}}" class="mb-3 @if (Request::segment(2) == 'medical-reports') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            &nbsp;Rekam Medis
+            &nbsp;Riwayat Pemeriksaan
         </a>
         <a href="{{url('admin/medical-resume')}}" class="mb-3 @if (Request::segment(2) == 'medical-resume') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
             &nbsp;Resume Medis
         </a>
-        
+        <a href="{{url('admin/medical')}}" class="mb-3 @if (Request::segment(2) == 'medical') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
+            <i class="fad fa-clipboard text-xs mr-2"></i>
+            &nbsp;Rekam Medis
+        </a>
+
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider font-semibold">Pembayaran</p>
         <a href="{{url('admin/payment')}}" class="mb-3 @if (Request::segment(2) == 'payment') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
@@ -97,7 +109,7 @@
         </a>
         <a href="{{url('admin/report-incoming-medicine')}}" class="mb-3 @if (Request::segment(2) == 'report-incoming-medicine') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            Laporan Obat Masuk
+            Laporan Stok Obat
         </a>
         <a href="{{url('admin/report-recipe')}}" class="mb-3 @if (Request::segment(2) == 'report-recipe') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
@@ -109,7 +121,7 @@
         </a>
         <a href="{{url('admin/report-top-sick')}}" class="mb-3 @if (Request::segment(2) == 'report-top-sick') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            Laporan 10 Penyakit Teratas
+            Laporan 10 Besar Penyakit
         </a>
     </div>
 </div>

@@ -300,6 +300,18 @@
                 </div>
                 <div class="grid grid-cols-1 mt-5 gap-5 xl:grid-cols-1">
                     <hr>
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Persetujuan Tindakan : </label>
+                        <select name="status_informed_consent" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            <option value="Ya">Ya</option>
+                            <option value="Tidak">Tidak</option>
+                        </select>
+                        @error('status_informed_consent')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
                     <div>
                         <label class="text-gray-700 ml-1">Tindakan : </label>
                         <div class="grid grid-cols-6 mt-2 ml-1 gap-5 xl:grid-cols-1">

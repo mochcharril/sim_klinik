@@ -49,7 +49,7 @@
         <hr style="background-color:black; border:none; height:1px;">
 
     </div>
-    <p style="text-align:center;font-size:10px;margin-top:5px;color: yellow;-webkit-text-stroke: 1px black; font-weight:bold">KARTU KUNJUNGAN / PERIKSA / BEROBAT</p>
+    <p style="text-align:center;font-size:10px;margin-top:5px;color: blue;-webkit-text-stroke: 1px black; font-weight:bold">KARTU KUNJUNGAN / PERIKSA / BEROBAT</p>
     <div style="margin-left: 20px; margin-top:-13px;">
         <p style="font-size:7px;">Nama Pasien&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  {{$getDetailPatient->name}}</p>
         <p style="font-size:7px">No RM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$getDetailPatient->code_rm}}</p>
@@ -60,7 +60,7 @@
         <p style="font-size:7px">Nomer Asuransi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$getDetailPatient->insurance_number}}</p>
 
         <br>
-        <p style="color: blue; font-size: 6px; float:right;margin-top:-7px;margin-right:5px; font-weight:bold">PERHATIAN : KARTU INI WAJIB DIBAWA BILA BEROBAT</p>
+        <p style="color: red; font-size: 6px; float:right;margin-top:-7px;margin-right:5px; font-weight:bold">PERHATIAN : KARTU INI WAJIB DIBAWA BILA BEROBAT</p>
     </div>
 </body>
 </html>

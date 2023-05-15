@@ -11,6 +11,7 @@ use App\Models\Checkup;
 use App\Models\CheckupDiagnosisDetail;
 use App\Models\MeasurePatient;
 use App\Models\MeasurePatientDetail;
+use PDF;
 
 class CheckupController extends Controller
 {
@@ -141,6 +142,7 @@ class CheckupController extends Controller
             $checkup->status_rm = '0';
             $checkup->status_checkup_doctor = '1';
             $checkup->status_resume = '0';
+            $checkup->status_informed_consent = $request->get('status_informed_consent');
             $checkup->save();
 
             $lengthMeasure = count($request->get('measure'));
@@ -166,13 +168,16 @@ class CheckupController extends Controller
                 $measurePatientDetail->save();
             }
 
-            $lengthDiagnosisOther = count($request->get('code_diagnosis_other'));
-            for ($j=0; $j < $lengthDiagnosisOther; $j++) { 
-                $checkupDiagnosisOther = new CheckupDiagnosisDetail();
-                $checkupDiagnosisOther->checkup_id = $checkup->id;
-                $checkupDiagnosisOther->code_diagnosis = $request->get('code_diagnosis_other')[$j];
-                $checkupDiagnosisOther->description_diagnosis = $request->get('description_diagnosis_other')[$j];
-                $checkupDiagnosisOther->save();
+            $lengthDiagnosisOther = count((array)$request->get('code_diagnosis_other'));
+            // dd($lengthDiagnosisOther);
+            if ($lengthDiagnosisOther > 0) {
+                for ($j=0; $j < $lengthDiagnosisOther; $j++) {
+                    $checkupDiagnosisOther = new CheckupDiagnosisDetail();
+                    $checkupDiagnosisOther->checkup_id = $checkup->id;
+                    $checkupDiagnosisOther->code_diagnosis = $request->get('code_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->description_diagnosis = $request->get('description_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->save();
+                }
             }
 
             $updatePatient = Patient::find($patient->id);
@@ -238,6 +243,7 @@ class CheckupController extends Controller
             $updateCheckup->status_rm = '0';
             $updateCheckup->status_checkup_doctor = '1';
             $updateCheckup->status_resume = '0';
+            $updateCheckup->status_informed_consent = $request->get('status_informed_consent');
             $updateCheckup->save();
 
             $lengthMeasure = count($request->get('measure'));
@@ -261,6 +267,18 @@ class CheckupController extends Controller
                 $measurePatientDetail->measure_patient_id = $measurePatient->id;
                 $measurePatientDetail->measure_id = $request->get('measure')[$i];
                 $measurePatientDetail->save();
+            }
+
+            $lengthDiagnosisOther = count((array)$request->get('code_diagnosis_other'));
+            // dd($lengthDiagnosisOther);
+            if ($lengthDiagnosisOther > 0) {
+                for ($j=0; $j < $lengthDiagnosisOther; $j++) {
+                    $checkupDiagnosisOther = new CheckupDiagnosisDetail();
+                    $checkupDiagnosisOther->checkup_id = $checkup->id;
+                    $checkupDiagnosisOther->code_diagnosis = $request->get('code_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->description_diagnosis = $request->get('description_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->save();
+                }
             }
 
             $updatePatient = Patient::find($checkup->patient_id);

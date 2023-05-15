@@ -69,21 +69,23 @@
                 <tr>
                     <th data-priority="1">No</th>
                     <th data-priority="2">Tanggal Pemeriksaan</th>
-                    <th data-priority="3">Kode Pemeriksaan</th>
-                    <th data-priority="4">Nama Pasien</th>
-                    <th data-priority="5">Keluhan</th>
-                    <th data-priority="6">Kode Diagnosa</th>
-                    <th data-priority="7">Deskripsi Diagnosa</th>
-                    <th data-priority="8">Tindakan</th>
-                    <th data-priority="9">Catatan Lain</th>
-                    <th data-priority="10">Aksi</th>
+                    <th data-priority="3">Kode RM</th>
+                    <th data-priority="4">Kode Pemeriksaan</th>
+                    <th data-priority="5">Nama Pasien</th>
+                    <th data-priority="6">Keluhan</th>
+                    <th data-priority="7">Kode Diagnosa</th>
+                    <th data-priority="8">Deskripsi Diagnosa</th>
+                    <th data-priority="9">Tindakan</th>
+                    <th data-priority="10">Catatan Lain</th>
+                    <th data-priority="11">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($getCheckup as $item)
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-left">{{$item->checkup_date}}</td>
+                    <td class="text-left"><center>{{$item->checkup_date}}</center></td>
+                    <td class="text-left">{{$item->code_rm}}</td>
                     <td class="text-left">{{$item->code_cu}}</td>
                     <td class="text-left">{{$item->patient_name}}</td>
                     <td class="text-left">{{$item->complaint}}</td>

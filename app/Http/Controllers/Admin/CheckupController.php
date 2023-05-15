@@ -166,13 +166,16 @@ class CheckupController extends Controller
                 $measurePatientDetail->save();
             }
 
-            $lengthDiagnosisOther = count($request->get('code_diagnosis_other'));
-            for ($j=0; $j < $lengthDiagnosisOther; $j++) { 
-                $checkupDiagnosisOther = new CheckupDiagnosisDetail();
-                $checkupDiagnosisOther->checkup_id = $checkup->id;
-                $checkupDiagnosisOther->code_diagnosis = $request->get('code_diagnosis_other')[$j];
-                $checkupDiagnosisOther->description_diagnosis = $request->get('description_diagnosis_other')[$j];
-                $checkupDiagnosisOther->save();
+            $lengthDiagnosisOther = count((array)$request->get('code_diagnosis_other'));
+            // dd($lengthDiagnosisOther);
+            if ($lengthDiagnosisOther > 0) {
+                for ($j=0; $j < $lengthDiagnosisOther; $j++) {
+                    $checkupDiagnosisOther = new CheckupDiagnosisDetail();
+                    $checkupDiagnosisOther->checkup_id = $checkup->id;
+                    $checkupDiagnosisOther->code_diagnosis = $request->get('code_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->description_diagnosis = $request->get('description_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->save();
+                }
             }
 
             $updatePatient = Patient::find($patient->id);
@@ -261,6 +264,18 @@ class CheckupController extends Controller
                 $measurePatientDetail->measure_patient_id = $measurePatient->id;
                 $measurePatientDetail->measure_id = $request->get('measure')[$i];
                 $measurePatientDetail->save();
+            }
+
+            $lengthDiagnosisOther = count((array)$request->get('code_diagnosis_other'));
+            // dd($lengthDiagnosisOther);
+            if ($lengthDiagnosisOther > 0) {
+                for ($j=0; $j < $lengthDiagnosisOther; $j++) {
+                    $checkupDiagnosisOther = new CheckupDiagnosisDetail();
+                    $checkupDiagnosisOther->checkup_id = $checkup->id;
+                    $checkupDiagnosisOther->code_diagnosis = $request->get('code_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->description_diagnosis = $request->get('description_diagnosis_other')[$j];
+                    $checkupDiagnosisOther->save();
+                }
             }
 
             $updatePatient = Patient::find($checkup->patient_id);

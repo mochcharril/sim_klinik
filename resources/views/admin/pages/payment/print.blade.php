@@ -8,7 +8,13 @@
     <style>
         body{
             font-family: sans-serif;
+            font-size: 8px;
         }
+        @page{
+            size: 10cm 15cm ;
+            margin: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -16,15 +22,15 @@
         $subTotal = 0;
         $number = 1;
     @endphp
-    <table style="width: 100%; margin-top:-50px;margin-bottom:-28px">
+    <table style="width: 100%; margin-bottom:-3px;align-items:center">
         <tr>
             <th>
-                <img src="{{public_path('assets/logos/logo_jember.png')}}" style="width: 2.7cm; height:2.9cm" alt="">
+                <img src="{{public_path('assets/logos/logo_jember.png')}}" style="width: 1.7cm; height:1.8cm;" alt="">
             </th>
             <th>
                 <div style="font-weight:normal">
                     <center><p>
-                        <h1 style="margin-top:-3px;margin-bottom:-3px;font-weight:normal">UPT SIM-KLINIK</h1>
+                        <h1 style="font-weight:normal;margin-bottom:-1px">UPT SIM-KLINIK</h1>
                         <b style="text-transform:uppercase;letter-spacing: 2px;">Politeknik Negeri Jember</b>
                         <br>
                         Jl. Mastrip, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121
@@ -33,7 +39,7 @@
                 </div>
             </th>
             <th>
-                <img src="{{public_path('assets/logos/logo_polije.png')}}" style="width: 2.9cm; height:3.1cm;" alt="">
+                <img src="{{public_path('assets/logos/logo_polije.png')}}" style="width: 1.9cm; height:1.9cm;" alt="">
             </th>
         </tr>
     </table>
@@ -45,107 +51,113 @@
         </center>
     </div>
     <div>
-        <table border="1" style="width: 100%;">
-            <tr>
-                <td colspan="2"><center><h3>Data Pasien</h3></center></td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Kode RM</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->code_rm}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Nama</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->name}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>NIK</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->nik}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Jenis Kelamin</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->gender}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Tempat, Tanggal Lahir</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->place_of_birth}}, {{$getDetailPatient->date_of_birth}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Alamat</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->address}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Nomor Telepon</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->phone_number}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Jenis Asuransi</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->insurance_type}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Nomor Asuransi</b></td>
-                <td style="width: 70%;">{{$getDetailPatient->insurance_number}}</td>
-            </tr>
+        <table class="table-auto mt-1" style="width:100%; padding-top: 1em; border-collapse: collapse; padding-bottom: 1em;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #999;" data-priority="1" colspan="2"><center><h3>Data Pasien</h3></center></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Kode RM</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->code_rm}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Nama</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->name}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>NIK</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->nik}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Jenis Kelamin</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->gender}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Tempat, Tanggal Lahir</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->place_of_birth}}, {{$getDetailPatient->date_of_birth}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Alamat</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->address}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Nomor Telepon</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->phone_number}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Jenis Asuransi</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->insurance_type}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Nomor Asuransi</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPatient->insurance_number}}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
-    <br>
     <div>
-        <table border="1" style="width: 100%">
-            <tr>
-                <td colspan="2"><center><h3>Data Pemeriksaan</h3></center></td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Kode Pemeriksaan</b></td>
-                <td style="width: 70%;">{{$getDetailCheckup->code_cu}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Keluhan</b></td>
-                <td style="width: 70%;">{{$getDetailCheckup->complaint}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Alergi</b></td>
-                <td style="width: 70%;">{{$getDetailCheckup->allergy}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Kode Diagnosa</b></td>
-                <td style="width: 70%;">{{$getDetailCheckup->code_diagnosis}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Deskripsi Diagnosa</b></td>
-                <td style="width: 70%;">{{$getDetailCheckup->description_diagnosis}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Kode Pembayaran</b></td>
-                <td style="width: 70%;">{{$getDetailPayment->code_py}}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Tanggal Pembayaran</b></td>
-                <td style="width: 70%;">{{$getDetailPayment->date_payment}}</td>
-            </tr>
+        <table class="table-auto mt-1" style="width:100%; padding-top: 1em; border-collapse: collapse; padding-bottom: 1em;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #999;" data-priority="1" colspan="2"><center><h3>Data Pemeriksaan</h3></center></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Kode Pemeriksaan</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailCheckup->code_cu}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Keluhan</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailCheckup->complaint}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Alergi</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailCheckup->allergy}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Kode Diagnosa</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailCheckup->code_diagnosis}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Deskripsi Diagnosa</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailCheckup->description_diagnosis}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Kode Pembayaran</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPayment->code_py}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; border: 1px solid #999; padding-left: 5px;"><b>Tanggal Pembayaran</b></td>
+                    <td style="width: 70%; border: 1px solid #999; padding-left: 5px;">{{$getDetailPayment->date_payment}}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
-    <br>
     <div>
-        <table border="1" style="width: 100%;">
+        <table class="table-auto mt-1" style="width:100%; padding-top: 1em; border-collapse: collapse; padding-bottom: 1em;">
             <tr>
-                <td colspan="5"><center><h3>Resep Obat dan Tindakan Yang Diberikan</h3></center></td>
+                <td style="border: 1px solid #999;" colspan="5"><center><h3>Resep Obat dan Tindakan Yang Diberikan</h3></center></td>
             </tr>
             <tr>
-                <th>No</th>
-                <th>Nama Jasa (Tindakan / Obat)</th>
-                <th>Harga</th>
-                <th>Jumlah</th>
-                <th>Total</th>
+                <th style="border: 1px solid #999;">No</th>
+                <th style="border: 1px solid #999;">Nama Jasa (Tindakan / Obat)</th>
+                <th style="border: 1px solid #999;">Harga</th>
+                <th style="border: 1px solid #999;">Jumlah</th>
+                <th style="border: 1px solid #999;">Total</th>
             </tr>
             @foreach ($getDetailMeasure as $itemMeasure)
             @php
                 $subTotal+=(int)$itemMeasure->price;
             @endphp
             <tr>
-                <td><center>{{$number++}}</center></td>
-                <td>{{$itemMeasure->name}}</td>
-                <td>@currency($itemMeasure->price)</td>
-                <td><center>1</center></td>
-                <td>@currency($itemMeasure->price)</td>
+                <td style="border: 1px solid #999;"><center>{{$number++}}</center></td>
+                <td style="border: 1px solid #999; padding-left: 5px;">{{$itemMeasure->name}}</td>
+                <td style="border: 1px solid #999; padding-left: 5px;">@currency($itemMeasure->price)</td>
+                <td style="border: 1px solid #999; padding-left: 5px;"><center>1</center></td>
+                <td style="border: 1px solid #999; padding-left: 5px;">@currency($itemMeasure->price)</td>
             </tr>
             @endforeach
             @foreach ($getDetailRecipe as $itemRecipe)
@@ -153,16 +165,52 @@
                 $subTotal+=(int)$itemRecipe->total;
             @endphp
             <tr>
-                <td><center>{{$number++}}</center></td>
-                <td>{{$itemRecipe->name}}</td>
-                <td>@currency($itemRecipe->price)</td>
-                <td><center>{{$itemRecipe->qty}}</center></td>
-                <td>@currency($itemRecipe->total)</td>
+                <td style="border: 1px solid #999;"><center>{{$number++}}</center></td>
+                <td style="border: 1px solid #999; padding-left: 5px;">{{$itemRecipe->name}}</td>
+                <td style="border: 1px solid #999; padding-left: 5px;">@currency($itemRecipe->price)</td>
+                <td style="border: 1px solid #999; padding-left: 5px;"><center>{{$itemRecipe->qty}}</center></td>
+                <td style="border: 1px solid #999; padding-left: 5px;">@currency($itemRecipe->total)</td>
             </tr>
             @endforeach
             <tr>
-                <td colspan="4"><b><center>Sub Total</center></b></td>
-                <td colspan="1"><b>@currency($subTotal)</b></td>
+                <td style="border: 1px solid #999;" colspan="4"><b><center>Sub Total</center></b></td>
+                <td style="border: 1px solid #999; padding-left: 5px;" colspan="1"><b>@currency($subTotal)</b></td>
+            </tr>
+        </table>
+    </div>
+    <p style="page-break-after: always;">&nbsp;</p>
+    <div>
+        <table class="table-auto mt-1" style="width:100%; padding-top: 1em; border-collapse: collapse; padding-bottom: 1em; border: 1px solid #999;">
+            <tr>
+                <td rowspan="2" style="text-align: center; border-right: 1px solid #999; width: 50%;"><b>TTD Pasien / Keluarga</b></td>
+                <td style="text-align: center;"><b>Jember, {{ \Carbon\Carbon::parse($getDetailPayment->date_payment)->format('d F Y') }}</b></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><b>Dokter Penanggung Jawab</b></td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid #999; width: 50%;">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid #999; width: 50%;">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid #999; width: 50%;">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid #999; width: 50%;">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; border-right: 1px solid #999; width: 50%;">( {{$getDetailPatient->name}} )</td>
+                <td style="text-align: center;">( {{$getDoctor->name}} )</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; border-right: 1px solid #999; width: 50%;">Nama Terang</td>
+                <td style="text-align: center;">Nama Terang</td>
             </tr>
         </table>
     </div>

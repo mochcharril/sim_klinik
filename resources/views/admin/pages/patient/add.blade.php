@@ -36,6 +36,78 @@
                     @enderror
                 </div>
                 <div class="mt-3">
+                    <label class="text-gray-700 ml-1">Daftar Sebagai : </label>
+                    <select onchange="openStatus(this);" name="register_as" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                        <option value="as_umum">Umum</option>
+                        <option value="as_mhs">Mahasiswa</option>
+                        <option value="as_kry">Karyawan</option>
+                        <option value="as_klg">Keluarga Karyawan</option>
+                    </select>
+                    @error('register_as')
+                    <span class="pl-1 text-xs text-red-600 text-bold">
+                        {{$message}}
+                    </span>
+                    @enderror
+                </div>
+                <div id="form_open_mhs" style="display: none;">
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">NIM Mahasiswa : </label>
+                        <input type="text" name="nim_nip" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nim_nip') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="NIM Mahasiswa" value="{{old('nim_nip')}}">
+                        @error('nim_nip')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div id="form_open_kry" style="display: none;">
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">NIP Karyawan : </label>
+                        <input type="text" name="nim_nip" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nim_nip') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="NIP Karyawan" value="{{old('nim_nip')}}">
+                        @error('nim_nip')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div id="form_open_klg" style="display: none;">
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Nama Karyawan : </label>
+                        <input type="text" name="family_from" class="form-input w-full block rounded mt-1 p-3 border-2 @error('family_from') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Karyawan" value="{{old('family_from')}}">
+                        @error('family_from')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">NIP Karyawan : </label>
+                        <input type="text" name="nim_nip" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nim_nip') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="NIP Karyawan" value="{{old('nim_nip')}}">
+                        @error('nim_nip')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Hubungan Keluarga : </label>
+                        <select name="family_as" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            <option value="Suami">Suami</option>
+                            <option value="Istri">Istri</option>
+                            <option value="Kakek">Kakek</option>
+                            <option value="Nenek">Nenek</option>
+                            <option value="Anak">Anak</option>
+                            <option value="Saudara">Saudara</option>
+                        </select>
+                        @error('family_as')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mt-3">
                     <label class="text-gray-700 ml-1">Jenis Kelamin : </label>
                     <select name="gender" class="form-input mt-1 p-3 border-2 @error('tag') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                         <option value="laki-laki">Laki-laki</option>
@@ -116,6 +188,21 @@
                         @enderror
                     </div>
                 </div>
+                <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
+                    <div>
+                        <label class="text-gray-700 ml-1">Pilih Poli : </label>
+                        <select id="poly" placeholder="Pilih Poli..." name="poly" class="form-input mt-1 p-2 border-2 @error('poly') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            @foreach ($getPoly as $itemPoly)
+                                <option value="{{$itemPoly->id}}">{{$itemPoly->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('poly')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
                 <div class="mt-5">
                     <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Simpan</button>
                 </div>
@@ -143,6 +230,26 @@
                 document.getElementById("form_open").style.display = "none";
                 document.getElementById("insurance_type").required = false;
                 document.getElementById("insurance_number").required = false;
+            }
+        }
+        
+        function openStatus(that){
+            if (that.value == "as_mhs") {
+                document.getElementById("form_open_mhs").style.display = "block";
+                document.getElementById("form_open_kry").style.display = "none";
+                document.getElementById("form_open_klg").style.display = "none";
+            } else if (that.value == "as_kry") {
+                document.getElementById("form_open_kry").style.display = "block";
+                document.getElementById("form_open_mhs").style.display = "none";
+                document.getElementById("form_open_klg").style.display = "none";
+            } else if (that.value == "as_klg") {
+                document.getElementById("form_open_klg").style.display = "block";
+                document.getElementById("form_open_kry").style.display = "none";
+                document.getElementById("form_open_mhs").style.display = "none";
+            } else {
+                document.getElementById("form_open_klg").style.display = "none";
+                document.getElementById("form_open_kry").style.display = "none";
+                document.getElementById("form_open_mhs").style.display = "none";
             }
         }
     </script>

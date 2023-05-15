@@ -7,7 +7,7 @@
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider font-semibold">Dasbor</p>
         <a href="{{url('dashboard-pharmacist')}}" class="mb-3 @if (Request::segment(1) == 'dashboard-pharmacist') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
-            <i class="fad fa-chart-pie text-xs mr-2"></i>                
+            <i class="fad fa-chart-pie text-xs mr-2"></i>
             Dasbor
         </a>
 
@@ -22,7 +22,7 @@
         </a>
         <a href="{{url('pharmacist/warehouse/incoming_medicine')}}" class="mb-3 @if (Request::segment(3) == 'incoming_medicine') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            &nbsp;Data Obat Masuk
+            &nbsp;Data Stok Obat
         </a>
         <a href="{{url('pharmacist/payment')}}" class="mb-3 @if (Request::segment(2) == 'payment') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
@@ -34,7 +34,7 @@
         </a>
         <a href="{{url('pharmacist/report-incoming-medicine')}}" class="mb-3 @if (Request::segment(2) == 'report-incoming-medicine') text-blue-600 @endif capitalize font-medium text-sm hover:text-blue-600 transition ease-in-out duration-500">
             <i class="fad fa-clipboard text-xs mr-2"></i>
-            &nbsp;Laporan Obat Masuk
+            &nbsp;Laporan Stok Obat
         </a>
     </div>
 </div>

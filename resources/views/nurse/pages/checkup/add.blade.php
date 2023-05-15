@@ -202,6 +202,17 @@
                         @enderror
                     </div>
                     <div>
+                        <label class="text-gray-700 ml-1">Keluhan: </label>
+                        <input required type="text" name="complaint" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Keluhan" value="{{old('complaint')}}">
+                        @error('complaint')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
+                    <div>
                         <label class="text-gray-700 ml-1">Pilih Poli : </label>
                         <select id="poly" placeholder="Pilih Poli..." name="poly" class="form-input mt-1 p-2 border-2 @error('poly') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                             <option value="">Pilih Poli</option>

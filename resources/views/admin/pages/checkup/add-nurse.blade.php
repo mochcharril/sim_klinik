@@ -167,7 +167,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Keluhan: </label>
-                        <input required type="text" name="complaint" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Keluhan" value="{{old('complaint')}}">
+                        <input required type="text" name="complaint" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Keluhan" value="{{$getCheckup->complaint}}">
                         @error('complaint')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -210,6 +210,8 @@
                         </span>
                         @enderror
                     </div>
+                </div>
+                <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Alergi: </label>
                         <input required type="text" name="allergy" class="form-input w-full block rounded mt-1 p-3 border-2 @error('allergy') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alergi" value="{{old('allergy')}}">
@@ -219,6 +221,8 @@
                         </span>
                         @enderror
                     </div>
+                </div>
+                <div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Kode Diagnosa: </label>
                         <input required type="text" id="code_diagnosis" onkeyup="getDiagnosis()" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa" value="{{old('code_diagnosis')}}">
@@ -230,13 +234,20 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Deskripsi Diagnosa: </label>
-                        <input required type="text" id="description_diagnosis" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa" value="{{old('description_diagnosis')}}">
-                        @error('description_diagnosis')
-                        <span class="pl-1 text-xs text-red-600 text-bold">
-                            {{$message}}
-                        </span>
-                        @enderror
+                        <div class="flex">
+                            <input required type="text" id="description_diagnosis" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa" value="{{old('description_diagnosis')}}">
+                            @error('description_diagnosis')
+                            <span class="pl-1 text-xs text-red-600 text-bold">
+                                {{$message}}
+                            </span>
+                            @enderror
+                            &nbsp;
+                            <button type="button" class="btn-shadow bg-blue-500 text-white rounded px-10 hover:bg-blue-600" onclick="panel_fields()">Tambah</button>
+                        </div>
                     </div>
+                </div>
+                <div id="panel_fields"></div>
+                <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Pilih Poli : </label>
                         <select id="poly" placeholder="Pilih Poli..." name="poly" class="form-input mt-1 p-2 border-2 @error('poly') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
@@ -364,5 +375,37 @@
             }
         });
     }
+
+    function getDiagnosisOther(that, number){
+        var getCode = document.getElementById('code_diagnosis_other-'+number).value;
+        var getDesc = document.getElementById('description_diagnosis_other-'+number);
+        $.ajax({
+            url: 'http://icd10api.com/?code='+getCode+'&desc=short&r=json',
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
+                getDesc.value = data.Description;
+            }
+        });
+    }
+</script>
+<script>
+    var room = 1;
+    function panel_fields(){
+        room++;
+        var objTo = document.getElementById('panel_fields');
+        var divtest = document.createElement("div");
+        divtest.setAttribute("class", "form-group removeclass"+room);
+        var rdiv = 'removeclass'+room;
+        divtest.innerHTML = '<div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1"> <div> <label class="text-gray-700 ml-1">Kode Diagnosa Lainnya: </label> <input required type="text" id="code_diagnosis_other-'+room+'" onkeyup="getDiagnosisOther(this, '+room+')" name="code_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa Lainnya" value="{{old('code_diagnosis_other[]')}}"> @error('code_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror </div> <div> <label class="text-gray-700 ml-1">Deskripsi Diagnosa Lainnya: </label> <div class="flex"> <input required type="text" id="description_diagnosis_other-'+room+'" name="description_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa Lainnya" value="{{old('description_diagnosis_other[]')}}"> @error('description_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror &nbsp; <button type="button" class="btn-shadow bg-red-500 text-white rounded px-10 py-2 hover:bg-red-600" onclick="remove_panel_fields('+room+')">Hapus</button> </div> </div> </div>';
+
+        objTo.appendChild(divtest)
+
+        selectOption();
+    }
+    function remove_panel_fields(rid) {
+	   $('.removeclass'+rid).remove();
+   }
 </script>
 @endsection

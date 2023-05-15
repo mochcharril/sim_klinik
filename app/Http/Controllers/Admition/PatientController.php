@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admition;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use App\Models\Poly;
 
 use PDF;
 
@@ -31,6 +32,7 @@ class PatientController extends Controller
     public function add(){
         try {
             $this->param['getCodeRM'] = Patient::generateCodeRM();
+            $this->param['getPoly'] = Poly::all();
 
             return view('admition.pages.patient.add', $this->param);
         } catch (\Exception $e) {
@@ -41,6 +43,48 @@ class PatientController extends Controller
     }
 
     public function store(Request $request){
+        if ($request->register_as == 'as_mhs') {
+            $this->validate($request, 
+                [
+                    'nim_nip' => 'required',
+                ],
+                [
+                    'required' => ':attribute harus diisi.',
+                ],
+                [
+                    'nim_nip' => 'NIM Mahasiswa',
+                ]
+            );
+        } elseif ($request->register_as == 'as_kry') {
+            $this->validate($request, 
+                [
+                    'nim_nip' => 'required',
+                ],
+                [
+                    'required' => ':attribute harus diisi.',
+                ],
+                [
+                    'nim_nip' => 'NIP Karyawan',
+                ]
+            );
+        } elseif ($request->register_as == 'as_klg') {
+            $this->validate($request, 
+                [
+                    'nim_nip' => 'required',
+                    'family_from' => 'required',
+                    'family_as' => 'required',
+                ],
+                [
+                    'required' => ':attribute harus diisi.',
+                ],
+                [
+                    'nim_nip' => 'NIP Karyawan',
+                    'family_from' => 'Nama Karyawan',
+                    'family_as' => 'Hubungan Keluarga',
+                ]
+            );
+        }
+
         $this->validate($request,
             [
                 'code_rm' => 'required',
@@ -93,6 +137,29 @@ class PatientController extends Controller
             }
 
             $patient->is_retention = 'no';
+
+            if ($request->register_as == 'as_umum'){
+                $patient->register_as = 'Umum';
+                $patient->nim_nip = '-';
+                $patient->family_from = '-';
+                $patient->family_as = '-';
+            } elseif ($request->register_as == 'as_mhs'){
+                $patient->register_as = 'Mahasiswa';
+                $patient->nim_nip = $request->nim_nip;
+                $patient->family_from = '-';
+                $patient->family_as = '-';
+            } elseif ($request->register_as == 'as_kry'){
+                $patient->register_as = 'Karyawan';
+                $patient->nim_nip = $request->nim_nip;
+                $patient->family_from = '-';
+                $patient->family_as = '-';
+            } elseif ($request->register_as == 'as_klg'){
+                $patient->register_as = 'Keluarga Karyawan';
+                $patient->nim_nip = $request->nim_nip;
+                $patient->family_from = $request->family_from;
+                $patient->family_as = $request->family_as;
+            }
+
             $patient->save();
 
             return redirect('/admition/master-data/patient')->withStatus('Berhasil menambah data pasien.');
