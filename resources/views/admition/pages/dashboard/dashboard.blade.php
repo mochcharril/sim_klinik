@@ -92,7 +92,7 @@
             <div class="card">
                 <div class="card-body flex flex-col">
                     <div class="flex flex-row justify-between items-center">
-                        <div class="h6 text-indigo-700 fad fa-users"></div>
+                        <div class="h6 text-lime-700 fad fa-users"></div>
                     </div>
                     <div class="mt-8">
                         <h1 class="h5">{{$countPatient}} Pasien</h1>
@@ -100,7 +100,7 @@
                     </div>            
                 </div>
             </div>
-            <div class="footer {{-- @if ($getCountFeedbackUnread != 0) bg-teal-500 @else bg-white @endif --}} p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+            <div class="footer {{-- @if ($getCountFeedbackUnread != 0) bg-green-500 @else bg-white @endif --}} p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
         </div>
     </div>
     <div class="grid mt-6 grid-cols-1 gap-6 xl:grid-cols-1">
@@ -108,7 +108,7 @@
             <div class="card {{$countRetention > 0 ? 'bg-orange-200' : 'bg-white'}}">
                 <div class="card-body flex flex-col">
                     <div class="flex flex-row justify-between items-center">
-                        <div class="h6 text-indigo-700 fad fa-users"></div>
+                        <div class="h6 text-lime-700 fad fa-users"></div>
                     </div>
                     <div class="mt-8">
                         <h1 class="h5">{{$countRetention}} Retensi</h1>
@@ -145,8 +145,8 @@
       datasets: [
         {
           label: "Data Pasien",
-          backgroundColor: "hsl(217, 57%, 51%)",
-          borderColor: "hsl(217, 57%, 51%)",
+          backgroundColor: "hsl(89, 43%, 51%)",
+          borderColor: "hsl(89, 43%, 51%)",
           data: [{{$getJanuary}}, {{$getFebruary}}, {{$getMarch}}, {{$getApril}}, {{$getMay}}, {{$getJune}}, {{$getJuly}}, {{$getAugust}}, {{$getSeptember}}, {{$getOctober}}, {{$getNovember}}, {{$getDecember}}],
         },
       ],

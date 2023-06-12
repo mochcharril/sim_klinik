@@ -62,7 +62,7 @@
 @section('content')
 <div>
     <div class="mb-8">
-        <a href="{{url('/doctor/report-checkup/print')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Cetak PDF (SEMUA)</a>
+        <a href="{{url('/doctor/report-checkup/print')}}" class="bg-yellow-500 text-white rounded px-4 py-3 mt-2 hover:bg-yellow-600">Cetak PDF (SEMUA)</a>
         <a href="{{url('/doctor/report-checkup')}}" class="bg-orange-500 text-white rounded px-4 py-3 mt-2 hover:bg-orange-600">Reset Filter</a>
     </div>
 
@@ -77,6 +77,7 @@
                     <option value="">Pilih Filter</option>
                     <option value="open_date">Per Tanggal</option>
                     <option value="open_code">Kode RM</option>
+                    <option value="open_as">Daftar Pasien Sebagai</option>
                 </select>
             </div>
             <div id="form_date" style="display: none;">
@@ -129,6 +130,29 @@
                     </div>
                 </form>
             </div>
+            <div id="form_as" style="display: none;">
+                <form method="POST" action="{{url('/doctor/report-checkup/as/print')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Daftar Pasien Sebagai: </label>
+                        <select name="register_as" id="register_as" class="form-input mt-1 p-3 border-2 @error('register_as') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            <option value="Umum">Umum</option>
+                            <option value="Mahasiswa">Mahasiswa</option>
+                            <option value="Karyawan">Karyawan</option>
+                            <option value="Keluarga Karyawan">Keluarga Karyawan</option>
+                        </select>
+                        @error('register_as')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-5 flex gap-2">
+                        <button type="button" onclick="getFilterAsPatient()" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Tampilkan</button>
+                        <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Cetak PDF</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -163,9 +187,15 @@
                     <td class="text-left">{{$item->code_diagnosis}}</td>
                     <td class="text-left">{{$item->description_diagnosis}}</td>
                     <td class="text-left">
+                        @php $first = true; @endphp
                         @foreach ($getMeasureDetail as $itemDetail)
                             @if ($item->id == $itemDetail->checkup_id)
-                            {{$itemDetail->name}},
+                                @if (!$first)
+                                    ,
+                                @else
+                                    @php $first = false; @endphp
+                                @endif
+                                {{$itemDetail->name}}
                             @endif
                         @endforeach
                     </td>
@@ -287,16 +317,59 @@
         });
     }
 
+    function getFilterAsPatient() {
+        $('#thisTable').DataTable().clear().draw();
+
+        $.ajax({
+            url: '/getReportCheckup/as/'+document.getElementById('register_as').value,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
+                var tableBody = $('#thisTable tbody');
+                tableBody.empty();
+                $.each(data.getReportPatient, function(index, item){
+                    var measure = [];
+                    $.each(data.getMeasureDetail, function(indexMeasure, itemMeasure){
+                        if (item.id == itemMeasure.checkup_id) {
+                            measure.push(itemMeasure.name)
+                        }
+                    });
+                    var row = '<tr>' +
+                        '<td class="text-center">' + item.id + '</td>' +
+                        '<td class="text-left">' + item.checkup_date + '</td>' +
+                        '<td class="text-left">' + item.code_rm + '</td>' +
+                        '<td class="text-left">' + item.code_cu + '</td>' +
+                        '<td class="text-left">' + item.patient_name + '</td>' +
+                        '<td class="text-left">' + item.complaint + '</td>' +
+                        '<td class="text-left">' + item.code_diagnosis + '</td>' +
+                        '<td class="text-left">' + item.description_diagnosis + '</td>' +
+                        '<td class="text-left">' + measure + '</td>' +
+                        '<td class="text-left">' + item.other_notes + '</td>' +
+                    '</tr>';
+                    tableBody.append(row);
+                });
+            }
+        });
+    }
+
     function openFilter(that) {
         if (that.value == "open_date") {
             document.getElementById("form_date").style.display = "block";
             document.getElementById("form_code").style.display = "none";
+            document.getElementById("form_as").style.display = "none";
         } else if (that.value == "open_code"){
             document.getElementById("form_code").style.display = "block";
             document.getElementById("form_date").style.display = "none";
-        } else {
+            document.getElementById("form_as").style.display = "none";
+        } else if (that.value == "open_as"){
+            document.getElementById("form_as").style.display = "block";
+            document.getElementById("form_code").style.display = "none";
+            document.getElementById("form_date").style.display = "none";
+        }else {
             document.getElementById("form_date").style.display = "none";
             document.getElementById("form_code").style.display = "none";
+            document.getElementById("form_as").style.display = "none";
         }
     }
 </script>

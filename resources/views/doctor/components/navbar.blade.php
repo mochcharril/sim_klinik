@@ -1,4 +1,5 @@
-<div class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
+{{-- <div class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300"> --}}
+<div class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center p-6 shadow-lg bg-white fixed w-full" style="z-index: 9 !important;">
     <div class="flex-none w-56 flex flex-row items-center">
         <img src="{{asset('assets/logos/logo.png')}}" class="h-10 flex-none">
         <strong class="capitalize ml-5 flex-1">SIM-KLINIK Dokter</strong>

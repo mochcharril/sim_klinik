@@ -62,7 +62,7 @@
 @section('content')
 <div>
     <div class="mb-8">
-        <a href="{{url('/doctor/report-recipe/print')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Cetak PDF (SEMUA)</a>
+        <a href="{{url('/doctor/report-recipe/print')}}" class="bg-yellow-500 text-white rounded px-4 py-3 mt-2 hover:bg-yellow-600">Cetak PDF (SEMUA)</a>
         <a href="{{url('/doctor/report-recipe')}}" class="bg-orange-500 text-white rounded px-4 py-3 mt-2 hover:bg-orange-600">Reset Filter</a>
     </div>
 

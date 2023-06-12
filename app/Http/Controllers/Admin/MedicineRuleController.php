@@ -15,7 +15,7 @@ class MedicineRuleController extends Controller
 
     public function index(){
         try {
-            $this->param['getMedicineRule'] = MedicineRule::all();
+            $this->param['getMedicineRule'] = MedicineRule::orderBy('updated_at', 'desc')->get();
             
             return view('admin.pages.medicine_rule.list', $this->param);
         } catch (\Exception $e) {

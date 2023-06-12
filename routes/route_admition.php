@@ -14,3 +14,4 @@ Route::post('/admition/master-data/patient/{patient}/print', [App\Http\Controlle
 
 Route::get('/admition/report-patient', [App\Http\Controllers\Admition\ReportController::class, 'listPatient']);
 Route::get('/admition/report-patient/print', [App\Http\Controllers\Admition\ReportController::class, 'printPatient']);
+Route::post('/admition/report-patient/as/print', [App\Http\Controllers\Admition\ReportController::class, 'printAsPatient']);

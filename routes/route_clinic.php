@@ -12,8 +12,10 @@ Route::get('/clinic/report-checkup', [App\Http\Controllers\Clinic\ReportControll
 Route::get('/clinic/report-checkup/print', [App\Http\Controllers\Clinic\ReportController::class, 'printCheckup']);
 Route::post('/clinic/report-checkup/code/print', [App\Http\Controllers\Clinic\ReportController::class, 'printCodeCheckup']);
 Route::post('/clinic/report-checkup/date/print', [App\Http\Controllers\Clinic\ReportController::class, 'printDateCheckup']);
+Route::post('/clinic/report-checkup/as/print', [App\Http\Controllers\Clinic\ReportController::class, 'printAsCheckup']);
 Route::get('/clinic/report-patient', [App\Http\Controllers\Clinic\ReportController::class, 'listPatient']);
 Route::get('/clinic/report-patient/print', [App\Http\Controllers\Clinic\ReportController::class, 'printPatient']);
+Route::post('/clinic/report-patient/as/print', [App\Http\Controllers\Clinic\ReportController::class, 'printAsPatient']);
 Route::get('/clinic/report-recipe', [App\Http\Controllers\Clinic\ReportController::class, 'listRecipe']);
 Route::get('/clinic/report-recipe/print', [App\Http\Controllers\Clinic\ReportController::class, 'printRecipe']);
 Route::post('/clinic/report-recipe/code/print', [App\Http\Controllers\Clinic\ReportController::class, 'printCodeRecipe']);

@@ -18,8 +18,8 @@ class PatientController extends Controller
 
     public function index(){
         try {
-            $this->param['getPatient'] = Patient::where('is_retention', 'no')->get();
-            $this->param['getPatientRetention'] = Patient::where('is_retention', 'yes')->get();
+            $this->param['getPatient'] = Patient::where('is_retention', 'no')->orderBy('updated_at', 'desc')->get();
+            $this->param['getPatientRetention'] = Patient::where('is_retention', 'yes')->orderBy('updated_at', 'desc')->get();
 
             return view('admition.pages.patient.list', $this->param);
         } catch (\Exception $e) {
@@ -58,19 +58,19 @@ class PatientController extends Controller
         } elseif ($request->register_as == 'as_kry') {
             $this->validate($request, 
                 [
-                    'nim_nip' => 'required',
+                    'nim_nip_karyawan' => 'required',
                 ],
                 [
                     'required' => ':attribute harus diisi.',
                 ],
                 [
-                    'nim_nip' => 'NIP Karyawan',
+                    'nim_nip_karyawan' => 'NIP Karyawan',
                 ]
             );
         } elseif ($request->register_as == 'as_klg') {
             $this->validate($request, 
                 [
-                    'nim_nip' => 'required',
+                    'nim_nip_keluarga' => 'required',
                     'family_from' => 'required',
                     'family_as' => 'required',
                 ],
@@ -78,7 +78,7 @@ class PatientController extends Controller
                     'required' => ':attribute harus diisi.',
                 ],
                 [
-                    'nim_nip' => 'NIP Karyawan',
+                    'nim_nip_keluarga' => 'NIP Karyawan',
                     'family_from' => 'Nama Karyawan',
                     'family_as' => 'Hubungan Keluarga',
                 ]
@@ -150,12 +150,12 @@ class PatientController extends Controller
                 $patient->family_as = '-';
             } elseif ($request->register_as == 'as_kry'){
                 $patient->register_as = 'Karyawan';
-                $patient->nim_nip = $request->nim_nip;
+                $patient->nim_nip = $request->nim_nip_karyawan;
                 $patient->family_from = '-';
                 $patient->family_as = '-';
             } elseif ($request->register_as == 'as_klg'){
                 $patient->register_as = 'Keluarga Karyawan';
-                $patient->nim_nip = $request->nim_nip;
+                $patient->nim_nip = $request->nim_nip_keluarga;
                 $patient->family_from = $request->family_from;
                 $patient->family_as = $request->family_as;
             }
@@ -172,6 +172,7 @@ class PatientController extends Controller
 
     public function edit(Patient $patient){
         try {
+            $this->param['getPoly'] = Poly::all();
             $this->param['getDetailPatient'] = Patient::find($patient->id);
             return view('admition.pages.patient.edit', $this->param);
         } catch(\Throwable $e){

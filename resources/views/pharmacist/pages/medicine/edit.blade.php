@@ -3,7 +3,7 @@
 <div>
     <div class="card mb-8">
         <div class="card-header flex flex-row justify-between">
-            <h1 class="h6">Tambah Data Obat</h1>
+            <h1 class="h6">Edit Data Obat</h1>
         </div>
         <div class="card-body">
             <form method="POST" action="{{url('/pharmacist/master-data/medicine/update',$getDetailMedicine->id)}}" enctype="multipart/form-data">

@@ -60,7 +60,49 @@
 @endsection
 @section('content')
 <div>
-    <a href="{{url('/admin/report-patient/print')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Cetak PDF</a>
+    <div class="mb-8">
+        <a href="{{url('/admin/report-patient/print')}}" class="bg-green-500 text-white rounded px-4 py-3 mt-2 hover:bg-green-600">Cetak PDF (SEMUA)</a>
+        <a href="{{url('/admin/report-patient')}}" class="bg-orange-500 text-white rounded px-4 py-3 mt-2 hover:bg-orange-600">Reset Filter</a>
+    </div>
+
+    <div class="card mb-8">
+        <div class="card-header flex flex-row justify-between">
+            <h1 class="h6">Filter Berdasarkan</h1>
+        </div>
+        <div class="card-body">
+            <div>
+                <label class="text-gray-700 ml-1">Pilih Filter : </label>
+                <select onchange="openFilter(this);" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-green-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                    <option value="">Semua</option>
+                    <option value="open_as">Daftar Pasien Sebagai</option>
+                </select>
+            </div>
+            <div id="form_as" style="display: none;">
+                <form method="POST" action="{{url('/admin/report-patient/as/print')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mt-3">
+                        <label class="text-gray-700 ml-1">Daftar Pasien Sebagai: </label>
+                        <select name="register_as" id="register_as" class="form-input mt-1 p-3 border-2 @error('register_as') border-red-500 @enderror focus:outline-none focus:border-green-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            <option value="Umum">Umum</option>
+                            <option value="Mahasiswa">Mahasiswa</option>
+                            <option value="Karyawan">Karyawan</option>
+                            <option value="Keluarga Karyawan">Keluarga Karyawan</option>
+                        </select>
+                        @error('register_as')
+                        <span class="pl-1 text-xs text-red-600 text-bold">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="mt-5 flex gap-2">
+                        <button type="button" onclick="getFilterAsPatient()" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Tampilkan</button>
+                        <button type="submit" class="btn-shadow bg-yellow-500 text-white rounded px-10 py-2 mt-2 hover:bg-yellow-600">Cetak PDF</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
             <b class="text-bold text-black">DATA PASIEN</b>
@@ -78,6 +120,7 @@
                     <th data-priority="8">No Telepon</th>
                     <th data-priority="9">Jenis Asuransi</th>
                     <th data-priority="10">No Asuransi</th>
+                    <th data-priority="11">Daftar Pasien Sebagai</th>
                 </tr>
             </thead>
             <tbody>
@@ -93,6 +136,7 @@
                     <td class="text-left">{{$item->phone_number}}</td>
                     <td class="text-left">{{$item->insurance_type}}</td>
                     <td class="text-left">{{$item->insurance_number}}</td>
+                    <td class="text-left">{{$item->register_as}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -118,5 +162,45 @@
             .columns.adjust()
             .responsive.recalc();
     } );
+
+    function getFilterAsPatient() {
+        $('#thisTable').DataTable().clear().draw();
+
+        $.ajax({
+            url: '/getReportPatient/as/'+document.getElementById('register_as').value,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
+                var tableBody = $('#thisTable tbody');
+                tableBody.empty();
+                var no = 1;
+                $.each(data.getReportPatient, function(index, item){
+                    var row = '<tr>' +
+                        '<td class="text-center">' + (no++) + '</td>' +
+                        '<td class="text-left">' + item.code_rm + '</td>' +
+                        '<td class="text-left">' + item.name + '</td>' +
+                        '<td class="text-left">' + item.nik + '</td>' +
+                        '<td class="text-left">' + item.gender + '</td>' +
+                        '<td class="text-left">' + item.place_of_birth + ', ' + item.date_of_birth + '</td>' +
+                        '<td class="text-left">' + item.address + '</td>' +
+                        '<td class="text-left">' + item.phone_number + '</td>' +
+                        '<td class="text-left">' + item.insurance_type + '</td>' +
+                        '<td class="text-left">' + item.insurance_number + '</td>' +
+                        '<td class="text-left">' + item.register_as + '</td>' +
+                    '</tr>';
+                    tableBody.append(row);
+                });
+            }
+        });
+    }
+
+    function openFilter(that) {
+        if (that.value == "open_as"){
+            document.getElementById("form_as").style.display = "block";
+        }else {
+            document.getElementById("form_as").style.display = "none";
+        }
+    }
 </script>
 @endsection

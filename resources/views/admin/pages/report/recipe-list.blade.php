@@ -62,7 +62,7 @@
 @section('content')
 <div>
     <div class="mb-8">
-        <a href="{{url('/admin/report-recipe/print')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Cetak PDF (SEMUA)</a>
+        <a href="{{url('/admin/report-recipe/print')}}" class="bg-yellow-500 text-white rounded px-4 py-3 mt-2 hover:bg-yellow-600">Cetak PDF (SEMUA)</a>
         <a href="{{url('/admin/report-recipe')}}" class="bg-orange-500 text-white rounded px-4 py-3 mt-2 hover:bg-orange-600">Reset Filter</a>
     </div>
 
@@ -73,7 +73,7 @@
         <div class="card-body">
             <div>
                 <label class="text-gray-700 ml-1">Pilih Filter : </label>
-                <select onchange="openFilter(this);" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                <select onchange="openFilter(this);" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-green-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                     <option value="">Pilih Filter</option>
                     <option value="open_date">Per Tanggal</option>
                     <option value="open_code">Kode Resep</option>
@@ -84,7 +84,7 @@
                     @csrf
                     <div class="mt-3">
                         <label class="text-gray-700 ml-1">Tanggal Awal: </label>
-                        <input type="date" id="date_start" name="date_start" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_start') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Awal" required>
+                        <input type="date" id="date_start" name="date_start" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_start') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tanggal Awal" required>
                         @error('date_start')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -93,7 +93,7 @@
                     </div>
                     <div class="mt-3">
                         <label class="text-gray-700 ml-1">Tanggal Akhir: </label>
-                        <input type="date" id="date_end" name="date_end" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_end') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Akhir" required>
+                        <input type="date" id="date_end" name="date_end" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_end') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tanggal Akhir" required>
                         @error('date_end')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -102,7 +102,7 @@
                     </div>
                     <div class="mt-5 flex gap-2">
                         <button type="button" onclick="getFilterDateRecipe()" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Tampilkan</button>
-                        <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Cetak PDF</button>
+                        <button type="submit" class="btn-shadow bg-green-500 text-white rounded px-10 py-2 mt-2 hover:bg-green-600">Cetak PDF</button>
                     </div>
                 </form>
             </div>
@@ -111,7 +111,7 @@
                     @csrf
                     <div class="mt-3">
                         <label class="text-gray-700 ml-1">Pilih Resep: </label>
-                        <select name="recipe" id="recipe" placholder="Pilih Resep..." class="form-input mt-1 p-3 border-2 @error('recipe') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                        <select name="recipe" id="recipe" placholder="Pilih Resep..." class="form-input mt-1 p-3 border-2 @error('recipe') border-red-500 @enderror focus:outline-none focus:border-green-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                             <option value="">Pilih Resep</option>
                             @foreach ($getFilterRecipe as $itemRecipe)
                                 <option value="{{$itemRecipe->id}}">{{$itemRecipe->code_rp}}</option>
@@ -125,7 +125,7 @@
                     </div>
                     <div class="mt-5 flex gap-2">
                         <button type="button" onclick="getFilterCodeRecipe()" class="btn-shadow bg-teal-500 text-white rounded px-10 py-2 mt-2 hover:bg-teal-600">Tampilkan</button>
-                        <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Cetak PDF</button>
+                        <button type="submit" class="btn-shadow bg-green-500 text-white rounded px-10 py-2 mt-2 hover:bg-green-600">Cetak PDF</button>
                     </div>
                 </form>
             </div>

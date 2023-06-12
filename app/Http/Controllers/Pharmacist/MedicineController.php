@@ -15,7 +15,7 @@ class MedicineController extends Controller
 
     public function index(){
         try {
-            $this->param['getMedicine'] = Medicine::all();
+            $this->param['getMedicine'] = Medicine::orderBy('updated_at', 'desc')->get();
             
             return view('pharmacist.pages.medicine.list', $this->param);
         } catch (\Exception $e) {

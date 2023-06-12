@@ -91,17 +91,23 @@
                     <td class="text-left">{{$item->complaint}}</td>
                     <td class="text-left">{{$item->code_diagnosis}}</td>
                     <td class="text-left">{{$item->description_diagnosis}}</td>
-                    <td class="text-left">{{$item->other_notes}}</td>
                     <td class="text-left">
+                        @php $first = true; @endphp
                         @foreach ($getMeasureDetailYes as $itemDetail)
                             @if ($item->id == $itemDetail->checkup_id)
-                                {{$itemDetail->name}},
+                                @if (!$first)
+                                    ,
+                                @else
+                                    @php $first = false; @endphp
+                                @endif
+                                {{$itemDetail->name}}
                             @endif
                         @endforeach
                     </td>
+                    <td class="text-left">{{$item->other_notes}}</td>
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/doctor/informed-consent/agreement-form')}}/{{$item->id}}" method="GET" class="m-auto">
-                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                            <button class="bg-yellow-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-yellow-600 inline-flex items-center justify-center">
                                 <i class="fa fa-print"></i>
                             </button>
                         </form>
@@ -145,14 +151,20 @@
                     <td class="text-left">{{$item->complaint}}</td>
                     <td class="text-left">{{$item->code_diagnosis}}</td>
                     <td class="text-left">{{$item->description_diagnosis}}</td>
-                    <td class="text-left">{{$item->other_notes}}</td>
                     <td class="text-left">
+                        @php $first = true; @endphp
                         @foreach ($getMeasureDetailNo as $itemDetail)
                             @if ($item->id == $itemDetail->checkup_id)
-                                {{$itemDetail->name}},
+                                @if (!$first)
+                                    ,
+                                @else
+                                    @php $first = false; @endphp
+                                @endif
+                                {{$itemDetail->name}}
                             @endif
                         @endforeach
                     </td>
+                    <td class="text-left">{{$item->other_notes}}</td>
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/doctor/informed-consent/rejection-form')}}/{{$item->id}}" method="GET" class="m-auto">
                             <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">

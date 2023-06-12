@@ -90,14 +90,14 @@
                             <td class="text-left t-mx-3 flex">
                                 <form action="{{url('/admin/medical-reports')}}/{{$item->id}}/detail" method="POST" class="m-auto">
                                     @csrf
-                                    <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                                    <button class="bg-green-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
                                         <i class="fa fa-eye"></i>
                                     </button>
                                 </form>
                                 <span class="m-auto">|</span>
                                 <form action="{{url('/admin/medical-reports')}}/{{$item->id}}/print" method="POST" class="m-auto">
                                     @csrf
-                                    <button class="bg-teal-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-teal-600 inline-flex items-center justify-center">
+                                    <button class="bg-yellow-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-yellow-600 inline-flex items-center justify-center">
                                         <i class="fa fa-print"></i>
                                     </button>
                                 </form>
@@ -144,9 +144,15 @@
                     <td class="text-left">{{$item->code_diagnosis}}</td>
                     <td class="text-left">{{$item->description_diagnosis}}</td>
                     <td class="text-left">
+                        @php $first = true; @endphp
                         @foreach ($getMeasureDetail as $itemDetail)
                             @if ($item->id == $itemDetail->checkup_id)
-                            {{$itemDetail->name}},
+                                @if (!$first)
+                                    ,
+                                @else
+                                    @php $first = false; @endphp
+                                @endif
+                                {{$itemDetail->name}}
                             @endif
                         @endforeach
                     </td>
@@ -154,14 +160,14 @@
                     <td class="text-left t-mx-3 flex">
                         @if ($item->status_resume == '0')
                         <form action="{{url('/admin/medical-resume')}}/{{$item->id}}/detail" method="GET" class="m-auto">
-                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                            <button class="bg-green-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
                                 <i class="fa fa-eye"></i>
                             </button>
                         </form>
                         @else
                         <form method="POST" class="m-auto">
                             @csrf
-                            <a type="button" href="{{url('/admin/medical-resume')}}/{{$item->id}}/print" class="bg-green-500 w-6 p-5 ml-2 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
+                            <a type="button" href="{{url('/admin/medical-resume')}}/{{$item->id}}/print" class="bg-yellow-500 w-6 p-5 ml-2 text-sm font-bold tracking-wider text-white rounded-full hover:bg-yellow-600 inline-flex items-center justify-center">
                                 <i class="fa fa-print"></i>
                             </a>
                         </form>

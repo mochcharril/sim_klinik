@@ -15,7 +15,7 @@ class MeasureController extends Controller
 
     public function index(){
         try {
-            $this->param['getMeasure'] = Measure::all();
+            $this->param['getMeasure'] = Measure::orderBy('updated_at', 'desc')->get();
             
             return view('admin.pages.measure.list', $this->param);
         } catch (\Exception $e) {

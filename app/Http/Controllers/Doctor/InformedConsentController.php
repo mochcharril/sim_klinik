@@ -25,11 +25,13 @@ class InformedConsentController extends Controller
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')
                                             ->where('checkups.status_informed_consent', 'Ya')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
             $this->param['getMeasureDetailYes'] = \DB::table('measure_patient_details')
                                             ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
                                             ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
                                             ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                            ->orderBy('measure_patient_details.updated_at', 'desc')
                                             ->get();
 
             $this->param['getCheckupNo'] = \DB::table('checkups')
@@ -38,11 +40,13 @@ class InformedConsentController extends Controller
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')
                                             ->where('checkups.status_informed_consent', 'Tidak')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
             $this->param['getMeasureDetailNo'] = \DB::table('measure_patient_details')
                                             ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
                                             ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
                                             ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                            ->orderBy('measure_patient_details.updated_at', 'desc')
                                             ->get();
 
             return view('doctor.pages.informed-consent.list', $this->param);

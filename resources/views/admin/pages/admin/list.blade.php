@@ -14,8 +14,8 @@
         line-height: 1.25;
         border-width: 2px;
         border-radius: .25rem; 		
-        border-color: #edf2f7;
-        background-color: #edf2f7;
+        border-color: #eff7ed;
+        background-color: #eff7ed;
     }
 
     table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
@@ -47,7 +47,7 @@
     }
     
     table.dataTable.no-footer {
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid #eff7ed;
         margin-top: 0.75em;
         margin-bottom: 0.75em;
     }
@@ -60,7 +60,7 @@
 @endsection
 @section('content')
 <div>
-    <a href="{{url('/admin/master-data/admin/add')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Tambah Data</a>
+    <a href="{{url('/admin/master-data/admin/add')}}" class= "text-white rounded px-4 py-3 mt-2" style="background-color: #609966;">Tambah Data</a>
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
             <b class="text-bold text-black">DATA ADMIN</b>
@@ -85,7 +85,7 @@
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/admin/master-data/admin')}}/{{$item->id}}/edit" method="POST" class="m-auto">
                             @csrf
-                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                            <button class="bg-green-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
                                 <i class="fa fa-pencil-alt"></i>
                             </button>
                         </form>

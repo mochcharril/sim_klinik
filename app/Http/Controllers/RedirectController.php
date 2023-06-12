@@ -90,6 +90,30 @@ class RedirectController extends Controller
         }
     }
 
+    public function getReportCheckupAs($register_as){
+        try {
+            $this->param['getReportPatient'] = \DB::table('checkups')
+                                                    ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes')
+                                                    ->join('patients', 'checkups.patient_id', 'patients.id')
+                                                    ->where('patients.register_as', $register_as)
+                                                    ->get();
+
+            $this->param['getMeasureDetail'] = \DB::table('measure_patient_details')
+                                                    ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
+                                                    ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
+                                                    ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                                    ->get();
+
+            // return response()->json(["data" =>$this->param['getReportPatient']]);
+            // return response()->json($this->param['getReportPatient']);
+            return response()->json($this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
     public function getReportMedicineIncome(IncomingMedicine $incomingMedicine){
         try {
             $this->param['getMedicineIncoming'] = \DB::table('incoming_medicine_details')
@@ -194,6 +218,18 @@ class RedirectController extends Controller
                                             ->join('users', 'payments.admin_id', 'users.id')
                                             ->whereBetween('payments.date_payment', [$start_date, $end_date])
                                             ->get();
+
+            return response()->json($this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
+    public function getReportPatientAs($register_as){
+        try {
+            $this->param['getReportPatient'] = Patient::where('register_as', $register_as)->get();
 
             return response()->json($this->param);
         } catch (\Exception $e) {

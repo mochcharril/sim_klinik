@@ -71,7 +71,7 @@
                         <h1 class="h5">{{$countUmum}} Total Berkunjung</h1>
                         <p>Total Pasien Berkunjung Di Poli Umum</p><br>
                         <div class="text-right mb-1">
-                            <a href="{{url('/admin/master-data/poly/detail-poly-general')}}" class="bg-blue-500 text-white rounded px-4 py-3 hover:bg-blue-600">Detail Pasien Berkunjung</a>
+                            <a href="{{url('/admin/master-data/poly/detail-poly-general')}}" class="bg-yellow-500 text-white rounded px-4 py-3 hover:bg-yellow-700">Detail Pasien</a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <h1 class="h5">{{$countGigi}} Total Berkunjung</h1>
                         <p>Total Pasien Berkunjung Di Poli Gigi</p><br>
                         <div class="text-right mb-1">
-                            <a href="{{url('/admin/master-data/poly/detail-poly-teeth')}}" class="bg-blue-500 text-white rounded px-4 py-3 hover:bg-blue-600">Detail Pasien Berkunjung</a>
+                            <a href="{{url('/admin/master-data/poly/detail-poly-teeth')}}" class="bg-yellow-500 text-white rounded px-4 py-3 hover:bg-yellow-700">Detail Pasien</a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                         <h1 class="h5">{{$countKIA}} Total Berkunjung</h1>
                         <p>Total Pasien Berkunjung Di Poli KIA</p><br>
                         <div class="text-right mb-1">
-                            <a href="{{url('/admin/master-data/poly/detail-poly-kia')}}" class="bg-blue-500 text-white rounded px-4 py-3 hover:bg-blue-600">Detail Pasien Berkunjung</a>
+                            <a href="{{url('/admin/master-data/poly/detail-poly-kia')}}" class="bg-yellow-500 text-white rounded px-4 py-3 hover:bg-yellow-700">Detail Pasien</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
     </div>
 </div>
 <div class="mt-5">
-    <a href="{{url('/admin/master-data/poly/add')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Tambah Data</a>
+    <a href="{{url('/admin/master-data/poly/add')}}" class="text-white rounded px-4 py-3 mt-2" style="background-color: #609966;">Tambah Data</a>
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
             <b class="text-bold text-black">DATA POLI KLINIK</b>
@@ -138,7 +138,7 @@
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/admin/master-data/poly')}}/{{$item->id}}/edit" method="POST" class="m-auto">
                             @csrf
-                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                            <button class="bg-green-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
                                 <i class="fa fa-pencil-alt"></i>
                             </button>
                         </form>

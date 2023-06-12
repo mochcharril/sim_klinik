@@ -60,10 +60,10 @@
 @endsection
 @section('content')
 <div>
-    <a href="{{url('/admin/master-data/measure/add')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Tambah Data</a>
+    <a href="{{url('/admin/master-data/measure/add')}}" class="text-white rounded px-4 py-3 mt-2" style="background-color: #609966;">Tambah Data</a>
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
-            <b class="text-bold text-black">DATA ATURAN PAKAI OBAT</b>
+            <b class="text-bold text-black">DATA TINDAKAN</b>
         </div>
         <table id="thisTable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
@@ -83,7 +83,7 @@
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/admin/master-data/measure')}}/{{$item->id}}/edit" method="POST" class="m-auto">
                             @csrf
-                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                            <button class="bg-green-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
                                 <i class="fa fa-pencil-alt"></i>
                             </button>
                         </form>

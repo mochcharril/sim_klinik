@@ -22,13 +22,15 @@ class MedicalController extends Controller
                                             ->select('checkups.patient_id')
                                             ->where('checkups.status_rm', '1')
                                             ->groupBy('checkups.patient_id')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
-            $this->param['getPatient'] = Patient::all();
+            $this->param['getPatient'] = Patient::orderBy('updated_at', 'desc')->get();
 
             $this->param['getCheckup'] = \DB::table('checkups')
                                             ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes', 'checkups.status_resume')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->where('checkups.status_rm', '1')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
 
             $this->param['getMeasureDetail'] = \DB::table('measure_patient_details')

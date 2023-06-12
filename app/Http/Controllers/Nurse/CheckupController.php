@@ -20,7 +20,7 @@ class CheckupController extends Controller
 
     public function index(){
         try {
-            $this->param['getPatient'] = Patient::all();
+            $this->param['getPatient'] = Patient::orderBy('updated_at', 'desc')->get();
             return view('nurse.pages.checkup.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());

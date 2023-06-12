@@ -72,7 +72,7 @@
                     <div class="grid grid-cols-3 gap-5 xl:grid-cols-1">
                         <div>
                             <label class="text-gray-700 ml-1">Nama Pasien: </label>
-                            <input type="text" name="patient_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_name') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Pasien" value="{{$getPatient->name}}" readonly>
+                            <input type="text" name="patient_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_name') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Nama Pasien" value="{{$getPatient->name}}" readonly>
                             @error('patient_name')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -81,7 +81,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Tanggal Lahir Pasien: </label>
-                            <input type="text" name="date_of_birth_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_of_birth_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Lahir Pasien" value="{{$getPatient->date_of_birth}}" readonly>
+                            <input type="text" name="date_of_birth_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_of_birth_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tanggal Lahir Pasien" value="{{$getPatient->date_of_birth}}" readonly>
                             @error('date_of_birth_patient')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -90,7 +90,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Kode RM: </label>
-                            <input type="text" name="code_rm_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_rm_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode RM" value="{{$getPatient->code_rm}}" readonly>
+                            <input type="text" name="code_rm_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_rm_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kode RM" value="{{$getPatient->code_rm}}" readonly>
                             @error('code_rm_patient')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -111,7 +111,7 @@
                     <div class="grid grid-cols-2 gap-5 xl:grid-cols-1">
                         <div>
                             <label class="text-gray-700 ml-1">Tanggal Masuk: </label>
-                            <input type="date" name="date_income" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_income') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Masuk" value="{{$getCheckup->checkup_date}}" readonly>
+                            <input type="date" name="date_income" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_income') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tanggal Masuk" value="{{$getCheckup->checkup_date}}" readonly>
                             @error('date_income')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -120,7 +120,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Tanggal Keluar: </label>
-                            <input type="date" name="date_out" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_out') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Lahir Pasien" value="{{old('date_out')}}">
+                            <input type="date" name="date_out" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_out') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tanggal Lahir Pasien" value="{{old('date_out')}}">
                             @error('date_out')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -131,7 +131,7 @@
                     <div class="grid grid-cols-3 gap-5 xl:grid-cols-1 mt-3">
                         <div>
                             <label class="text-gray-700 ml-1">Alasan Masuk MRS: </label>
-                            <input type="text" name="reason_mrs" class="form-input w-full block rounded mt-1 p-3 border-2 @error('reason_mrs') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alasan Masuk MRS" value="{{old('reason_mrs')}}">
+                            <input type="text" name="reason_mrs" class="form-input w-full block rounded mt-1 p-3 border-2 @error('reason_mrs') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Alasan Masuk MRS" value="{{old('reason_mrs')}}">
                             @error('reason_mrs')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -140,7 +140,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Kelainan dan Lainnya: </label>
-                            <input type="text" name="abnormality" class="form-input w-full block rounded mt-1 p-3 border-2 @error('abnormality') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kelainan dan Lainnya" value="{{old('abnormality')}}">
+                            <input type="text" name="abnormality" class="form-input w-full block rounded mt-1 p-3 border-2 @error('abnormality') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kelainan dan Lainnya" value="{{old('abnormality')}}">
                             @error('abnormality')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -149,7 +149,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Hasil Pemeriksaan (Lab, dll): </label>
-                            <input type="text" name="result" class="form-input w-full block rounded mt-1 p-3 border-2 @error('result') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Hasil Pemeriksaan (Lab, dll)" value="{{old('result')}}">
+                            <input type="text" name="result" class="form-input w-full block rounded mt-1 p-3 border-2 @error('result') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Hasil Pemeriksaan (Lab, dll)" value="{{old('result')}}">
                             @error('result')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -170,7 +170,7 @@
                     <div class="grid grid-cols-1 gap-5 xl:grid-cols-1">
                         <div>
                             <label class="text-gray-700 ml-1">Diagnosa Awal: </label>
-                            <input type="text" name="diagnosa_first" class="form-input w-full block rounded mt-1 p-3 border-2 @error('diagnosa_first') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa Awal" value="{{old('diagnosa_first')}}">
+                            <input type="text" name="diagnosa_first" class="form-input w-full block rounded mt-1 p-3 border-2 @error('diagnosa_first') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Diagnosa Awal" value="{{old('diagnosa_first')}}">
                             @error('diagnosa_first')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -263,7 +263,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Operatif / Non Operatif: </label>
-                            <input type="text" name="operatif" class="form-input w-full block rounded mt-1 p-3 border-2 @error('operatif') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Operatif / Non Operatif" value="{{old('operatif')}}">
+                            <input type="text" name="operatif" class="form-input w-full block rounded mt-1 p-3 border-2 @error('operatif') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Operatif / Non Operatif" value="{{old('operatif')}}">
                             @error('operatif')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -284,7 +284,7 @@
                     <div class="grid grid-cols-3 gap-5 xl:grid-cols-1">
                         <div>
                             <label class="text-gray-700 ml-1">Terapi Pengobatan RS (Dilit): </label>
-                            <input type="text" name="dilit" class="form-input w-full block rounded mt-1 p-3 border-2 @error('dilit') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Terapi Pengobatan RS (Dilit)" value="{{old('dilit')}}">
+                            <input type="text" name="dilit" class="form-input w-full block rounded mt-1 p-3 border-2 @error('dilit') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Terapi Pengobatan RS (Dilit)" value="{{old('dilit')}}">
                             @error('dilit')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -293,7 +293,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Terapi Pengobatan RS (Farmakologi): </label>
-                            <input type="text" name="farmakology" class="form-input w-full block rounded mt-1 p-3 border-2 @error('farmakology') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Terapi Pengobatan RS (Farmakologi)" value="{{old('farmakology')}}">
+                            <input type="text" name="farmakology" class="form-input w-full block rounded mt-1 p-3 border-2 @error('farmakology') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Terapi Pengobatan RS (Farmakologi)" value="{{old('farmakology')}}">
                             @error('farmakology')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -302,7 +302,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Terapi Pengobatan RS (Lainnya): </label>
-                            <input type="text" name="other_teraphy" class="form-input w-full block rounded mt-1 p-3 border-2 @error('other_teraphy') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Terapi Pengobatan RS (Lainnya)" value="{{old('other_teraphy')}}">
+                            <input type="text" name="other_teraphy" class="form-input w-full block rounded mt-1 p-3 border-2 @error('other_teraphy') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Terapi Pengobatan RS (Lainnya)" value="{{old('other_teraphy')}}">
                             @error('other_teraphy')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -355,7 +355,7 @@
                     <div class="grid grid-cols-1 gap-5 xl:grid-cols-1">
                         <div>
                             <label class="text-gray-700 ml-1">Konsultasi: </label>
-                            <input type="text" name="consultation" class="form-input w-full block rounded mt-1 p-3 border-2 @error('consultation') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Konsultasi" value="{{old('consultation')}}">
+                            <input type="text" name="consultation" class="form-input w-full block rounded mt-1 p-3 border-2 @error('consultation') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Konsultasi" value="{{old('consultation')}}">
                             @error('consultation')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -376,7 +376,7 @@
                     <div class="grid grid-cols-3 gap-5 xl:grid-cols-1">
                         <div>
                             <label class="text-gray-700 ml-1">Kontrol Tanggal: </label>
-                            <input type="date" name="date_control" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_control') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kontrol Tanggal" value="{{old('date_control')}}">
+                            <input type="date" name="date_control" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_control') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kontrol Tanggal" value="{{old('date_control')}}">
                             @error('date_control')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -385,7 +385,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Tempat: </label>
-                            <input type="text" name="place_control" class="form-input w-full block rounded mt-1 p-3 border-2 @error('place_control') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tempat" value="{{old('place_control')}}">
+                            <input type="text" name="place_control" class="form-input w-full block rounded mt-1 p-3 border-2 @error('place_control') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tempat" value="{{old('place_control')}}">
                             @error('place_control')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -394,7 +394,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Jam / Pukul: </label>
-                            <input type="text" name="time_control" class="form-input w-full block rounded mt-1 p-3 border-2 @error('time_control') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Jam / Pukul" value="{{old('time_control')}}">
+                            <input type="text" name="time_control" class="form-input w-full block rounded mt-1 p-3 border-2 @error('time_control') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Jam / Pukul" value="{{old('time_control')}}">
                             @error('time_control')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -405,7 +405,7 @@
                     <div class="grid grid-cols-2 gap-5 xl:grid-cols-1 mt-3">
                         <div>
                             <label class="text-gray-700 ml-1">Nama Dokter: </label>
-                            <input type="text" name="doctor_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('doctor_name') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Dokter" value="{{old('doctor_name', auth()->user()->name)}}">
+                            <input type="text" name="doctor_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('doctor_name') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Nama Dokter" value="{{old('doctor_name', auth()->user()->name)}}">
                             @error('doctor_name')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -414,7 +414,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Kondisi Mendesak Dibawa: </label>
-                            <input type="text" name="hospital_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('hospital_name') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kondisi Mendesak Dibawa" value="{{old('hospital_name')}}">
+                            <input type="text" name="hospital_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('hospital_name') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kondisi Mendesak Dibawa" value="{{old('hospital_name')}}">
                             @error('hospital_name')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
@@ -423,7 +423,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Kondisi Pasien Ketika Pulang : </label>
-                            <select name="condition" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            <select name="condition" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-green-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                                 <option value="Sembuh">Sembuh</option>
                                 <option value="Pindah RS">Pindah RS</option>
                                 <option value="Pulang Atas Kemauan Sendiri">Pulang Atas Kemauan Sendiri</option>
@@ -432,7 +432,7 @@
                         </div>
                         <div>
                             <label class="text-gray-700 ml-1">Lanjutan Pengobatan : </label>
-                            <select name="next_checkup" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                            <select name="next_checkup" class="form-input mt-1 p-3 border-2 focus:outline-none focus:border-green-500 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                                 <option value="Poli">Poli</option>
                                 <option value="Puskesmas">Puskesmas</option>
                                 <option value="Pindah RS">Pindah RS</option>
@@ -446,7 +446,7 @@
 
         <div>
             <div class="m-5">
-                <button type="submit" class="btn-shadow m-auto bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Simpan</button>
+                <button type="submit" class="btn-shadow m-auto bg-green-500 text-white rounded px-10 py-2 mt-2 hover:bg-green-600">Simpan</button>
             </div>
         </div>
     </form>

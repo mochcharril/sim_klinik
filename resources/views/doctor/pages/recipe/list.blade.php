@@ -93,9 +93,15 @@
                     <td class="text-left">{{$item->description_diagnosis}}</td>
                     <td class="text-left">{{$item->other_notes}}</td>
                     <td class="text-left">
+                        @php $first = true; @endphp
                         @foreach ($getMeasureDetail as $itemDetail)
                             @if ($item->id == $itemDetail->checkup_id)
-                                {{$itemDetail->name}},
+                                @if (!$first)
+                                    ,
+                                @else
+                                    @php $first = false; @endphp
+                                @endif
+                                {{$itemDetail->name}}
                             @endif
                         @endforeach
                     </td>
@@ -103,7 +109,7 @@
                         @if ($item->status_rm == 0)
                         <form action="{{url('/doctor/action/recipe')}}/{{$item->id}}/add" method="POST" class="m-auto">
                             @csrf
-                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                            <button class="bg-green-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-green-600 inline-flex items-center justify-center">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </form>

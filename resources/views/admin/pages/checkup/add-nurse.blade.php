@@ -15,8 +15,8 @@
         line-height: 1.25;
         border-width: 2px;
         border-radius: .25rem;
-        border-color: #edf2f7;
-        background-color: #edf2f7;
+        border-color: #eff7ed;
+        background-color: #eff7ed;
     }
 
     table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
@@ -71,7 +71,7 @@
                 <div class="grid grid-cols-2 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Kode RM: </label>
-                        <input type="text" name="code_rm" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_rm') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode RM" value="{{$getDetailPatient->code_rm}}" readonly>
+                        <input type="text" name="code_rm" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_rm') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kode RM" value="{{$getDetailPatient->code_rm}}" readonly>
                         @error('code_rm')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -80,7 +80,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Nama Pasien: </label>
-                        <input type="text" name="patient_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_name') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Pasien" value="{{$getDetailPatient->name}}" readonly>
+                        <input type="text" name="patient_name" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_name') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Nama Pasien" value="{{$getDetailPatient->name}}" readonly>
                         @error('patient_name')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -89,7 +89,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Jenis Kelamin: </label>
-                        <input type="text" name="patient_gender" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_gender') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Jenis Kelamin" value="{{$getDetailPatient->gender}}" readonly>
+                        <input type="text" name="patient_gender" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_gender') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Jenis Kelamin" value="{{$getDetailPatient->gender}}" readonly>
                         @error('patient_gender')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -98,7 +98,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Tempat, Tanggal Lahir: </label>
-                        <input type="text" name="patient_birth" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_birth') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tempat, Tanggal Lahir" value="{{$getDetailPatient->place_of_birth}}, {{$getDetailPatient->date_of_birth}} ({{ date_diff(date_create($getDetailPatient->date_of_birth), date_create('now'))->y }} Tahun, {{ date_diff(date_create($getDetailPatient->date_of_birth), date_create('now'))->m }} Bulan)" readonly>
+                        <input type="text" name="patient_birth" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_birth') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tempat, Tanggal Lahir" value="{{$getDetailPatient->place_of_birth}}, {{$getDetailPatient->date_of_birth}} ({{ date_diff(date_create($getDetailPatient->date_of_birth), date_create('now'))->y }} Tahun, {{ date_diff(date_create($getDetailPatient->date_of_birth), date_create('now'))->m }} Bulan)" readonly>
                         @error('patient_birth')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -107,7 +107,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Alamat: </label>
-                        <input type="text" name="patient_address" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_address') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alamat" value="{{$getDetailPatient->address}}" readonly>
+                        <input type="text" name="patient_address" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_address') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Alamat" value="{{$getDetailPatient->address}}" readonly>
                         @error('patient_address')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -116,7 +116,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">No Telepon: </label>
-                        <input type="text" name="patient_phone_number" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_phone_number') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="No Telepon" value="{{$getDetailPatient->phone_number}}" readonly>
+                        <input type="text" name="patient_phone_number" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_phone_number') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="No Telepon" value="{{$getDetailPatient->phone_number}}" readonly>
                         @error('patient_phone_number')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -125,7 +125,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Tipe Asuransi: </label>
-                        <input type="text" name="patient_insurance_type" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_insurance_type') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tipe Asuransi" value="{{$getDetailPatient->insurance_type == '-' ? 'Tidak Ada Asuransi (Umum)' : $getDetailPatient->insurance_type}}" readonly>
+                        <input type="text" name="patient_insurance_type" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_insurance_type') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tipe Asuransi" value="{{$getDetailPatient->insurance_type == '-' ? 'Tidak Ada Asuransi (Umum)' : $getDetailPatient->insurance_type}}" readonly>
                         @error('patient_insurance_type')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -134,7 +134,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">No Asuransi: </label>
-                        <input type="text" name="patient_insurance_number" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_insurance_number') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="No Asuransi" value="{{$getDetailPatient->insurance_number}}" readonly>
+                        <input type="text" name="patient_insurance_number" class="form-input w-full block rounded mt-1 p-3 border-2 @error('patient_insurance_number') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="No Asuransi" value="{{$getDetailPatient->insurance_number}}" readonly>
                         @error('patient_insurance_number')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -146,7 +146,7 @@
                     <hr>
                     <div>
                         <label class="text-gray-700 ml-1">Code Pemeriksaan: </label>
-                        <input required type="text" name="code_cu" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_cu') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Code Pemeriksaan" value="{{$getCheckup->code_cu}}" readonly>
+                        <input required type="text" name="code_cu" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_cu') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Code Pemeriksaan" value="{{$getCheckup->code_cu}}" readonly>
                         @error('code_cu')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -158,7 +158,7 @@
                 <div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Tanggal Pemeriksaan: </label>
-                        <input required type="date" name="checkup_date" class="form-input w-full block rounded mt-1 p-3 border-2 @error('checkup_date') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Pemeriksaan" value="{{$getCheckup->checkup_date}}">
+                        <input required type="date" name="checkup_date" class="form-input w-full block rounded mt-1 p-3 border-2 @error('checkup_date') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tanggal Pemeriksaan" value="{{$getCheckup->checkup_date}}">
                         @error('checkup_date')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -167,7 +167,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Keluhan: </label>
-                        <input required type="text" name="complaint" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Keluhan" value="{{$getCheckup->complaint}}">
+                        <input required type="text" name="complaint" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Keluhan" value="{{$getCheckup->complaint}}">
                         @error('complaint')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -176,7 +176,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Tinggi Badan: </label>
-                        <input required type="text" name="height" class="form-input w-full block rounded mt-1 p-3 border-2 @error('height') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tinggi Badan" value="{{$getCheckup->height}}">
+                        <input required type="text" name="height" class="form-input w-full block rounded mt-1 p-3 border-2 @error('height') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tinggi Badan" value="{{$getCheckup->height}}">
                         @error('height')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -185,7 +185,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Berat Badan: </label>
-                        <input required type="text" name="weight" class="form-input w-full block rounded mt-1 p-3 border-2 @error('weight') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Berat Badan" value="{{$getCheckup->weight}}">
+                        <input required type="text" name="weight" class="form-input w-full block rounded mt-1 p-3 border-2 @error('weight') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Berat Badan" value="{{$getCheckup->weight}}">
                         @error('weight')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -194,7 +194,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Tekanan Darah: </label>
-                        <input required type="text" name="blood_preasure" class="form-input w-full block rounded mt-1 p-3 border-2 @error('blood_preasure') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tekanan Darah" value="{{$getCheckup->blood_preasure}}">
+                        <input required type="text" name="blood_preasure" class="form-input w-full block rounded mt-1 p-3 border-2 @error('blood_preasure') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tekanan Darah" value="{{$getCheckup->blood_preasure}}">
                         @error('blood_preasure')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -203,7 +203,7 @@
                     </div>
                     <div>
                         <label class="text-gray-700 ml-1">Suhu: </label>
-                        <input required type="text" name="temperature" class="form-input w-full block rounded mt-1 p-3 border-2 @error('temperature') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Suhu" value="{{$getCheckup->temperature}}">
+                        <input required type="text" name="temperature" class="form-input w-full block rounded mt-1 p-3 border-2 @error('temperature') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Suhu" value="{{$getCheckup->temperature}}">
                         @error('temperature')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -214,7 +214,7 @@
                 <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Alergi: </label>
-                        <input required type="text" name="allergy" class="form-input w-full block rounded mt-1 p-3 border-2 @error('allergy') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alergi" value="{{old('allergy')}}">
+                        <input required type="text" name="allergy" class="form-input w-full block rounded mt-1 p-3 border-2 @error('allergy') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Alergi" value="{{old('allergy')}}">
                         @error('allergy')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -225,7 +225,7 @@
                 <div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Kode Diagnosa: </label>
-                        <input required type="text" id="code_diagnosis" onkeyup="getDiagnosis()" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa" value="{{old('code_diagnosis')}}">
+                        <input required type="text" id="code_diagnosis" onkeyup="getDiagnosis()" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kode Diagnosa" value="{{old('code_diagnosis')}}">
                         @error('code_diagnosis')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -235,14 +235,14 @@
                     <div>
                         <label class="text-gray-700 ml-1">Deskripsi Diagnosa: </label>
                         <div class="flex">
-                            <input required type="text" id="description_diagnosis" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa" value="{{old('description_diagnosis')}}">
+                            <input required type="text" id="description_diagnosis" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Deskripsi Diagnosa" value="{{old('description_diagnosis')}}">
                             @error('description_diagnosis')
                             <span class="pl-1 text-xs text-red-600 text-bold">
                                 {{$message}}
                             </span>
                             @enderror
                             &nbsp;
-                            <button type="button" class="btn-shadow bg-blue-500 text-white rounded px-10 hover:bg-blue-600" onclick="panel_fields()">Tambah</button>
+                            <button type="button" class="btn-shadow bg-green-500 text-white rounded px-10 hover:bg-green-600" onclick="panel_fields()">Tambah</button>
                         </div>
                     </div>
                 </div>
@@ -250,7 +250,7 @@
                 <div class="grid mt-5 grid-cols-1 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Pilih Poli : </label>
-                        <select id="poly" placeholder="Pilih Poli..." name="poly" class="form-input mt-1 p-2 border-2 @error('poly') border-red-500 @enderror focus:outline-none focus:border-blue-500 form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                        <select id="poly" placeholder="Pilih Poli..." name="poly" class="form-input mt-1 p-2 border-2 @error('poly') border-red-500 @enderror focus:outline-none focus:border-green-500 form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0">
                             <option value="">Pilih Poli</option>
                             @foreach ($getPoly as $itemPoly)
                                 <option value="{{$itemPoly->id}}" {{$getCheckup->poly_id == $itemPoly->id ? 'selected' : ''}} >{{$itemPoly->name}}</option>
@@ -266,7 +266,7 @@
                 <div class="grid grid-cols-1 mt-5 gap-5 xl:grid-cols-1">
                     <div>
                         <label class="text-gray-700 ml-1">Catatan Lain : </label>
-                        <textarea required type="text" name="other_notes" class="form-input w-full block rounded mt-1 p-4 border-2 @error('other_notes') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Catatan Lain" value="{{old('other_notes')}}"></textarea>
+                        <textarea required type="text" name="other_notes" class="form-input w-full block rounded mt-1 p-4 border-2 @error('other_notes') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Catatan Lain" value="{{old('other_notes')}}"></textarea>
                         @error('other_notes')
                         <span class="pl-1 text-xs text-red-600 text-bold">
                             {{$message}}
@@ -288,7 +288,7 @@
                     </div>
                 </div>
                 <div class="mt-5">
-                    <button type="submit" class="btn-shadow bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:bg-blue-600">Simpan</button>
+                    <button type="submit" class="btn-shadow bg-green-500 text-white rounded px-10 py-2 mt-2 hover:bg-green-600">Simpan</button>
                 </div>
             </div>
         </div>
@@ -398,7 +398,7 @@
         var divtest = document.createElement("div");
         divtest.setAttribute("class", "form-group removeclass"+room);
         var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1"> <div> <label class="text-gray-700 ml-1">Kode Diagnosa Lainnya: </label> <input required type="text" id="code_diagnosis_other-'+room+'" onkeyup="getDiagnosisOther(this, '+room+')" name="code_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Diagnosa Lainnya" value="{{old('code_diagnosis_other[]')}}"> @error('code_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror </div> <div> <label class="text-gray-700 ml-1">Deskripsi Diagnosa Lainnya: </label> <div class="flex"> <input required type="text" id="description_diagnosis_other-'+room+'" name="description_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Deskripsi Diagnosa Lainnya" value="{{old('description_diagnosis_other[]')}}"> @error('description_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror &nbsp; <button type="button" class="btn-shadow bg-red-500 text-white rounded px-10 py-2 hover:bg-red-600" onclick="remove_panel_fields('+room+')">Hapus</button> </div> </div> </div>';
+        divtest.innerHTML = '<div class="grid mt-5 grid-cols-2 gap-5 xl:grid-cols-1"> <div> <label class="text-gray-700 ml-1">Kode Diagnosa Lainnya: </label> <input required type="text" id="code_diagnosis_other-'+room+'" onkeyup="getDiagnosisOther(this, '+room+')" name="code_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kode Diagnosa Lainnya" value="{{old('code_diagnosis_other[]')}}"> @error('code_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror </div> <div> <label class="text-gray-700 ml-1">Deskripsi Diagnosa Lainnya: </label> <div class="flex"> <input required type="text" id="description_diagnosis_other-'+room+'" name="description_diagnosis_other[]" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis_other[]') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Deskripsi Diagnosa Lainnya" value="{{old('description_diagnosis_other[]')}}"> @error('description_diagnosis_other[]') <span class="pl-1 text-xs text-red-600 text-bold"> {{$message}} </span> @enderror &nbsp; <button type="button" class="btn-shadow bg-red-500 text-white rounded px-10 py-2 hover:bg-red-600" onclick="remove_panel_fields('+room+')">Hapus</button> </div> </div> </div>';
 
         objTo.appendChild(divtest)
 

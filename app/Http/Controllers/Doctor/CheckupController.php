@@ -22,11 +22,12 @@ class CheckupController extends Controller
 
     public function index(){
         try {
-            $this->param['getPatient'] = Patient::all();
+            $this->param['getPatient'] = Patient::orderBy('updated_at', 'desc')->get();
             $this->param['getCheckup'] = \DB::table('checkups')
                                             ->select('checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name', 'patients.phone_number', 'patients.insurance_type', 'patients.date_of_birth')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->where('checkups.status_checkup_doctor', '0')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
             return view('doctor.pages.checkup.list', $this->param);
         } catch (\Exception $e) {

@@ -42,6 +42,7 @@ Route::get('/doctor/report-checkup', [App\Http\Controllers\Doctor\ReportControll
 Route::get('/doctor/report-checkup/print', [App\Http\Controllers\Doctor\ReportController::class, 'printCheckup']);
 Route::post('/doctor/report-checkup/code/print', [App\Http\Controllers\Doctor\ReportController::class, 'printCodeCheckup']);
 Route::post('/doctor/report-checkup/date/print', [App\Http\Controllers\Doctor\ReportController::class, 'printDateCheckup']);
+Route::post('/doctor/report-checkup/as/print', [App\Http\Controllers\Doctor\ReportController::class, 'printAsCheckup']);
 Route::get('/doctor/report-recipe', [App\Http\Controllers\Doctor\ReportController::class, 'listRecipe']);
 Route::get('/doctor/report-recipe/print', [App\Http\Controllers\Doctor\ReportController::class, 'printRecipe']);
 Route::post('/doctor/report-recipe/code/print', [App\Http\Controllers\Doctor\ReportController::class, 'printCodeRecipe']);

@@ -12,3 +12,4 @@ Route::get('/nurse/report-checkup', [App\Http\Controllers\Nurse\ReportController
 Route::get('/nurse/report-checkup/print', [App\Http\Controllers\Nurse\ReportController::class, 'printCheckup']);
 Route::post('/nurse/report-checkup/code/print', [App\Http\Controllers\Nurse\ReportController::class, 'printCodeCheckup']);
 Route::post('/nurse/report-checkup/date/print', [App\Http\Controllers\Nurse\ReportController::class, 'printDateCheckup']);
+Route::post('/nurse/report-checkup/as/print', [App\Http\Controllers\Nurse\ReportController::class, 'printAsCheckup']);

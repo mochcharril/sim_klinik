@@ -25,14 +25,16 @@ class RecipeController extends Controller
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
             $this->param['getMeasureDetail'] = \DB::table('measure_patient_details')
                                             ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
                                             ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
                                             ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                            ->orderBy('measure_patient_details.updated_at', 'desc')
                                             ->get();
             // dd($this->param['getCheckup']);
-            $this->param['getRecipe'] = Recipe::all();
+            $this->param['getRecipe'] = Recipe::orderBy('updated_at', 'desc')->get();
 
             return view('admin.pages.recipe.list', $this->param);
         } catch (\Exception $e) {

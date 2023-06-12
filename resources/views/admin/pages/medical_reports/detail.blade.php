@@ -71,7 +71,7 @@
             <div class="grid grid-cols-2 gap-5 xl:grid-cols-1">
                 <div>
                     <label class="text-gray-700 ml-1">Kode RM: </label>
-                    <input type="text" name="code_rm_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_rm_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode RM" value="{{$getPatient->code_rm}}" readonly>
+                    <input type="text" name="code_rm_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_rm_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kode RM" value="{{$getPatient->code_rm}}" readonly>
                     @error('code_rm_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -80,7 +80,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Nama Pasien: </label>
-                    <input type="text" name="name_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('name_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nama Pasien" value="{{$getPatient->name}}" readonly>
+                    <input type="text" name="name_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('name_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Nama Pasien" value="{{$getPatient->name}}" readonly>
                     @error('name_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -89,7 +89,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">NIK Pasien: </label>
-                    <input type="text" name="nik_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nik_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="NIK Pasien" value="{{$getPatient->nik}}" readonly>
+                    <input type="text" name="nik_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('nik_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="NIK Pasien" value="{{$getPatient->nik}}" readonly>
                     @error('nik_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -98,7 +98,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Jenis Kelamin Pasien: </label>
-                    <input type="text" name="gender_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('gender_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Jenis Kelamin Pasien" value="{{$getPatient->gender}}" readonly>
+                    <input type="text" name="gender_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('gender_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Jenis Kelamin Pasien" value="{{$getPatient->gender}}" readonly>
                     @error('gender_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -107,7 +107,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Tempat, Tanggal lahir Pasien: </label>
-                    <input type="text" name="date_place_of_birth_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_place_of_birth_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tempat, Tanggal lahir Pasien" value="{{$getPatient->place_of_birth}}, {{$getPatient->date_of_birth}}" readonly>
+                    <input type="text" name="date_place_of_birth_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('date_place_of_birth_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tempat, Tanggal lahir Pasien" value="{{$getPatient->place_of_birth}}, {{$getPatient->date_of_birth}}" readonly>
                     @error('date_place_of_birth_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -116,7 +116,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Alamat Pasien: </label>
-                    <input type="text" name="address_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('address_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alamat Pasien" value="{{$getPatient->address}}" readonly>
+                    <input type="text" name="address_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('address_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Alamat Pasien" value="{{$getPatient->address}}" readonly>
                     @error('address_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -125,7 +125,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Nomor Telepon Pasien: </label>
-                    <input type="text" name="phone_number_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('phone_number_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Nomor Telepon Pasien" value="{{$getPatient->phone_number}}" readonly>
+                    <input type="text" name="phone_number_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('phone_number_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Nomor Telepon Pasien" value="{{$getPatient->phone_number}}" readonly>
                     @error('phone_number_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -134,7 +134,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Asuransi Pasien: </label>
-                    <input type="text" name="insurance_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('insurance_patient') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Asuransi Pasien" value="{{$getPatient->insurance_type}} ({{$getPatient->insurance_number}})" readonly>
+                    <input type="text" name="insurance_patient" class="form-input w-full block rounded mt-1 p-3 border-2 @error('insurance_patient') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Asuransi Pasien" value="{{$getPatient->insurance_type}} ({{$getPatient->insurance_number}})" readonly>
                     @error('insurance_patient')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -159,7 +159,7 @@
             <div class="grid grid-cols-2 gap-5 xl:grid-cols-1">
                 <div>
                     <label class="text-gray-700 ml-1">Kode Pemeriksaan: </label>
-                    <input type="text" name="code_cu_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_cu_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Kode Pemeriksaan" value="{{$itemCheckup->code_cu}}" readonly>
+                    <input type="text" name="code_cu_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_cu_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Kode Pemeriksaan" value="{{$itemCheckup->code_cu}}" readonly>
                     @error('code_cu_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -168,7 +168,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Tanggal Pemeriksaan : </label>
-                    <input type="text" name="checkup_date_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('checkup_date_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tanggal Pemeriksaan " value="{{$itemCheckup->checkup_date}}" readonly>
+                    <input type="text" name="checkup_date_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('checkup_date_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tanggal Pemeriksaan " value="{{$itemCheckup->checkup_date}}" readonly>
                     @error('checkup_date_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -177,7 +177,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Pemeriksa : </label>
-                    <input type="text" name="doctor_nurse_name_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('doctor_nurse_name_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Pemeriksa " value="{{$itemCheckup->doctor_nurse_name}}" readonly>
+                    <input type="text" name="doctor_nurse_name_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('doctor_nurse_name_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Pemeriksa " value="{{$itemCheckup->doctor_nurse_name}}" readonly>
                     @error('doctor_nurse_name_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -186,7 +186,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Keluhan : </label>
-                    <input type="text" name="complaint_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Keluhan " value="{{$itemCheckup->complaint}}" readonly>
+                    <input type="text" name="complaint_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('complaint_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Keluhan " value="{{$itemCheckup->complaint}}" readonly>
                     @error('complaint_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -195,7 +195,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Tinggi Badan : </label>
-                    <input type="text" name="height_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('height_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tinggi Badan " value="{{$itemCheckup->height}}" readonly>
+                    <input type="text" name="height_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('height_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tinggi Badan " value="{{$itemCheckup->height}}" readonly>
                     @error('height_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -204,7 +204,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Berat Badan : </label>
-                    <input type="text" name="weight_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('weight_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Berat Badan " value="{{$itemCheckup->weight}}" readonly>
+                    <input type="text" name="weight_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('weight_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Berat Badan " value="{{$itemCheckup->weight}}" readonly>
                     @error('weight_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -213,7 +213,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Tekanan Darah : </label>
-                    <input type="text" name="blood_preasure_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('blood_preasure_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tekanan Darah " value="{{$itemCheckup->blood_preasure}}" readonly>
+                    <input type="text" name="blood_preasure_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('blood_preasure_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tekanan Darah " value="{{$itemCheckup->blood_preasure}}" readonly>
                     @error('blood_preasure_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -222,7 +222,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Alergi : </label>
-                    <input type="text" name="allergy_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('allergy_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Alergi " value="{{$itemCheckup->allergy}}" readonly>
+                    <input type="text" name="allergy_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('allergy_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Alergi " value="{{$itemCheckup->allergy}}" readonly>
                     @error('allergy_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -231,7 +231,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Kode Diagnosa : </label>
-                    <input type="text" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa " value="{{$itemCheckup->description_diagnosis}}" readonly>
+                    <input type="text" name="description_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('description_diagnosis') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Diagnosa " value="{{$itemCheckup->description_diagnosis}}" readonly>
                     @error('description_diagnosis')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -240,7 +240,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Kode Diagnosa : </label>
-                    <input type="text" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Diagnosa " value="{{$itemCheckup->code_diagnosis}}" readonly>
+                    <input type="text" name="code_diagnosis" class="form-input w-full block rounded mt-1 p-3 border-2 @error('code_diagnosis') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Diagnosa " value="{{$itemCheckup->code_diagnosis}}" readonly>
                     @error('code_diagnosis')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -249,7 +249,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Tindakan : </label>
-                    <input type="text" name="measures_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('measures_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Tindakan " value="@foreach($getMeasure as $itemDetail)@if($itemCheckup->id == $itemDetail->checkup_id){{$itemDetail->name}},@endif @endforeach" readonly>
+                    <input type="text" name="measures_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('measures_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Tindakan " value="@foreach($getMeasure as $itemDetail)@if($itemCheckup->id == $itemDetail->checkup_id){{$itemDetail->name}},@endif @endforeach" readonly>
                     @error('measures_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -258,7 +258,7 @@
                 </div>
                 <div>
                     <label class="text-gray-700 ml-1">Poli : </label>
-                    <input type="text" name="poly_name_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('poly_name_checkup') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Poli " value="{{$itemCheckup->poly_name}}" readonly>
+                    <input type="text" name="poly_name_checkup" class="form-input w-full block rounded mt-1 p-3 border-2 @error('poly_name_checkup') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Poli " value="{{$itemCheckup->poly_name}}" readonly>
                     @error('poly_name_checkup')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}
@@ -269,7 +269,7 @@
             <div class="grid grid-cols-1 mt-5 gap-5 xl:grid-cols-1">
                 <div>
                     <label class="text-gray-700 ml-1">Catatan Lain : </label>
-                    <input type="text" name="other_notes" class="form-input w-full block rounded mt-1 p-3 border-2 @error('other_notes') border-red-500 @enderror focus:outline-none focus:border-blue-500" placeholder="Catatan" value="{{$itemCheckup->other_notes}}" readonly>
+                    <input type="text" name="other_notes" class="form-input w-full block rounded mt-1 p-3 border-2 @error('other_notes') border-red-500 @enderror focus:outline-none focus:border-green-500" placeholder="Catatan" value="{{$itemCheckup->other_notes}}" readonly>
                     @error('other_notes')
                     <span class="pl-1 text-xs text-red-600 text-bold">
                         {{$message}}

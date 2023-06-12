@@ -60,7 +60,7 @@
 @endsection
 @section('content')
 <div>
-    <a href="{{url('/pharmacist/report-incoming-medicine/print')}}" class="bg-blue-500 text-white rounded px-4 py-3 mt-2 hover:bg-blue-600">Cetak PDF</a>
+    <a href="{{url('/pharmacist/report-incoming-medicine/print')}}" class="text-white rounded px-4 py-3 mt-2" style="background-color: #609966;">Cetak PDF</a>
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white bg-opacity-90">
         <div class="text-bold pb-5">
             <b class="text-bold text-black">DATA OBAT</b>

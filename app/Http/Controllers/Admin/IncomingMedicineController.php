@@ -21,6 +21,7 @@ class IncomingMedicineController extends Controller
             $this->param['getIncomingMedicine'] = \DB::table('incoming_medicines')
                                                     ->select('incoming_medicines.id', 'incoming_medicines.code_im', 'users.name as pharmacist_name', 'incoming_medicines.total', 'incoming_medicines.date_income_medicine', 'incoming_medicines.created_at', 'incoming_medicines.updated_at')
                                                     ->join('users', 'incoming_medicines.parmachist_id', '=', 'users.id')
+                                                    ->orderBy('incoming_medicines.updated_at', 'desc')
                                                     ->get();
             
             return view('admin.pages.incoming_medicine.list', $this->param);

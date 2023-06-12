@@ -25,12 +25,14 @@ class MedicalResumeReportController extends Controller
                                             ->select('checkups.checkup_date', 'checkups.id', 'patients.code_rm', 'checkups.code_cu', 'patients.name as patient_name', 'checkups.complaint', 'checkups.code_diagnosis', 'checkups.description_diagnosis', 'checkups.other_notes', 'checkups.status_resume')
                                             ->join('patients', 'checkups.patient_id', 'patients.id')
                                             ->where('checkups.status_rm', '1')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
 
             $this->param['getMeasureDetail'] = \DB::table('measure_patient_details')
                                             ->select('measures.name', 'measure_patient_details.measure_patient_id', 'measure_patients.checkup_id')
                                             ->join('measure_patients', 'measure_patient_details.measure_patient_id', 'measure_patients.id')
                                             ->join('measures', 'measure_patient_details.measure_id', 'measures.id')
+                                            ->orderBy('measure_patient_details.updated_at', 'desc')
                                             ->get();
 
             return view('admin.pages.medical_resume.list', $this->param);

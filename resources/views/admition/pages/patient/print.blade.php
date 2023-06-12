@@ -14,6 +14,7 @@
             size: 8.5cm 5.5cm landscape;
             padding: 2;
             margin: 2;
+
         }
         .container{
             justify-content: center;
@@ -26,8 +27,8 @@
     </style>
 </head>
 <body>
-    <div class="container"">
-        <table style="width: 100%;">
+    <div class="container">
+        <table style="width: 100%; background-color:#aee2b2;">
             <tr>
                 <th>
                     <img src="{{public_path('assets/logos/logo_jember.png')}}" style="width: 1.2cm; height:1.2cm;" alt="">
@@ -49,7 +50,7 @@
         <hr style="background-color:black; border:none; height:1px;">
 
     </div>
-    <p style="text-align:center;font-size:10px;margin-top:5px;color: yellow;-webkit-text-stroke: 1px black; font-weight:bold">KARTU KUNJUNGAN / PERIKSA / BEROBAT</p>
+    <p style="text-align:center;font-size:10px;margin-top:5px;color: black;-webkit-text-stroke: 1px black; font-weight:bold">KARTU KUNJUNGAN / PERIKSA / BEROBAT</p>
     <div style="margin-left: 20px; margin-top:-13px;">
         <p style="font-size:7px;">Nama Pasien&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  {{$getDetailPatient->name}}</p>
         <p style="font-size:7px">No RM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$getDetailPatient->code_rm}}</p>

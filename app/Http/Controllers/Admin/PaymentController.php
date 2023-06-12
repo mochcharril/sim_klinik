@@ -26,6 +26,7 @@ class PaymentController extends Controller
                                             ->join('users', 'checkups.doctor_nurse_id', 'users.id')
                                             ->join('polies', 'checkups.poly_id', 'polies.id')
                                             ->where('checkups.status_rm', '1')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
             $this->param['filterPayment'] = Payment::all();
 

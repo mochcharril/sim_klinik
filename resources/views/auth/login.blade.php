@@ -6,24 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SIM-KLINIK | Login</title>
-    <link rel="icon" href="{{ asset('assets/logos/logo.png') }}" type="image/x-icon"> 
+    <link rel="icon" href="{{ asset('assets/logos/logo.png') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap" rel="stylesheet">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-{{-- <body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;"> --}}
+{{-- <body class="h-screen overflow-hidden flex items-center justify-center" style="background: #CCFF99;"> --}}
 <body class="h-screen overflow-hidden flex items-center justify-center backdrop-brightness-50" style="background-image: url('{{asset('assets/logos/gedung-6-polije.jpg')}}'); background-repeat: no-repeat; background-size: cover;">
     <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl shadow">
+                class="absolute inset-0 bg-gradient-to-r from-lime-500 to-lime-900 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl shadow">
             </div>
             <div class="relative px-4 py-10 bg-white shadow shadow-lg sm:rounded-3xl sm:p-20">
                 <div class="max-w-md mx-auto">
                     <div class="text-center">
                         <img src="{{asset('assets/logos/logo.png')}}" class="h-28 flex-none m-auto mb-5">
-                        <h1 class="text-2xl font-semibold px-20">Login SIM-KLINIK</h1>
+                        <h1 class="text-4xl font-semibold font-[helvetica] px-10 tracking-[2px] mb-8">Welcome to <br> Si Klepon</h1>
                         <marquee behavior="" direction="">
-                            <h2 class="text-xl font-semibold px-5">Politeknik Negeri Jember</h2>
+                            <h2 class="text-xl font-[montserrat] px-5">Sistem Informasi Manajemen Klinik Politeknik Negeri Jember</h2>
                         </marquee>
                     </div>
                     <div class="divide-y divide-gray-200">
@@ -39,7 +40,7 @@
                                     <label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Kata Sandi</label>
                                 </div>
                                 <div class="relative">
-                                    <button type="submit" class="bg-blue-500 text-white rounded-md px-4 py-1 mt-2">Masuk</button>
+                                    <button type="submit" class="bg-lime-900 text-white rounded-md px-4 py-1 mt-2">Masuk</button>
                                 </div>
                             </div>
                         </form>

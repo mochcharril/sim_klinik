@@ -23,8 +23,9 @@ class MedicalReportController extends Controller
                                             ->select('checkups.patient_id')
                                             ->where('checkups.status_rm', '1')
                                             ->groupBy('checkups.patient_id')
+                                            ->orderBy('checkups.updated_at', 'desc')
                                             ->get();
-            $this->param['getPatient'] = Patient::all();
+            $this->param['getPatient'] = Patient::orderBy('updated_at', 'desc')->get();
             return view('admin.pages.medical_reports.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());

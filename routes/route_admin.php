@@ -73,6 +73,7 @@ Route::post('/admin/payment/{checkup}/print_nota', [App\Http\Controllers\Admin\P
 
 Route::get('/admin/report-patient', [App\Http\Controllers\Admin\ReportController::class, 'listPatient']);
 Route::get('/admin/report-patient/print', [App\Http\Controllers\Admin\ReportController::class, 'printPatient']);
+Route::post('/admin/report-patient/as/print', [App\Http\Controllers\Admin\ReportController::class, 'printAsPatient']);
 Route::get('/admin/report-medicine', [App\Http\Controllers\Admin\ReportController::class, 'listMedicine']);
 Route::get('/admin/report-medicine/print', [App\Http\Controllers\Admin\ReportController::class, 'printMedicine']);
 Route::get('/admin/report-incoming-medicine', [App\Http\Controllers\Admin\ReportController::class, 'listMedicineIncoming']);
@@ -83,6 +84,7 @@ Route::get('/admin/report-checkup', [App\Http\Controllers\Admin\ReportController
 Route::get('/admin/report-checkup/print', [App\Http\Controllers\Admin\ReportController::class, 'printCheckup']);
 Route::post('/admin/report-checkup/code/print', [App\Http\Controllers\Admin\ReportController::class, 'printCodeCheckup']);
 Route::post('/admin/report-checkup/date/print', [App\Http\Controllers\Admin\ReportController::class, 'printDateCheckup']);
+Route::post('/admin/report-checkup/as/print', [App\Http\Controllers\Admin\ReportController::class, 'printAsCheckup']);
 Route::get('/admin/report-recipe', [App\Http\Controllers\Admin\ReportController::class, 'listRecipe']);
 Route::get('/admin/report-recipe/print', [App\Http\Controllers\Admin\ReportController::class, 'printRecipe']);
 Route::post('/admin/report-recipe/code/print', [App\Http\Controllers\Admin\ReportController::class, 'printCodeRecipe']);

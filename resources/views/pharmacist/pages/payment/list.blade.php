@@ -90,7 +90,7 @@
                     <td class="text-left t-mx-3 flex">
                         <form action="{{url('/pharmacist/payment')}}/{{$item->id}}/add" method="POST" class="m-auto">
                             @csrf
-                            <button class="bg-blue-500 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-blue-600 inline-flex items-center justify-center">
+                            <button class="bg-yellow-700 w-6 p-5 text-sm font-bold tracking-wider text-white rounded-full hover:bg-yellow-800 inline-flex items-center justify-center">
                                 <i class="fa fa-coins"></i>
                             </button>
                         </form>
